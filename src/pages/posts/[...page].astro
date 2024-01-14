@@ -1,17 +1,12 @@
 ---
-import type {
-  FrontmatterPage,
-  IFrontmatter,
-} from 'astro-boilerplate-components';
-import {
-  BlogGallery,
-  NewerOlderPagination,
-  PaginationHeader,
-  Section,
-} from 'astro-boilerplate-components';
-
+import { BlogGallery } from '@/components/BlogGallery';
+import { NewerOlderPagination } from '@/components/NewerOlderPagination';
+import { PaginationHeader } from '@/components/PaginationHeader';
+import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
+// eslint-disable-next-line prettier/prettier
+import type { FrontmatterPage , IFrontmatter } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
