@@ -26,6 +26,16 @@ const BlogCard = (props: IBlogCardProps) => (
 
         <div className="mt-1 text-xs text-gray-400">
           {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
+          {props.instance.frontmatter.updatedDate && <br></br>}
+          {props.instance.frontmatter.updatedDate && (
+            <i>
+              Updated{' '}
+              {format(
+                new Date(props.instance.frontmatter.updatedDate),
+                'LLL d, yyyy',
+              )}
+            </i>
+          )}
         </div>
 
         <div className="mt-2 text-sm">

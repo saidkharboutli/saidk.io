@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import type { IFrontmatter } from '../types/IFrontMatter';
+import type { IFrontmatter } from '@/types/IFrontMatter';
 
 type IPostHeaderProps = {
   content: IFrontmatter;
@@ -14,6 +14,12 @@ const PostHeader = (props: IPostHeaderProps) => (
     <div className="mt-2 text-center text-sm text-gray-400">
       By {props.author} on{' '}
       {format(new Date(props.content.pubDate), 'LLL d, yyyy')}
+      {props.content.updatedDate && <br></br>}
+      {props.content.updatedDate && (
+        <i>
+          Updated {format(new Date(props.content.updatedDate), 'LLL d, yyyy')}
+        </i>
+      )}
     </div>
   </>
 );

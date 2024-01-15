@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { IFrontmatter } from '../types/IFrontMatter';
+import type { IFrontmatter } from '@/types/IFrontMatter';
 
 type IPostContentProps = {
   content: IFrontmatter;
