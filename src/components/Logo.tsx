@@ -2,11 +2,11 @@ import type { ReactNode } from 'react';
 
 type ILogoProps = {
   icon: ReactNode;
-  name: string;
+  name: ReactNode;
 };
 
 const Logo = (props: ILogoProps) => (
-  <div className="flex items-center bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-xl font-bold text-transparent">
+  <div className="flex items-center bg-gradient-to-br from-purple-500 to-red-300 bg-clip-text text-2xl font-bold text-transparent">
     {props.icon}
 
     {props.name}

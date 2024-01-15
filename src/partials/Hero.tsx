@@ -8,54 +8,50 @@ const Hero = () => (
     <HeroAvatar
       title={
         <>
-          Hi there, I'm <GradientText>Ixartz</GradientText> 👋
+          Hi, I'm <GradientText>Sa'id</GradientText>
         </>
       }
       description={
         <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus{' '}
-          <a className="text-cyan-400 hover:underline" href="/">
-            malesuada
+          I am a software engineer/PM/consultant working for{' '}
+          <a
+            className="text-green-500 hover:underline"
+            href="https://www.pyyne.com"
+          >
+            PYYNE Digital
           </a>{' '}
-          nisi tellus, non imperdiet nisi tempor at. Lorem ipsum dolor sit amet,{' '}
-          <a className="text-cyan-400 hover:underline" href="/">
-            consectetur
-          </a>{' '}
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+          &{' '}
+          <a
+            className="text-purple-500 hover:underline"
+            href="https://www.inveterate.com"
+          >
+            Inveterate
+          </a>
+          . My professional experience is primarily in AWS serverless backend
+          development. On my own time I work on a range of tech projects from
+          emulators to home-labs. I document my work here!
         </>
       }
       avatar={
         <img
-          className="h-80 w-64"
-          src="/assets/images/avatar.svg"
-          alt="Avatar image"
+          className="h-80 rounded-3xl"
+          src="/public/images/site/portrait.jpg"
+          alt="Portrait of me"
           loading="lazy"
         />
       }
       socialButtons={
         <>
-          <a href="/">
+          <a href="https://github.com/saidkharboutli">
             <HeroSocial
-              src="/assets/images/twitter-icon.png"
-              alt="Twitter icon"
+              src="/public/images/site/github-icon.png"
+              alt="GitHub Icon"
             />
           </a>
-          <a href="/">
+          <a href="https://www.linkedin.com/in/sa-id-kharboutli-428785119/">
             <HeroSocial
-              src="/assets/images/facebook-icon.png"
-              alt="Facebook icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/linkedin-icon.png"
-              alt="Linkedin icon"
-            />
-          </a>
-          <a href="/">
-            <HeroSocial
-              src="/assets/images/youtube-icon.png"
-              alt="Youtube icon"
+              src="/public/images/site/linkedin-icon.png"
+              alt="LinkedIn Icon"
             />
           </a>
         </>

@@ -5,7 +5,7 @@ type IHeroSocialProps = {
 
 const HeroSocial = (props: IHeroSocialProps) => (
   <img
-    className="h-12 w-12 hover:translate-y-1"
+    className="h-9 w-9 hover:translate-y-1"
     src={props.src}
     alt={props.alt}
     loading="lazy"
