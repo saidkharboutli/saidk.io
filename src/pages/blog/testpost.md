@@ -1,11 +1,12 @@
 ---
 layout: '@/templates/BasePost.astro'
-title: First Test Post
-description: Test description!
+title: 'First Post: Emulating CHIP8 As Fast As Possible'
+description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
 pubDate: 2020-02-06T00:00:00Z
 updatedDate: 2020-03-06T00:00:00Z
-imgSrc: '/public/images/posts/post0/image-post.jpeg'
+imgSrc: '/images/posts/post0/banner.png'
 imgAlt: 'Image post'
+tags: Test Posts, Test Tags, Test, Testing, Hello World, a, b, c, d, e, e, f, g, gggggggggggggg, ggg, asda, asdasd, asdasfas, asdasdasfasf, asdasdasd
 ---
 
 This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi, inventore atque cupiditate. Sed voluptatem quas omnis culpa, et odit.
@@ -119,7 +120,7 @@ Some text to show that the reference links can follow later.
 Images included in _\_posts_ folder are lazy loaded.
 
 Inline-style:
-![alt text](/public/images/posts/post0/random.jpeg 'Logo Title Text 1')
+![alt text](/images/posts/post0/random.jpeg 'Logo Title Text 1')
 
 ## Table
 

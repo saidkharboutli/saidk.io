@@ -8,8 +8,7 @@ export interface IFrontmatter {
   imgSrc: string;
   imgAlt: string;
   draft: boolean;
+  tags: string;
 }
 
-// Workaround to import Astro type. Otherwise, it'll have some compilation errors
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 export type FrontmatterPage = Page<MarkdownInstance<IFrontmatter>>;

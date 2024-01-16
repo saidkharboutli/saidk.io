@@ -1,0 +1,36 @@
+---
+import { PaginationHeader } from '@/components/PaginationHeader';
+import { Section } from '@/components/Section';
+import { TagList } from '@/components/TagList';
+import { CTA } from '@/partials/CTA';
+import Base from '@/templates/Base.astro';
+// eslint-disable-next-line prettier/prettier
+import type { IFrontmatter } from '@/types/IFrontMatter';
+// eslint-disable-next-line prettier/prettier
+import { AppConfig } from '@/utils/AppConfig';
+
+
+const title = `Blog Tags | ${AppConfig.site_name}`;
+const description =
+  'Here you can find all the tags used on blog articles.';
+
+const allUniqueTags = new Set<any>();
+const allPosts = await Astro.glob<IFrontmatter>('../*.md');
+
+allPosts.forEach(post => {
+  post.frontmatter.tags.split(', ').forEach(tag => {
+    allUniqueTags.add(tag);
+  });
+});
+---
+
+<Base head={{ title, description }}>
+  <Section>
+    <PaginationHeader
+      title='Blog Tags'
+      description=''
+    />
+  </Section>
+    <TagList tags={allUniqueTags}/>
+  <CTA />
+</Base>

@@ -1,4 +1,5 @@
 ---
+import { BlogCardSpotlight } from '@/components/BlogCardSpotlight';
 import { BlogGallery } from '@/components/BlogGallery';
 import { NewerOlderPagination } from '@/components/NewerOlderPagination';
 import { PaginationHeader } from '@/components/PaginationHeader';
@@ -6,7 +7,7 @@ import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { FrontmatterPage , IFrontmatter } from '@/types/IFrontMatter';
+import type { FrontmatterPage, IFrontmatter } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
@@ -36,12 +37,16 @@ const description =
   <Section>
     <PaginationHeader
       title='Blog Posts'
-      description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      description=''
     />
   </Section>
 
   <Section>
-    <BlogGallery postList={page.data} />
+    <BlogCardSpotlight instance={page.data[0]!} />
+  </Section>
+
+  <Section>
+    <BlogGallery postList={page.data.slice(1)} />
   </Section>
 
   <Section>

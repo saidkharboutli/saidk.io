@@ -9,7 +9,7 @@ import type { IFrontmatter } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
-const allPosts = await Astro.glob<IFrontmatter>('./posts/*.md');
+const allPosts = await Astro.glob<IFrontmatter>('./blog/*.md');
 const sortedPosts = sortByDate(allPosts);
 const last4Posts = sortedPosts.slice(0, 4);
 

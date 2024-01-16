@@ -35,7 +35,7 @@ const Hero = () => (
       avatar={
         <img
           className="h-80 rounded-3xl"
-          src="/public/images/site/portrait.jpg"
+          src="/images/site/portrait.jpg"
           alt="Portrait of me"
           loading="lazy"
         />
@@ -43,14 +43,11 @@ const Hero = () => (
       socialButtons={
         <>
           <a href="https://github.com/saidkharboutli">
-            <HeroSocial
-              src="/public/images/site/github-icon.png"
-              alt="GitHub Icon"
-            />
+            <HeroSocial src="/images/site/github-icon.png" alt="GitHub Icon" />
           </a>
           <a href="https://www.linkedin.com/in/sa-id-kharboutli-428785119/">
             <HeroSocial
-              src="/public/images/site/linkedin-icon.png"
+              src="/images/site/linkedin-icon.png"
               alt="LinkedIn Icon"
             />
           </a>

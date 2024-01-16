@@ -1,5 +1,6 @@
 import type { MarkdownInstance } from 'astro';
 
+import { BlogCardSpotlight } from '@/components/BlogCardSpotlight';
 import { BlogGallery } from '@/components/BlogGallery';
 import { GradientText } from '@/components/GradientText';
 import { Section } from '@/components/Section';
@@ -18,12 +19,14 @@ const RecentPosts = (props: IRecentPostsProps) => (
         </div>
 
         <div className="text-sm">
-          <a href="/posts/">View all Posts →</a>
+          <a href="/blog/">View all Posts →</a>
         </div>
       </div>
     }
   >
-    <BlogGallery postList={props.postList} />
+    {props.postList[0] && <BlogCardSpotlight instance={props.postList[0]} />}
+
+    {props.postList[1] && <BlogGallery postList={props.postList.slice(1)} />}
   </Section>
 );
 
