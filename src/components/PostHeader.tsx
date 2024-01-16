@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
 import type { IFrontmatter } from '@/types/IFrontMatter';
-import { generateTagData } from '@/utils/helpers';
+import { tagDataFromString } from '@/utils/helpers';
 
 type IPostHeaderProps = {
   content: IFrontmatter;
@@ -33,9 +33,9 @@ const PostHeader = (props: IPostHeaderProps) => (
       </div>
       <div className="mt-4 flex flex-row flex-wrap gap-1 text-xs">
         {props.content.tags &&
-          generateTagData(props.content.tags).map((item) => (
+          tagDataFromString(props.content.tags).map((item) => (
             <a
-              href={`/blog/tags/${item.slug}`}
+              href={`/blog/tags/${item.slug}/`}
               className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:translate-y-px hover:text-purple-400 hover:outline-purple-400"
             >
               {item.name}
