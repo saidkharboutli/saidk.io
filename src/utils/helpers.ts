@@ -31,6 +31,16 @@ export function tagDataFromString(tags: string) {
   return tagData;
 }
 
+function titleCase(str: string) {
+  return str
+    .toLowerCase()
+    .split(' ')
+    .map((word) => {
+      return word.replace(word[0]!, word[0]!.toUpperCase());
+    })
+    .join(' ');
+}
+
 export function tagDataFromArr(tags: string[] | Set<string>) {
   const tagData: ITagData[] = [];
   tags.forEach((tag) => {
@@ -40,4 +50,17 @@ export function tagDataFromArr(tags: string[] | Set<string>) {
     });
   });
   return tagData;
+}
+
+export function getNameFromSlug(slug: string) {
+  return titleCase(slug.replaceAll('-', ' ').replaceAll('and', '&'));
+}
+
+export function getTopicFromUrl(url: string) {
+  const slugs = url.split('/');
+  return slugs[
+    slugs.findIndex((path) => {
+      return path === 'topics';
+    }) + 1
+  ];
 }

@@ -1,8 +1,8 @@
 ---
 import { BlogCardSpotlight } from '@/components/BlogCardSpotlight';
 import { BlogGallery } from '@/components/BlogGallery';
+import { GradientText } from '@/components/GradientText';
 import { NewerOlderPagination } from '@/components/NewerOlderPagination';
-import { PaginationHeader } from '@/components/PaginationHeader';
 import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
@@ -16,7 +16,7 @@ type GetStaticPaths = {
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatter>('./*.md');
+  const allPosts = await Astro.glob<IFrontmatter>('./**/*.md');
   const sortedPosts = sortByDate(allPosts);
 
   // Return a paginated collection of paths for all posts
@@ -35,10 +35,17 @@ const description =
 
 <Base head={{ title, description }}>
   <Section>
-    <PaginationHeader
-      title='Blog Posts'
-      description=''
-    />
+    <div class="text-center">
+      <h1 class="text-3xl font-bold"><GradientText>All</GradientText> Blog Posts</h1>
+    </div>
+    <div class="mt-1 flex flex-row justify-center gap-8 text-center text-xs">
+      <a href="/blog/tags/" class="hover:-translate-x-1 hover:text-purple-400">
+      ← View all tags
+      </a>
+      <a href="/blog/topics/" class="hover:translate-x-1 hover:text-purple-400">
+        View all topics →
+      </a>
+    </div>
   </Section>
 
   <Section>

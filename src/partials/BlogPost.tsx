@@ -8,12 +8,17 @@ import { AppConfig } from '@/utils/AppConfig';
 
 type IBlogPostProps = {
   frontmatter: IFrontmatter;
+  path: string;
   children: ReactNode;
 };
 
 const BlogPost = (props: IBlogPostProps) => (
   <Section>
-    <PostHeader content={props.frontmatter} author={AppConfig.author} />
+    <PostHeader
+      content={props.frontmatter}
+      author={AppConfig.author}
+      path={props.path}
+    />
 
     <PostContent content={props.frontmatter}>{props.children}</PostContent>
   </Section>

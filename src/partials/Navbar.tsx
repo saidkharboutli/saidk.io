@@ -10,7 +10,12 @@ const Navbar = () => (
     <NavbarTwoColumns>
       <a href="/">
         <Logo
-          icon={<img className="mr-2 w-10" src="/favicon.ico"></img>}
+          icon={
+            <img
+              className="mr-2 w-10 rounded-full"
+              src="/images/site/profile_no_bg.png"
+            ></img>
+          }
           name={<GradientText>Sa'id Kharboutli</GradientText>}
         />
       </a>

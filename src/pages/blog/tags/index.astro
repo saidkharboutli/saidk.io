@@ -1,7 +1,7 @@
 ---
-import { PaginationHeader } from '@/components/PaginationHeader';
+import { GradientText } from '@/components/GradientText';
 import { Section } from '@/components/Section';
-import { TagList } from '@/components/TagList';
+import { TagList } from '@/components/TagListView';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
@@ -15,7 +15,7 @@ const description =
   'Here you can find all the tags used on blog articles.';
 
 const allUniqueTags = new Set<any>();
-const allPosts = await Astro.glob<IFrontmatter>('../*.md');
+const allPosts = await Astro.glob<IFrontmatter>('../**/*.md');
 
 allPosts.forEach(post => {
   post.frontmatter.tags.split(', ').forEach(tag => {
@@ -26,10 +26,9 @@ allPosts.forEach(post => {
 
 <Base head={{ title, description }}>
   <Section>
-    <PaginationHeader
-      title='All Tags'
-      description=''
-    />
+    <div class="text-center">
+      <h1 class="text-3xl font-bold"><GradientText>All</GradientText> Tags</h1>
+    </div>
   </Section>
     <TagList tags={allUniqueTags}/>
   <CTA />

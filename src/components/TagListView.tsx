@@ -1,10 +1,10 @@
 import { tagDataFromArr } from '@/utils/helpers';
 
-type ITagList = {
+type ITagListProps = {
   tags: Set<any>;
 };
 
-const TagList = (props: ITagList) => (
+const TagList = (props: ITagListProps) => (
   <div className="mx-auto mt-4 flex max-w-screen-lg flex-row flex-wrap justify-center gap-3 px-3 py-6 text-2xl">
     {props.tags &&
       tagDataFromArr([...props.tags])

@@ -11,12 +11,13 @@ export interface Props {
 }
 
 const { content } = Astro.props as Props;
+const path = Astro.url.pathname;
 const title = `${content.title} - ${AppConfig.site_name}`;
 
 ---
 
 <Base head={{ title, description: content.description }}>
-  <BlogPost frontmatter={content}>
+  <BlogPost frontmatter={content} path={path}>
     <slot></slot>
   </BlogPost>
 

@@ -1,16 +1,32 @@
 import { format } from 'date-fns';
 
 import type { IFrontmatter } from '@/types/IFrontMatter';
-import { tagDataFromString } from '@/utils/helpers';
+import {
+  getNameFromSlug,
+  getTopicFromUrl,
+  tagDataFromString,
+} from '@/utils/helpers';
 
 type IPostHeaderProps = {
   content: IFrontmatter;
+  path: string;
   author: string;
 };
 
 const PostHeader = (props: IPostHeaderProps) => (
   <>
     <div className="flex flex-col items-center">
+      {/* Topic */}
+      <div>
+        <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
+          <a
+            className="hover:translate-y-1"
+            href={`/blog/topics/${getTopicFromUrl(props.path)}/`}
+          >
+            {getNameFromSlug(getTopicFromUrl(props.path)!)}
+          </a>
+        </h2>
+      </div>
       <h1 className="text-center text-3xl font-bold">{props.content.title}</h1>
 
       <div className="mt-4 flex flex-row items-center">

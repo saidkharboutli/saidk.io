@@ -2,7 +2,11 @@ import type { MarkdownInstance } from 'astro';
 import { format } from 'date-fns';
 
 import type { IFrontmatter } from '@/types/IFrontMatter';
-import { tagDataFromString } from '@/utils/helpers';
+import {
+  getNameFromSlug,
+  getTopicFromUrl,
+  tagDataFromString,
+} from '@/utils/helpers';
 
 type IBlogCardProps = {
   instance: MarkdownInstance<IFrontmatter>;
@@ -22,6 +26,18 @@ const BlogCardSpotlight = (props: IBlogCardProps) => (
     </div>
 
     <div className="flex w-2/5 flex-col px-3 pb-6 pt-4 text-left">
+      {/* Topic */}
+      <div>
+        <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
+          <a
+            className="hover:translate-y-1"
+            href={`/blog/topics/${getTopicFromUrl(props.instance.url!)}/`}
+          >
+            {getNameFromSlug(getTopicFromUrl(props.instance.url!)!)}
+          </a>
+        </h2>
+      </div>
+
       {/* Title */}
       <div>
         <h2 className="text-2xl font-semibold hover:text-purple-400">
