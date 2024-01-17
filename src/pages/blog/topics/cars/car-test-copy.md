@@ -1,11 +1,12 @@
 ---
 layout: '@/templates/BasePost.astro'
-title: 'Car'
+title: 'Ranking Cars: Part 2'
 description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
 pubDate: 2023-02-06T00:00:00Z
 imgSrc: '/images/posts/post0/banner.png'
 imgAlt: 'Image post'
 tags: Test Posts, Test Tags, Test, Testing, Hello World
+series: 'Ranking Cars'
 ---
 
 This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi, inventore atque cupiditate. Sed voluptatem quas omnis culpa, et odit.

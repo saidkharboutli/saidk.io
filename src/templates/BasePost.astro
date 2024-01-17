@@ -1,10 +1,13 @@
 ---
+
+
 import { BlogPost } from '@/partials/BlogPost';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontmatter } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';
+import { sortByDate } from '@/utils/Posts';
 
 export interface Props {
   content: IFrontmatter;
@@ -14,10 +17,25 @@ const { content } = Astro.props as Props;
 const path = Astro.url.pathname;
 const title = `${content.title} - ${AppConfig.site_name}`;
 
+const prevNextInSeries = {previous: null as any, next: null as any};
+if(content.series) {
+  const allPostsInSeries: any[] = [];
+  const allPosts = await Astro.glob<IFrontmatter>('@/pages/blog/**/*.md');
+  allPosts.forEach(post => {
+    if(post.frontmatter.series === content.series) allPostsInSeries.push(post);
+  })
+
+  const sortedPostsInSeries = sortByDate(allPostsInSeries);
+  sortedPostsInSeries.forEach((post) => {
+    if(new Date(post.frontmatter.pubDate) < new Date(content.pubDate)) prevNextInSeries.previous = post;
+    else if (new Date(post.frontmatter.pubDate) > new Date(content.pubDate) && !prevNextInSeries.next) prevNextInSeries.next = post;
+  })
+}
+
 ---
 
 <Base head={{ title, description: content.description }}>
-  <BlogPost frontmatter={content} path={path}>
+  <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries}>
     <slot></slot>
   </BlogPost>
 

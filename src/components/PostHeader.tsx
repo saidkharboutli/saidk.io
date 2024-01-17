@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 
 import type { IFrontmatter } from '@/types/IFrontMatter';
 import {
+  generateSlug,
   getNameFromSlug,
   getTopicFromUrl,
   tagDataFromString,
@@ -27,8 +28,24 @@ const PostHeader = (props: IPostHeaderProps) => (
           </a>
         </h2>
       </div>
+
+      {/* Title */}
       <h1 className="text-center text-3xl font-bold">{props.content.title}</h1>
 
+      {/* Series */}
+      {props.content.series && (
+        <span className="mt-1 text-sm">
+          {props.content.isProject ? 'Project: ' : 'Series: '}
+          <a
+            href={`/blog/${props.content.isProject ? 'projects' : 'series'}/${generateSlug(props.content.series)}/`}
+            className="font-bold text-cyan-500 hover:text-slate-200"
+          >
+            {props.content.series}
+          </a>
+        </span>
+      )}
+
+      {/* Upload Details */}
       <div className="mt-4 flex flex-row items-center">
         <img
           src="/images/site/profile.png"
@@ -47,6 +64,8 @@ const PostHeader = (props: IPostHeaderProps) => (
           )}
         </div>
       </div>
+
+      {/* Tags */}
       <div className="mt-4 flex flex-row flex-wrap gap-1 text-xs">
         {props.content.tags &&
           tagDataFromString(props.content.tags).map((item) => (

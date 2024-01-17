@@ -9,6 +9,8 @@ export interface IFrontmatter {
   imgAlt: string;
   draft: boolean;
   tags: string;
+  series: string;
+  isProject: string;
 }
 
 export type FrontmatterPage = Page<MarkdownInstance<IFrontmatter>>;

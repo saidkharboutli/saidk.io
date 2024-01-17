@@ -1,0 +1,78 @@
+---
+import { BlogCardSpotlight } from '@/components/BlogCardSpotlight';
+import { BlogGallery } from '@/components/BlogGallery';
+import { GradientText } from '@/components/GradientText';
+import { NewerOlderPagination } from '@/components/NewerOlderPagination';
+import { Section } from '@/components/Section';
+import { CTA } from '@/partials/CTA';
+import Base from '@/templates/Base.astro';
+// eslint-disable-next-line prettier/prettier
+import type { FrontmatterPage, IFrontmatter } from '@/types/IFrontMatter';
+import { AppConfig } from '@/utils/AppConfig';
+import { tagDataFromArr } from '@/utils/helpers';
+import { sortByDate } from '@/utils/Posts';
+
+type GetStaticPaths = {
+  paginate: any;
+}; // Overrides `GetStaticPathsOptions` types from Astro
+
+export async function getStaticPaths({ paginate }: GetStaticPaths) {
+  const allPosts = await Astro.glob<IFrontmatter>('../../**/*.md');
+  const allUniqueProjects = new Set<any>();
+  const sortedPosts = sortByDate(allPosts);
+
+  sortedPosts.forEach(post => {
+    if(post.frontmatter.isProject && post.frontmatter.series) allUniqueProjects.add(post.frontmatter.series);
+  });
+
+  const projectData = tagDataFromArr(allUniqueProjects);
+
+  return projectData.flatMap((project) => {
+    const posts = sortedPosts.filter((post) =>  post.frontmatter.isProject && post.frontmatter.series === project.name)
+    return paginate( posts,  {props: { projectData: project }, params: { project: project.slug }, pageSize: 10});
+    }
+  )
+  // Return a paginated collection of paths for all posts
+}
+
+interface Props {
+  page: FrontmatterPage;
+  projectData: any;
+}
+
+const { page, projectData } = Astro.props as Props;
+// @ts-ignore
+// eslint-disable-next-line unused-imports/no-unused-vars
+const { project } = Astro.params; 
+
+const title = `${projectData.name} Project Posts | ${AppConfig.site_name}`;
+const description =
+  'Pagination example built with Astro styled with Tailwind CSS.';
+---
+
+<Base head={{ title, description }}>
+  <Section>
+    <div class="text-center">
+      <h1 class="text-3xl font-bold"><GradientText>{projectData.name}</GradientText> Project Posts</h1>
+      <div class="mt-1 text-center text-xs">
+        <a href=`/projects/` class="hover:translate-x-1 hover:text-purple-400">
+        View project page →
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <BlogCardSpotlight instance={page.data[0]!} />
+  </Section>
+
+  <Section>
+    <BlogGallery postList={page.data.slice(1)} />
+  </Section>
+
+  <Section>
+    <NewerOlderPagination page={page} />
+  </Section>
+
+  <CTA />
+</Base>
