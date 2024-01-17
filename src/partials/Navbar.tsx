@@ -1,8 +1,8 @@
 import { GradientText } from '@/components/GradientText';
-import { Logo } from '@/components/Logo';
-import { NavbarTwoColumns } from '@/components/NavbarTwoColumns';
-import { NavMenu } from '@/components/NavMenu';
-import { NavMenuItem } from '@/components/NavMenuItem';
+import { Logo } from '@/components/Navbar/Logo';
+import { NavbarTwoColumns } from '@/components/Navbar/NavbarTwoColumns';
+import { NavMenu } from '@/components/Navbar/NavMenu';
+import { NavMenuItem } from '@/components/Navbar/NavMenuItem';
 import { Section } from '@/components/Section';
 
 const Navbar = () => (
@@ -38,7 +38,7 @@ const Navbar = () => (
           </svg>
         </NavMenuItem>
         <NavMenuItem href="/blog/">Blog</NavMenuItem>
-        <NavMenuItem href="/">Projects</NavMenuItem>
+        <NavMenuItem href="/projects/">Projects</NavMenuItem>
         <NavMenuItem href="/">About Me</NavMenuItem>
         <NavMenuItem href="/">Portfolio</NavMenuItem>
       </NavMenu>

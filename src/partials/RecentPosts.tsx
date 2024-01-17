@@ -1,6 +1,6 @@
 import type { MarkdownInstance } from 'astro';
 
-import { BlogCardSpotlight } from '@/components/BlogCardSpotlight';
+import { BlogCardSpotlight } from '@/components/BlogCard/BlogCardSpotlight';
 import { BlogGallery } from '@/components/BlogGallery';
 import { GradientText } from '@/components/GradientText';
 import { Section } from '@/components/Section';

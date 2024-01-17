@@ -1,6 +1,6 @@
 import { GradientText } from '@/components/GradientText';
-import { HeroAvatar } from '@/components/HeroAvatar';
-import { HeroSocial } from '@/components/HeroSocial';
+import { HeroAvatar } from '@/components/Hero/HeroAvatar';
+import { HeroSocial } from '@/components/Hero/HeroSocial';
 import { Section } from '@/components/Section';
 
 const Hero = () => (

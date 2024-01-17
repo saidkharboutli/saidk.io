@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-import { PostContent } from '@/components/PostContent';
-import { PostFooter } from '@/components/PostFooter';
-import { PostHeader } from '@/components/PostHeader';
+import { PostContent } from '@/components/Post/PostContent';
+import { PostFooter } from '@/components/Post/PostFooter';
+import { PostHeader } from '@/components/Post/PostHeader';
 import { Section } from '@/components/Section';
 import type { IFrontmatter } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';

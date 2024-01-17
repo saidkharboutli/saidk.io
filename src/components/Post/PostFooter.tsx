@@ -1,6 +1,6 @@
 import type { IFrontmatter } from '@/types/IFrontMatter';
 
-import { BlogCardMin } from './BlogCardMin';
+import { BlogCardMin } from '../BlogCard/BlogCardMin';
 
 type IPostFooterProps = {
   content: IFrontmatter;

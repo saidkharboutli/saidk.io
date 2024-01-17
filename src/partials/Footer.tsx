@@ -1,4 +1,4 @@
-import { FooterCopyright } from '@/components/FooterCopyright';
+import { FooterCopyright } from '@/components/Footer/FooterCopyright';
 import { Section } from '@/components/Section';
 import { AppConfig } from '@/utils/AppConfig';
 
