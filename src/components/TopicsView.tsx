@@ -1,6 +1,6 @@
 import { getNameFromSlug } from '@/utils/helpers';
 
-import { BlogGallery } from './BlogGallery';
+import { BlogGallery } from './BlogCard/BlogGallery';
 import { GradientText } from './GradientText';
 
 type ITopicsViewProps = {
@@ -21,7 +21,7 @@ const TopicsView = (props: ITopicsViewProps) => (
               <div className="flex w-1/2">
                 <a
                   href={`/blog/topics/${topicDatum.topic}/`}
-                  className="px-1.5 py-0.5 font-bold hover:translate-x-1 hover:text-purple-400 hover:outline-purple-400"
+                  className="px-1.5 py-0.5 font-bold hover:text-purple-400 hover:outline-purple-400 hover:translate-x-1"
                 >
                   <GradientText>
                     {getNameFromSlug(topicDatum.topic)}

@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 import {
   generateSlug,
   getNameFromSlug,
@@ -9,7 +9,7 @@ import {
 } from '@/utils/helpers';
 
 type IPostHeaderProps = {
-  content: IFrontmatter;
+  content: IFrontmatterPost;
   path: string;
   author: string;
 };
@@ -71,7 +71,7 @@ const PostHeader = (props: IPostHeaderProps) => (
           tagDataFromString(props.content.tags).map((item) => (
             <a
               href={`/blog/tags/${item.slug}/`}
-              className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:translate-y-px hover:text-purple-400 hover:outline-purple-400"
+              className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px"
             >
               {item.name}
             </a>

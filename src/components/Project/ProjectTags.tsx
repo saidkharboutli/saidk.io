@@ -27,11 +27,6 @@ export const ColorTags = {
   ROSE: 'ROSE',
 } as const;
 
-type ITagsProps = {
-  color: Values<typeof ColorTags>;
-  children: ReactNode;
-};
-
 const colorToClassMap = {
   [ColorTags.SLATE]: 'bg-slate-400 text-slate-900',
   [ColorTags.GRAY]: 'bg-gray-400 text-gray-900',
@@ -55,6 +50,11 @@ const colorToClassMap = {
   [ColorTags.FUCHSIA]: 'bg-fuchsia-400 text-fuchsia-900',
   [ColorTags.PINK]: 'bg-pink-400 text-pink-900',
   [ColorTags.ROSE]: 'bg-rose-400 text-rose-900',
+};
+
+type ITagsProps = {
+  color: Values<typeof ColorTags>;
+  children: ReactNode;
 };
 
 const Tags = (props: ITagsProps) => (

@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 import { format } from 'date-fns';
 
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 import {
   getNameFromSlug,
   getTopicFromUrl,
@@ -9,7 +9,7 @@ import {
 } from '@/utils/helpers';
 
 type IBlogCardProps = {
-  instance: MarkdownInstance<IFrontmatter>;
+  instance: MarkdownInstance<IFrontmatterPost>;
 };
 
 const BlogCard = (props: IBlogCardProps) => (
@@ -48,46 +48,48 @@ const BlogCard = (props: IBlogCardProps) => (
       </div>
 
       {/* Pub Date */}
-      <div className="mt-1 inline-flex text-xs text-gray-400">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="mr-1 h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          ></path>
-        </svg>
-        {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
+      <div className="mt-1 text-xs text-gray-400">
+        <span className="align-middle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="mr-1 inline h-4 w-4 align-bottom"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+          {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
+        </span>
       </div>
 
       {/* Updated Date (conditional) */}
       {props.instance.frontmatter.updatedDate && (
-        <div className="mt-1 inline-flex text-xs text-gray-400">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="mr-1 h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
-          </svg>
-          <i>
+        <div className="mt-1 text-xs text-gray-400">
+          <span className="align-middle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="mr-1 inline h-4 w-4 align-bottom"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
+            </svg>
             Updated{' '}
             {format(
               new Date(props.instance.frontmatter.updatedDate),
               'LLL d, yyyy',
             )}
-          </i>
+          </span>
         </div>
       )}
 
@@ -102,7 +104,7 @@ const BlogCard = (props: IBlogCardProps) => (
           tagDataFromString(props.instance.frontmatter.tags).map((item) => (
             <a
               href={`/blog/tags/${item.slug}/`}
-              className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:translate-y-px hover:text-purple-400 hover:outline-purple-400"
+              className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px"
             >
               {item.name}
             </a>

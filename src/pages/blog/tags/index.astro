@@ -1,11 +1,11 @@
 ---
 import { GradientText } from '@/components/GradientText';
+import { TagList } from '@/components/PostTagListView';
 import { Section } from '@/components/Section';
-import { TagList } from '@/components/TagListView';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { IFrontmatter } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -33,3 +33,4 @@ allPosts.forEach(post => {
     <TagList tags={allUniqueTags}/>
   <CTA />
 </Base>
+@/types/IFrontMatterPost

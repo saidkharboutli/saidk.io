@@ -5,7 +5,7 @@ import { BlogPost } from '@/partials/BlogPost';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { IFrontmatter } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
@@ -35,9 +35,12 @@ if(content.series) {
 ---
 
 <Base head={{ title, description: content.description }}>
+
   <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries}>
     <slot></slot>
   </BlogPost>
 
   <CTA />
+  
 </Base>
+@/types/IFrontMatterPost

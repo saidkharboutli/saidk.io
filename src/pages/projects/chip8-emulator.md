@@ -1,14 +1,27 @@
 ---
+# Layout File
 layout: '@/templates/BasePost.astro'
-title: 'First Post: Emulating CHIP8 As Fast As Possible'
-description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
-pubDate: 2020-02-06T00:00:00Z
-updatedDate: 2020-03-06T00:00:00Z
-imgSrc: '/images/posts/post0/banner.png'
-imgAlt: 'Image post'
-tags: Test Posts, Test Tags, flag
-series: CHIP8 Emulator
-isProject: True
+
+# Banner Image
+imgSrc: '/images/projects/chip8-emulator.png'
+imgAlt: 'CHIP8 program output'
+
+# Project Details
+projectName: 'CHIP8 Emulator'
+description: A quick CHIP8 emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
+startDate: 2024-01-04T00:00:00Z
+status: Post-MVP (Ongoing)
+
+# GitHub Repository
+github: 'https://github.com/saidkharboutli/chip8-emu'
+
+# Tech Stack
+language: C
+techStack: [SDL2, other]
+platform: [Linux, Windows, iOS, Android, macOS]
+
+# Related Blog Series
+series: 'CHIP8 Emulator'
 ---
 
 This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi, inventore atque cupiditate. Sed voluptatem quas omnis culpa, et odit.

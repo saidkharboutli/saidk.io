@@ -5,11 +5,11 @@ import { ProjectList } from '@/partials/ProjectList';
 import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
-const allPosts = await Astro.glob<IFrontmatter>('./blog/**/*.md');
+const allPosts = await Astro.glob<IFrontmatterPost>('./blog/**/*.md');
 const sortedPosts = sortByDate(allPosts);
 const last4Posts = sortedPosts.slice(0, 4);
 
@@ -27,9 +27,10 @@ const { description } = AppConfig;
 
 <!--
   TODO:
-  - Blog post comments (giscus)
-  - Blog post views?
   - Projects view (modeled after blog posts)
+  - Projects cards for home
   - Portfolio
   - Aboutme
--->
+  - Blog post comments (giscus)
+  - Blog post views?
+-->@/types/IFrontMatterPost

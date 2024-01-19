@@ -1,7 +1,7 @@
-import type { FrontmatterPage } from '@/types/IFrontMatter';
+import type { FrontmatterPostPage } from '@/types/IFrontMatterPost';
 
 type INewerOlderPaginationProps = {
-  page: FrontmatterPage;
+  page: FrontmatterPostPage;
 };
 
 const NewerOlderPagination = (props: INewerOlderPaginationProps) => (

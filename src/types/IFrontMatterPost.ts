@@ -1,6 +1,6 @@
 import type { MarkdownInstance, Page } from 'astro';
 
-export interface IFrontmatter {
+export interface IFrontmatterPost {
   title: string;
   description: string;
   pubDate: string;
@@ -13,4 +13,4 @@ export interface IFrontmatter {
   isProject: string;
 }
 
-export type FrontmatterPage = Page<MarkdownInstance<IFrontmatter>>;
+export type FrontmatterPostPage = Page<MarkdownInstance<IFrontmatterPost>>;

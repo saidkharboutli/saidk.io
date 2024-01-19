@@ -1,6 +1,6 @@
 import { GradientText } from '@/components/GradientText';
 import { Project } from '@/components/Project/Project';
-import { ColorTags, Tags } from '@/components/Project/Tags';
+import { ColorTags, Tags } from '@/components/Project/ProjectTags';
 import { Section } from '@/components/Section';
 
 const ProjectList = () => (

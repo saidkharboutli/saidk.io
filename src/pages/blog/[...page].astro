@@ -1,13 +1,13 @@
 ---
 import { BlogCardSpotlight } from '@/components/BlogCard/BlogCardSpotlight';
-import { BlogGallery } from '@/components/BlogGallery';
+import { BlogGallery } from '@/components/BlogCard/BlogGallery';
 import { GradientText } from '@/components/GradientText';
 import { NewerOlderPagination } from '@/components/NewerOlderPagination';
 import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
+import type { FrontmatterPostPage, IFrontmatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
-import type { FrontmatterPage, IFrontmatter } from '@/types/IFrontMatter';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
 
@@ -16,7 +16,7 @@ type GetStaticPaths = {
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatter>('./**/*.md');
+  const allPosts = await Astro.glob<IFrontmatterPost>('./**/*.md');
   const sortedPosts = sortByDate(allPosts);
 
   // Return a paginated collection of paths for all posts
@@ -24,7 +24,7 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
 }
 
 interface Props {
-  page: FrontmatterPage;
+  page: FrontmatterPostPage;
 }
 
 const { page } = Astro.props as Props;
@@ -62,4 +62,3 @@ const description =
 
   <CTA />
 </Base>
-@/components/BlogCard/BlogCardSpotlight

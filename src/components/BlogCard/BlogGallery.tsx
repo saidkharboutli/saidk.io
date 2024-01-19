@@ -1,11 +1,11 @@
 import type { MarkdownInstance } from 'astro';
 
-import type { IFrontmatter } from '@/types/IFrontMatter';
+import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 
-import { BlogCard } from './BlogCard/BlogCard';
+import { BlogCard } from './BlogCard';
 
 type IRecentPostsProps = {
-  postList: MarkdownInstance<IFrontmatter>[];
+  postList: MarkdownInstance<IFrontmatterPost>[];
 };
 
 const BlogGallery = (props: IRecentPostsProps) => (

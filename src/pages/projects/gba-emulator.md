@@ -1,14 +1,27 @@
 ---
+# Layout File
 layout: '@/templates/BasePost.astro'
-title: 'First Post: Emulating CHIP8 As Fast As Possible'
-description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
-pubDate: 2020-02-06T00:00:00Z
-updatedDate: 2020-03-06T00:00:00Z
-imgSrc: '/images/posts/post0/banner.png'
-imgAlt: 'Image post'
-tags: Test Posts, Test Tags, flag
-series: CHIP8 Emulator
-isProject: True
+
+# Banner Image
+imgSrc: '/images/projects/gba-emulator.jpg'
+imgAlt: 'CHIP8 program output'
+
+# Project Details
+projectName: 'GBA Emulator'
+description: A quick GBA emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
+startDate: 2024-01-12T00:00:00Z
+status: Prep #Prep, In Development, Testing & Debugging, Post-MVP (Ongoing), Closed
+
+# GitHub Repository
+github: 'https://github.com/saidkharboutli/chip8-emu'
+
+# Tech Stack
+language: C++
+techStack: [SDL2, other]
+platform: [Linux, Windows, iOS, Android, macOS]
+
+# Related Blog Series
+series: 'GBA Emulator'
 ---
 
 This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi, inventore atque cupiditate. Sed voluptatem quas omnis culpa, et odit.
