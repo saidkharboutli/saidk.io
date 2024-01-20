@@ -13,7 +13,7 @@ type IBlogCardProps = {
 };
 
 const BlogCardSpotlight = (props: IBlogCardProps) => (
-  <div className="mb-8 flex flex-row items-center overflow-hidden hover:translate-y-1">
+  <div className="mb-8 flex flex-row items-center overflow-hidden delay-150 duration-300 hover:scale-105">
     <div>
       <a className="w-3/5" href={props.instance.url}>
         <img

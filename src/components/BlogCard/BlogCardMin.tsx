@@ -10,7 +10,7 @@ type IBlogCardProps = {
 };
 
 const BlogCardMin = (props: IBlogCardProps) => (
-  <div className="overflow-hidden rounded-md bg-slate-800 hover:translate-y-1">
+  <div className="overflow-hidden rounded-md bg-slate-800 delay-150 duration-300 hover:scale-105">
     {!(props.includeImage === false) && (
       <div>
         <a href={props.instance.url}>

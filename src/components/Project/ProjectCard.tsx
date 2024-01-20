@@ -3,8 +3,10 @@ import { format } from 'date-fns';
 
 import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import { generateSlug } from '@/utils/helpers';
 
 import { BlogCardMin } from '../BlogCard/BlogCardMin';
+import { ProjectTag } from './ProjectTags';
 
 type IProjectCardProps = {
   instance: MarkdownInstance<IFrontmatterProject>;
@@ -85,23 +87,37 @@ const ProjectCard = (props: IProjectCardProps) => (
         id="card-back"
         className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 rotate-y-180 backface-hidden"
       >
+        <div className=" m-4 pt-4 text-center">
+          <h2 className="h-1/4 border-b-2 text-2xl font-semibold hover:text-purple-400">
+            Details
+          </h2>
+        </div>
         {/* Technical Details */}
-        <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-2 text-center">
+        <div className="flex h-3/4 w-full flex-col items-center justify-center gap-4 p-2 text-center">
           {/* Langauge */}
-          <div className="text-base">{props.instance.frontmatter.language}</div>
+          <div className="flex w-full justify-between">
+            <span className="self-center">Language: </span>
+            <ProjectTag>{props.instance.frontmatter.language}</ProjectTag>
+          </div>
 
           {/* Tech Stack */}
-          <div className="flex flex-row flex-wrap justify-center gap-1 text-base">
-            {props.instance.frontmatter.techStack.map((elt) => (
-              <span className="rounded-md bg-slate-700 px-1">{elt}</span>
-            ))}
+          <div className="flex w-full justify-between">
+            <span className="self-center">Tech Stack: </span>
+            <div className="flex flex-row flex-wrap justify-end gap-1 text-base">
+              {props.instance.frontmatter.techStack.map((elt) => (
+                <ProjectTag>{elt}</ProjectTag>
+              ))}
+            </div>
           </div>
 
           {/* Platform */}
-          <div className="flex flex-row flex-wrap justify-center gap-1 text-base">
-            {props.instance.frontmatter.platform.map((elt) => (
-              <span className="rounded-md bg-slate-700 px-1">{elt}</span>
-            ))}
+          <div className="flex w-full justify-between">
+            <span className="self-center">Platform: </span>
+            <div className="flex flex-row flex-wrap justify-end gap-1 text-base">
+              {props.instance.frontmatter.platform.map((elt) => (
+                <ProjectTag>{elt}</ProjectTag>
+              ))}
+            </div>
           </div>
 
           {/* GitHub */}
@@ -116,19 +132,27 @@ const ProjectCard = (props: IProjectCardProps) => (
           </div>
 
           {/* Blog Posts */}
-          <div className="flex flex-col items-center justify-between text-center">
+          <div className="flex flex-col items-center justify-between gap-2 text-center">
             <div className="flex text-sm">
               <span>Most Recent Blog Post:</span>
             </div>
-            <div className="flex">
+            <div className="flex flex-col">
               {props.latestPost ? (
                 <BlogCardMin instance={props.latestPost} includeImage={false} />
               ) : (
-                <span> No Post! </span>
+                <span className=""> No Post! </span>
               )}
             </div>
             <div className="flex text-sm">
-              <span>See All Posts →</span>
+              {props.latestPost ? (
+                <a
+                  href={`/blog/projects/${generateSlug(props.instance.frontmatter.series)}/`}
+                >
+                  See All Posts →
+                </a>
+              ) : (
+                <a href="/blog/">See Other Posts →</a>
+              )}
             </div>
           </div>
         </div>

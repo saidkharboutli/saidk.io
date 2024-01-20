@@ -1,17 +1,31 @@
 ---
+import { ProjectGallery } from '@/components/Project/ProjectGallery';
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
-import { ProjectList } from '@/partials/ProjectList';
 import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import { IFrontmatterProject } from '@/types/IFrontMatterProject';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortByDate } from '@/utils/Posts';
+import { sortProjectsByDate } from '@/utils/Projects';
 
 const allPosts = await Astro.glob<IFrontmatterPost>('./blog/**/*.md');
 const sortedPosts = sortByDate(allPosts);
 const last4Posts = sortedPosts.slice(0, 4);
+
+const allProjects = await Astro.glob<IFrontmatterProject>('./projects/**/*.md');
+const sortedProjects = sortProjectsByDate(allProjects);
+
+const projectAndPost: any[] = [];
+sortedProjects.forEach((project) => {
+  const data = {project, post: null as any}; 
+  sortedPosts.forEach((post) => {
+    if(data.project.frontmatter.series === post.frontmatter.series && post.frontmatter.isProject) data.post = post;
+  });
+  projectAndPost.push(data);
+});
 
 const { title } = AppConfig;
 const { description } = AppConfig;
@@ -20,17 +34,16 @@ const { description } = AppConfig;
 <Base head={{ title, description }}>
   <Hero />
   <RecentPosts postList={last4Posts} />
-  <ProjectList />
+  <ProjectGallery projectList={projectAndPost.slice(0, 3)}>
   <CTA />
 </Base>
 
 
 <!--
   TODO:
-  - Projects view (modeled after blog posts)
-  - Projects cards for home
   - Portfolio
   - Aboutme
   - Blog post comments (giscus)
   - Blog post views?
--->@/types/IFrontMatterPost
+  - Colors and Redesign
+-->
