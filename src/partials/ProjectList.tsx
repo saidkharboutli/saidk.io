@@ -18,11 +18,11 @@ const ProjectList = (props: IProjectListProps) => (
     title={
       <div className="flex items-baseline justify-between">
         <div>
-          Recent <GradientText>Posts</GradientText>
+          Recent <GradientText>Projects</GradientText>
         </div>
 
         <div className="text-sm">
-          <a href="/blog/">View all Posts →</a>
+          <a href="/projects/">View all Projects →</a>
         </div>
       </div>
     }

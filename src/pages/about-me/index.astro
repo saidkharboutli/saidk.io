@@ -1,0 +1,31 @@
+<!-- ---
+import { GradientText } from '@/components/GradientText';
+import { Section } from '@/components/Section';
+import { TopicsView } from '@/components/TopicsView';
+import { CTA } from '@/partials/CTA';
+import Base from '@/templates/Base.astro';
+// eslint-disable-next-line prettier/prettier
+import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+// eslint-disable-next-line prettier/prettier
+import { AppConfig } from '@/utils/AppConfig';
+import { getTopicFromUrl } from '@/utils/helpers';
+
+const allUniqueTopics = new Set<any>();
+const aboutMe = await Astro.glob('./*.md');
+
+const title = `About Me | ${AppConfig.site_name}`;
+const description =
+  'Here you can find all the tags used on blog articles.';
+---
+
+<Base head={{ title, description }}>
+  <Section>
+    <div class="text-center">
+      <h1 class="text-3xl font-bold"><GradientText>All</GradientText> Topics</h1>
+    </div>
+  </Section>
+  
+  <Section>
+  </Section>
+  <CTA />
+</Base> -->

@@ -1,6 +1,13 @@
 import type { ReactNode } from 'react';
 
 const colorToClassMap: { [key: string]: string } = {
+  /* Status Tags */
+  PREP: 'bg-amber-400 text-amber-900',
+  IN_DEVELOPMENT: 'bg-blue-400 text-blue-900',
+  'TESTING & DEBUGGING': 'bg-teal-400 text-teal-900',
+  'POST-MVP (ONGOING)': 'bg-lime-400 text-lime-900',
+  COMPLETE: 'bg-green-400 text-green-900',
+
   /* Language Colors */
   C: 'bg-slate-400 text-slate-900',
   'C++': 'bg-sky-400 text-sky-900',

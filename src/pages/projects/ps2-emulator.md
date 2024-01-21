@@ -7,10 +7,10 @@ imgSrc: '/images/projects/chip8-emulator.png'
 imgAlt: 'CHIP8 program output'
 
 # Project Details
-projectName: 'CHIP8 Emulator'
-description: A quick CHIP8 emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
-startDate: 2024-01-04T00:00:00Z
-status: Post-MVP (Ongoing)
+projectName: 'PS2 Emulator'
+description: A quick PS2 emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
+startDate: 2024-01-08T00:00:00Z
+status: Testing & Debugging
 
 # GitHub Repository
 github: 'https://github.com/saidkharboutli/chip8-emu'

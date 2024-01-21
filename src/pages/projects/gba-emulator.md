@@ -10,7 +10,7 @@ imgAlt: 'CHIP8 program output'
 projectName: 'GBA Emulator'
 description: A quick GBA emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
 startDate: 2024-01-12T00:00:00Z
-status: Prep #Prep, In Development, Testing & Debugging, Post-MVP (Ongoing), Closed
+status: Prep
 
 # GitHub Repository
 github: 'https://github.com/saidkharboutli/chip8-emu'

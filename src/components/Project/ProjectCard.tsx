@@ -6,7 +6,7 @@ import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
 import { generateSlug } from '@/utils/helpers';
 
 import { BlogCardMin } from '../BlogCard/BlogCardMin';
-import { ProjectTag } from './ProjectTags';
+import { ProjectTag } from './ProjectTag';
 
 type IProjectCardProps = {
   instance: MarkdownInstance<IFrontmatterProject>;
@@ -14,10 +14,10 @@ type IProjectCardProps = {
 };
 
 const ProjectCard = (props: IProjectCardProps) => (
-  <div className="group flex flex-col self-start transition-all delay-500 duration-500 perspective-1000 hover:scale-105">
+  <div className="group flex h-full flex-col self-start overflow-visible transition-all delay-500 duration-500 perspective-1000 hover:scale-105">
     <div
       id="card-inner"
-      className="grid transition-transform duration-700 transform-style-3d rotate-y-0 backface-hidden group-hover:rotate-y-180"
+      className="grid h-full transition-transform duration-700 transform-style-3d rotate-y-0 backface-hidden group-hover:rotate-y-180"
     >
       <div
         id="card-front"
@@ -39,7 +39,7 @@ const ProjectCard = (props: IProjectCardProps) => (
           <div className="flex flex-col gap-1">
             {/* Project Name */}
             <div>
-              <h2 className="text-3xl font-semibold hover:text-purple-400">
+              <h2 className="text-3xl font-semibold">
                 <a className="hover:translate-y-1" href={props.instance.url}>
                   {props.instance.frontmatter.projectName}
                 </a>
@@ -76,8 +76,8 @@ const ProjectCard = (props: IProjectCardProps) => (
             </div>
 
             {/* Status */}
-            <div className="text-base">
-              Status: {props.instance.frontmatter.status}
+            <div className="pt-2 text-base">
+              <ProjectTag>{props.instance.frontmatter.status}</ProjectTag>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ const ProjectCard = (props: IProjectCardProps) => (
         id="card-back"
         className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 rotate-y-180 backface-hidden"
       >
-        <div className=" m-4 pt-4 text-center">
+        <div className=" m-2 pb-6 text-center">
           <h2 className="h-1/4 border-b-2 text-2xl font-semibold hover:text-purple-400">
             Details
           </h2>
