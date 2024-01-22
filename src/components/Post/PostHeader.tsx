@@ -71,7 +71,7 @@ const PostHeader = (props: IPostHeaderProps) => (
           tagDataFromString(props.content.tags).map((item) => (
             <a
               href={`/blog/tags/${item.slug}/`}
-              className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px"
+              className="rounded-md bg-slate-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px"
             >
               {item.name}
             </a>

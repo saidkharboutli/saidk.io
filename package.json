@@ -55,7 +55,9 @@
     "npm-check-updates": "^16.14.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss-3d": "^1.0.4"
+    "tailwindcss-3d": "^1.0.4",
+    "typed.js": "^2.1.0",
+    "typewriter-effect": "^2.21.0"
   },
   "volta": {
     "node": "16.15.1"

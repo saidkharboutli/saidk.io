@@ -18,7 +18,7 @@ const ProjectCard = (props: IProjectCardProps) => (
     <div id="card-inner" className="grid h-full transform-style-3d">
       <div
         id="card-front"
-        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
+        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
       >
         <div className="p-2">
           <a href={props.instance.url}>
@@ -82,7 +82,7 @@ const ProjectCard = (props: IProjectCardProps) => (
 
       <div
         id="card-back"
-        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
+        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-cod-700 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
       >
         <div className=" m-2 pb-6 text-center">
           <h2 className="h-1/4 border-b-2 text-2xl font-semibold hover:text-purple-400">
@@ -123,7 +123,7 @@ const ProjectCard = (props: IProjectCardProps) => (
               href={props.instance.frontmatter.github}
               className="flex flex-row items-center gap-1 rounded-md px-1 py-0.5 outline outline-1"
             >
-              <img className="h-5" src="/images/site/github.png" />
+              <img className="h-5" src="/images/site/dark-github.png" />
               <span className="font-mono">{'<src/>'}</span>
             </a>
           </div>

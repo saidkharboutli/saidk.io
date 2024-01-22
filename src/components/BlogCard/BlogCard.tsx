@@ -13,7 +13,7 @@ type IBlogCardProps = {
 };
 
 const BlogCard = (props: IBlogCardProps) => (
-  <div className="overflow-hidden rounded-md bg-slate-800 delay-150 duration-300 hover:scale-105">
+  <div className="overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105">
     <div>
       <a href={props.instance.url}>
         <img
@@ -40,7 +40,7 @@ const BlogCard = (props: IBlogCardProps) => (
 
       {/* Title */}
       <div>
-        <h2 className="text-xl font-semibold hover:text-purple-400">
+        <h2 className="text-xl font-semibold hover:text-violet-300">
           <a className="hover:translate-y-1" href={props.instance.url}>
             {props.instance.frontmatter.title}
           </a>
@@ -104,7 +104,7 @@ const BlogCard = (props: IBlogCardProps) => (
           tagDataFromString(props.instance.frontmatter.tags).map((item) => (
             <a
               href={`/blog/tags/${item.slug}/`}
-              className="rounded-md bg-slate-900 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px"
+              className="rounded-md bg-cod-700 px-1.5 py-0.5 outline outline-1 outline-cod-400 transition-all duration-150 hover:bg-violet-400 hover:outline-violet-200 hover:scale-105"
             >
               {item.name}
             </a>
