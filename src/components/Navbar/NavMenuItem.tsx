@@ -7,7 +7,7 @@ type INavMenuItemProps = {
 };
 
 const NavMenuItem = (props: INavMenuItemProps) => (
-  <li className="hover:text-white">
+  <li className="transition-all duration-200 hover:text-white hover:scale-110">
     <a href={props.href} target={props.target || '_self'}>
       {props.children}
     </a>

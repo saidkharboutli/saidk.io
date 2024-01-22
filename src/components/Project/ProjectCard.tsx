@@ -15,18 +15,15 @@ type IProjectCardProps = {
 
 const ProjectCard = (props: IProjectCardProps) => (
   <div className="group flex h-full flex-col self-start overflow-visible transition-all delay-500 duration-500 perspective-1000 hover:scale-105">
-    <div
-      id="card-inner"
-      className="grid h-full transition-transform duration-700 transform-style-3d rotate-y-0 backface-hidden group-hover:rotate-y-180"
-    >
+    <div id="card-inner" className="grid h-full transform-style-3d">
       <div
         id="card-front"
-        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 backface-hidden"
+        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
       >
         <div className="p-2">
           <a href={props.instance.url}>
             <img
-              className="aspect-1 h-full w-full rounded-lg object-cover object-center hover:opacity-50"
+              className="aspect-1 h-full w-full rounded-lg object-cover object-center"
               src={props.instance.frontmatter.imgSrc}
               alt={props.instance.frontmatter.imgAlt}
               loading="lazy"
@@ -85,7 +82,7 @@ const ProjectCard = (props: IProjectCardProps) => (
 
       <div
         id="card-back"
-        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 rotate-y-180 backface-hidden"
+        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-slate-600 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
       >
         <div className=" m-2 pb-6 text-center">
           <h2 className="h-1/4 border-b-2 text-2xl font-semibold hover:text-purple-400">
