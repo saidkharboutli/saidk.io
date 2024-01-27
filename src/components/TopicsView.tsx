@@ -21,7 +21,7 @@ const TopicsView = (props: ITopicsViewProps) => (
               <div className="flex w-1/2">
                 <a
                   href={`/blog/topics/${topicDatum.topic}/`}
-                  className="px-1.5 py-0.5 font-bold hover:text-purple-400 hover:outline-purple-400 hover:translate-x-1"
+                  className="px-1.5 py-0.5 font-bold transition-all duration-150 hover:scale-110"
                 >
                   <GradientText>
                     {getNameFromSlug(topicDatum.topic)}

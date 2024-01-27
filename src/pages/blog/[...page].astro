@@ -6,6 +6,7 @@ import { NewerOlderPagination } from '@/components/NewerOlderPagination';
 import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
+// eslint-disable-next-line prettier/prettier
 import type { FrontmatterPostPage, IFrontmatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
@@ -38,12 +39,12 @@ const description =
     <div class="text-center">
       <h1 class="text-3xl font-bold"><GradientText>All</GradientText> Blog Posts</h1>
     </div>
-    <div class="mt-1 flex flex-row justify-center gap-8 text-center text-xs">
-      <a href="/blog/tags/" class="hover:-translate-x-1 hover:text-purple-400">
-      ← View all tags
-      </a>
-      <a href="/blog/topics/" class="hover:translate-x-1 hover:text-purple-400">
-        View all topics →
+    <div class="mt-1 flex flex-row justify-center gap-4 text-center text-xs">
+      <a href="/blog/topics/" class="transition-all duration-150 hover:text-purple-400 hover:scale-110">
+        Topics
+      </a>•
+      <a href="/blog/tags/" class="transition-all duration-150 hover:text-purple-400 hover:scale-110">
+        Tags
       </a>
     </div>
   </Section>
