@@ -37,7 +37,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             {/* Project Name */}
             <div>
               <h2 className="text-3xl font-semibold">
-                <a className="hover:translate-y-1" href={props.instance.url}>
+                <a className="" href={props.instance.url}>
                   {props.instance.frontmatter.projectName}
                 </a>
               </h2>
@@ -118,7 +118,7 @@ const ProjectCard = (props: IProjectCardProps) => (
           </div>
 
           {/* GitHub */}
-          <div className="flex flex-row pt-1 text-base">
+          <div className="flex flex-row pt-1 text-base transition-all duration-150 hover:scale-105">
             <a
               href={props.instance.frontmatter.github}
               className="flex flex-row items-center gap-1 rounded-md px-1 py-0.5 outline outline-1"

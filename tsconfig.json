@@ -33,7 +33,7 @@
 
     "jsx": "react-jsx",
     // Enable stricter transpilation for better output.
-    "isolatedModules": true,
+    "isolatedModules": false,
     // Add type definitions for our Vite runtime.
     "types": ["vite/client"],
 

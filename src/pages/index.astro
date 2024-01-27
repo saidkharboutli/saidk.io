@@ -1,11 +1,11 @@
 ---
 // TODO:
+// - SEO
+// - Phone support
 // - Portfolio
 // - Aboutme
 // - Blog post comments (giscus)
-// - Blog post views?
 // - Colors and Redesign
-
 
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
@@ -40,7 +40,7 @@ const { description } = AppConfig;
 ---
 
 <Base head={{ title, description }}>
-  <Hero />
+  <Hero client:load />
 
   <ProjectList projectList={projectAndPost.slice(0, 3)}/>
 

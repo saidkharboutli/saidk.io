@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { HeroTerminal } from './HeroTerminal';
+
 type IHeroAvatarProps = {
   title: ReactNode;
   description: ReactNode;
@@ -8,18 +10,16 @@ type IHeroAvatarProps = {
 };
 
 const HeroAvatar = (props: IHeroAvatarProps) => (
-  <div className="flex flex-col items-center md:flex-row md:justify-between md:gap-x-24">
-    <div>
-      <h1 className="text-3xl font-bold">{props.title}</h1>
-
-      <p className="mt-4 text-lg leading-7 tracking-normal">
-        {props.description}
-      </p>
-
-      <div className="mt-2 flex gap-3">{props.socialButtons}</div>
+  <div className="flex h-full w-full flex-col items-center md:flex-row md:justify-between md:gap-x-36">
+    <div className="flex h-full w-full flex-col items-center text-center md:items-start md:text-left">
+      <h1 className="mb-4 text-3xl font-bold md:mb-2">{props.title}</h1>
+      <div className="h-80 w-full overflow-visible">
+        <HeroTerminal />
+      </div>
+      <div className="mt-4 flex gap-3 md:ml-2">{props.socialButtons}</div>
     </div>
 
-    <div className="shrink-0">{props.avatar}</div>
+    <div className="my-4 shrink-0 md:mt-2">{props.avatar}</div>
   </div>
 );
 
