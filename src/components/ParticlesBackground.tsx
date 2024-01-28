@@ -32,7 +32,7 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
       },
       fpsLimit: 60,
       fullScreen: {
-        enable: true,
+        enable: false,
         zIndex: -1,
       },
       interactivity: {
@@ -105,6 +105,7 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={options}
+          className="absolute left-0 top-0 z-[-1] h-full w-full"
         />
         {props.children}
       </>

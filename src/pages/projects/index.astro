@@ -4,6 +4,7 @@ import { ProjectGallery } from '@/components/Project/ProjectGallery';
 import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
+// eslint-disable-next-line prettier/prettier
 import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
@@ -36,7 +37,7 @@ const description =
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold"><GradientText>All</GradientText> Projects</h1>
+      <h1 class="text-3xl font-bold">All <GradientText>Projects</GradientText></h1>
     </div>
   </Section>
   

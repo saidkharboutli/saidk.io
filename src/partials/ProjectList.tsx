@@ -21,8 +21,8 @@ const ProjectList = (props: IProjectListProps) => (
           Recent <GradientText>Projects</GradientText>
         </div>
 
-        <div className="text-sm">
-          <a href="/projects/">View all Projects →</a>
+        <div className="text-sm transition-all duration-150 hover:text-purple-400 hover:scale-110">
+          <a href="/projects/">View All Projects →</a>
         </div>
       </div>
     }

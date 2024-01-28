@@ -21,7 +21,6 @@ import { sortProjectsByDate } from '@/utils/Projects';
 
 const allPosts = await Astro.glob<IFrontmatterPost>('./blog/**/*.md');
 const sortedPosts = sortByDate(allPosts);
-const last4Posts = sortedPosts.slice(0, 4);
 
 const allProjects = await Astro.glob<IFrontmatterProject>('./projects/**/*.md');
 const sortedProjects = sortProjectsByDate(allProjects);
@@ -41,10 +40,10 @@ const { description } = AppConfig;
 
 <Base head={{ title, description }}>
   <Hero client:load />
-
+  
   <ProjectList projectList={projectAndPost.slice(0, 3)}/>
 
-  <RecentPosts postList={last4Posts} />
+  <RecentPosts postList={sortedPosts.slice(0, 4)} />
   
   <CTA />
 </Base>

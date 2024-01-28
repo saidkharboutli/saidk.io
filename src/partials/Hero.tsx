@@ -6,8 +6,8 @@ import ParticlesBackrgound from '@/components/ParticlesBackground';
 
 const Hero = () => (
   <Page>
+    <ParticlesBackrgound />
     <div>
-      <ParticlesBackrgound />
       <div className="flex min-h-[calc(100vh-74px)] w-full flex-col justify-center overflow-hidden">
         <HeroAvatar
           title={

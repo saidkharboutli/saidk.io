@@ -5,7 +5,7 @@ type IGradientTextProps = {
 };
 
 const GradientText = (props: IGradientTextProps) => (
-  <span className="bg-gradient-to-br from-violet-400 to-purple-400 bg-clip-text text-transparent">
+  <span className="bg-gradient-to-br from-[#bb86fc] to-[#d4b4fe] bg-clip-text text-transparent">
     {props.children}
   </span>
 );
