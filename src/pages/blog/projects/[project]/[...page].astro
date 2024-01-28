@@ -9,8 +9,7 @@ import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { FrontmatterPostPage, IFrontmatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { tagDataFromArr } from '@/utils/helpers';
-import { sortByDate } from '@/utils/Posts';
+import { generateSlug, sortPostsByDate, tagDataFromArr } from '@/utils/helpers';
 
 type GetStaticPaths = {
   paginate: any;
@@ -19,7 +18,7 @@ type GetStaticPaths = {
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
   const allPosts = await Astro.glob<IFrontmatterPost>('../../**/*.md');
   const allUniqueProjects = new Set<any>();
-  const sortedPosts = sortByDate(allPosts);
+  const sortedPosts = sortPostsByDate(allPosts);
 
   sortedPosts.forEach(post => {
     if(post.frontmatter.isProject && post.frontmatter.series) allUniqueProjects.add(post.frontmatter.series);
@@ -55,7 +54,7 @@ const description =
     <div class="text-center">
       <h1 class="text-3xl font-bold"><GradientText>{projectData.name}</GradientText> Project Posts</h1>
       <div class="mt-1 flex justify-center text-xs">
-        <a href=`/projects/` class="transition-all duration-150 hover:text-purple-400 hover:scale-110">
+        <a href={`/projects/${generateSlug(projectData.name)}/`} class="transition-all duration-150 hover:text-purple-400 hover:scale-110">
         View Project Page
         </a>
       </div>

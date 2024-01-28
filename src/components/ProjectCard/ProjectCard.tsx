@@ -21,14 +21,12 @@ const ProjectCard = (props: IProjectCardProps) => (
         className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
       >
         <div className="p-2">
-          <a href={props.instance.url}>
-            <img
-              className="aspect-1 h-full w-full rounded-lg object-cover object-center"
-              src={props.instance.frontmatter.imgSrc}
-              alt={props.instance.frontmatter.imgAlt}
-              loading="lazy"
-            />
-          </a>
+          <img
+            className="aspect-1 h-full w-full rounded-lg object-cover object-center"
+            src={props.instance.frontmatter.imgSrc}
+            alt={props.instance.frontmatter.imgAlt}
+            loading="lazy"
+          />
         </div>
 
         <div className="flex flex-col gap-3 p-2 text-center">
@@ -37,9 +35,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             {/* Project Name */}
             <div>
               <h2 className="text-3xl font-semibold">
-                <a className="" href={props.instance.url}>
-                  {props.instance.frontmatter.projectName}
-                </a>
+                {props.instance.frontmatter.projectName}
               </h2>
             </div>
 
@@ -85,9 +81,12 @@ const ProjectCard = (props: IProjectCardProps) => (
         className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-cod-700 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
       >
         <div className=" m-2 pb-6 text-center">
-          <h2 className="h-1/4 border-b-2 text-2xl font-semibold hover:text-purple-400">
-            Details
-          </h2>
+          <a href={props.instance.url}>
+            <h2 className="h-1/4 text-2xl font-semibold transition-all duration-200 hover:text-purple-400 hover:scale-110">
+              Details
+            </h2>
+          </a>
+          <hr />
         </div>
         {/* Technical Details */}
         <div className="flex h-3/4 w-full flex-col items-center justify-center gap-4 p-2 text-center">
@@ -144,11 +143,17 @@ const ProjectCard = (props: IProjectCardProps) => (
               {props.latestPost ? (
                 <a
                   href={`/blog/projects/${generateSlug(props.instance.frontmatter.series)}/`}
+                  className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
                 >
                   See All Posts →
                 </a>
               ) : (
-                <a href="/blog/">See Other Posts →</a>
+                <a
+                  href="/blog/"
+                  className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
+                >
+                  See Other Posts →
+                </a>
               )}
             </div>
           </div>

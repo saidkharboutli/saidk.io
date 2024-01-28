@@ -1,6 +1,6 @@
 ---
 # Layout File
-layout: '@/templates/BasePost.astro'
+layout: '@/templates/BaseProject.astro'
 
 # Banner Image
 imgSrc: '/images/projects/gba-emulator.jpg'

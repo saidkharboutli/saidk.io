@@ -16,11 +16,10 @@ import Base from '@/templates/Base.astro';
 import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortByDate } from '@/utils/Posts';
-import { sortProjectsByDate } from '@/utils/Projects';
+import { sortPostsByDate , sortProjectsByDate } from '@/utils/helpers';
 
 const allPosts = await Astro.glob<IFrontmatterPost>('./blog/**/*.md');
-const sortedPosts = sortByDate(allPosts);
+const sortedPosts = sortPostsByDate(allPosts);
 
 const allProjects = await Astro.glob<IFrontmatterProject>('./projects/**/*.md');
 const sortedProjects = sortProjectsByDate(allProjects);

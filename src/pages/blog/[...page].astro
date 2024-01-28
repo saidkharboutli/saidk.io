@@ -10,7 +10,7 @@ import Base from '@/templates/Base.astro';
 import type { FrontmatterPostPage, IFrontmatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
-import { sortByDate } from '@/utils/Posts';
+import { sortPostsByDate } from '@/utils/helpers';
 
 type GetStaticPaths = {
   paginate: any;
@@ -18,7 +18,7 @@ type GetStaticPaths = {
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
   const allPosts = await Astro.glob<IFrontmatterPost>('./**/*.md');
-  const sortedPosts = sortByDate(allPosts);
+  const sortedPosts = sortPostsByDate(allPosts);
 
   // Return a paginated collection of paths for all posts
   return paginate(sortedPosts, { pageSize: 10 });

@@ -102,7 +102,7 @@ const BlogCardSpotlight = (props: IBlogCardProps) => (
           tagDataFromString(props.instance.frontmatter.tags).map((item) => (
             <a
               href={`/blog/tags/${item.slug}/`}
-              className="rounded-md bg-cod-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px"
+              className="rounded-md bg-cod-700 px-1.5 py-0.5 outline outline-1 outline-cod-400 transition-all duration-150 hover:bg-violet-400 hover:outline-violet-200 hover:scale-105"
             >
               {item.name}
             </a>

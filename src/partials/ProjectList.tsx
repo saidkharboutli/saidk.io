@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 
 import { GradientText } from '@/components/GradientText';
-import { ProjectGallery } from '@/components/Project/ProjectGallery';
+import { ProjectGallery } from '@/components/ProjectCard/ProjectGallery';
 import { Section } from '@/components/Section';
 import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
