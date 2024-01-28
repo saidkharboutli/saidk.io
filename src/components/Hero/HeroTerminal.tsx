@@ -15,7 +15,7 @@ const HeroTerminal = () => {
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <div id="typed-strings">
+      <div id="typed-strings" className="invisible">
         <p className="">
           `<span className="font-bold text-[#BB86FC]">~</span> `^1000 echo{' '}
           <span className="font-bold text-[#BB86FC]">$CURRENTLY</span>
