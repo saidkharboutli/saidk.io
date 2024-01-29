@@ -50,9 +50,9 @@ const ProjectCard = (props: IProjectCardProps) => (
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   ></path>
                 </svg>
@@ -70,7 +70,9 @@ const ProjectCard = (props: IProjectCardProps) => (
 
             {/* Status */}
             <div className="pt-2 text-base">
-              <ProjectTag>{props.instance.frontmatter.status}</ProjectTag>
+              <ProjectTag key="status">
+                {props.instance.frontmatter.status}
+              </ProjectTag>
             </div>
           </div>
         </div>
@@ -93,7 +95,9 @@ const ProjectCard = (props: IProjectCardProps) => (
           {/* Langauge */}
           <div className="flex w-full justify-between">
             <span className="self-center">Language: </span>
-            <ProjectTag>{props.instance.frontmatter.language}</ProjectTag>
+            <ProjectTag key="lang">
+              {props.instance.frontmatter.language}
+            </ProjectTag>
           </div>
 
           {/* Tech Stack */}
@@ -101,7 +105,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             <span className="self-center">Tech Stack: </span>
             <div className="flex flex-row flex-wrap justify-end gap-1 text-base">
               {props.instance.frontmatter.techStack.map((elt) => (
-                <ProjectTag>{elt}</ProjectTag>
+                <ProjectTag key={elt}>{elt}</ProjectTag>
               ))}
             </div>
           </div>
@@ -111,7 +115,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             <span className="self-center">Platform: </span>
             <div className="flex flex-row flex-wrap justify-end gap-1 text-base">
               {props.instance.frontmatter.platform.map((elt) => (
-                <ProjectTag>{elt}</ProjectTag>
+                <ProjectTag key={elt}>{elt}</ProjectTag>
               ))}
             </div>
           </div>
