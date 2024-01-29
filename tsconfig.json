@@ -12,7 +12,6 @@
     "preserveConstEnums": true,
     "strict": true,
     "alwaysStrict": true,
-    "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
 
     "noImplicitAny": true,

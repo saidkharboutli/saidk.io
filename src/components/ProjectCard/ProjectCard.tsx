@@ -145,18 +145,27 @@ const ProjectCard = (props: IProjectCardProps) => (
             </div>
             <div className="flex text-sm">
               {props.latestPost ? (
-                <a
-                  href={`/blog/projects/${generateSlug(props.instance.frontmatter.series)}/`}
-                  className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
-                >
-                  See All Posts →
-                </a>
+                <div className="flex w-full justify-between gap-2">
+                  <a
+                    href={`/blog/projects/${generateSlug(props.instance.frontmatter.series)}/`}
+                    className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
+                  >
+                    View All Posts
+                  </a>
+                  <span>|</span>
+                  <a
+                    href={`/projects/${generateSlug(props.instance.frontmatter.series)}/`}
+                    className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
+                  >
+                    View Project
+                  </a>
+                </div>
               ) : (
                 <a
-                  href="/blog/"
+                  href={`/projects/${generateSlug(props.instance.frontmatter.series)}/`}
                   className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
                 >
-                  See Other Posts →
+                  View Project Page
                 </a>
               )}
             </div>
