@@ -15,37 +15,6 @@ const Hero = () => (
               Hi, I'm <GradientText>Sa'id</GradientText>
             </>
           }
-          description={
-            <>
-              I am a software engineer/PM/consultant working for{' '}
-              <a
-                className="text-green-500 hover:underline"
-                href="https://www.pyyne.com"
-              >
-                PYYNE Digital
-              </a>{' '}
-              &{' '}
-              <a
-                className="text-purple-500 hover:underline"
-                href="https://www.inveterate.com"
-              >
-                Inveterate
-              </a>
-              . Recently, my professional experience has been primarily in AWS
-              serverless APIs and NestJS monolith APIs. Previously, I've worked
-              on a number of projects, mostly for{' '}
-              <a
-                className="text-amber-500 hover:underline"
-                href="https://www.socom.mil/"
-              >
-                USSOCOM
-              </a>
-              , using different ML solutions (computer vision, NLP, etc...).{' '}
-              <br></br>
-              On my own time I work on a range of tech projects from emulators
-              to home-labs. I document my work here!
-            </>
-          }
           avatar={
             <img
               className="h-80 rounded-3xl"

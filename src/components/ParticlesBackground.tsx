@@ -105,7 +105,7 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={options}
-          className="absolute left-0 top-0 z-[-1] h-full w-full"
+          className="absolute left-0 top-0 z-[-1] size-full"
         />
         {props.children}
       </>

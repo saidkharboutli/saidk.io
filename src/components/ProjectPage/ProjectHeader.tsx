@@ -1,12 +1,11 @@
-import { format } from 'date-fns';
-
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
+import { formatDate } from '@/utils/helpers';
 
 import { GradientText } from '../GradientText';
 import { ProjectTag } from '../ProjectCard/ProjectTag';
 
 type IProjectHeaderProps = {
-  content: IFrontmatterProject;
+  content: IFrontMatterProject;
   path: string;
 };
 
@@ -30,7 +29,7 @@ const ProjectHeader = (props: IProjectHeaderProps) => (
         <div className="mt-2 flex w-full justify-between md:w-1/5 md:flex-col md:gap-2">
           <span className="self-center">Started: </span>
           <div className="text-gray-400">
-            {format(new Date(props.content.startDate), 'LLL dd, yyyy')}
+            {formatDate(props.content.startDate)}
           </div>
         </div>
 

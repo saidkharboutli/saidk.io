@@ -4,14 +4,13 @@ import { HeroTerminal } from './HeroTerminal';
 
 type IHeroAvatarProps = {
   title: ReactNode;
-  description: ReactNode;
   avatar: ReactNode;
   socialButtons: ReactNode;
 };
 
 const HeroAvatar = (props: IHeroAvatarProps) => (
-  <div className="flex h-full w-full flex-col items-center md:flex-row md:justify-between md:gap-x-36">
-    <div className="flex h-full w-full flex-col items-center text-center md:items-start md:text-left">
+  <div className="flex size-full flex-col items-center md:flex-row md:justify-between md:gap-x-36">
+    <div className="flex size-full flex-col items-center text-center md:items-start md:text-left">
       <h1 className="mb-4 text-3xl font-bold md:mb-2">{props.title}</h1>
       <div className="h-80 w-full overflow-visible">
         <HeroTerminal />

@@ -11,7 +11,7 @@ const ProjectContent = (props: IProjectContentProps) => (
   <div className="mx-auto mt-5 max-w-[70ch]">
     <div className="aspect-h-2 aspect-w-3">
       <img
-        className="h-full w-full rounded-lg object-cover object-center"
+        className="size-full rounded-lg object-cover object-center"
         src={props.content.imgSrc}
         alt={props.content.imgAlt}
         loading="lazy"

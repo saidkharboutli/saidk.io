@@ -14,7 +14,7 @@ const HeroTerminal = () => {
   }, []);
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex size-full items-center justify-center">
       <div id="typed-strings" className="invisible">
         <p className="">
           `<span className="font-bold text-[#BB86FC]">~</span> `^1000 echo{' '}
@@ -54,7 +54,7 @@ const HeroTerminal = () => {
         </p>
       </div>
 
-      <div className="h-full w-full rounded-lg bg-black font-mono ">
+      <div className="size-full rounded-lg bg-black font-mono ">
         <header className="rounded-t-lg bg-[#555] text-center">
           visitor@saidk.io
         </header>

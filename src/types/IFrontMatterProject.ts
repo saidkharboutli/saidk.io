@@ -1,6 +1,6 @@
 import type { MarkdownInstance, Page } from 'astro';
 
-export interface IFrontmatterProject {
+export interface IFrontMatterProject {
   imgSrc: string;
   imgAlt: string;
 
@@ -18,6 +18,6 @@ export interface IFrontmatterProject {
   series: string;
 }
 
-export type FrontmatterProjectPage = Page<
-  MarkdownInstance<IFrontmatterProject>
+export type FrontMatterProjectPage = Page<
+  MarkdownInstance<IFrontMatterProject>
 >;

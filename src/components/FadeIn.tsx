@@ -7,7 +7,6 @@ interface IFadeInProps {
 
 const FadeIn = (props: IFadeInProps) => {
   const [isVisible, setVisible] = React.useState(false);
-  console.log(isVisible);
   const domRef = React.useRef<HTMLDivElement>();
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

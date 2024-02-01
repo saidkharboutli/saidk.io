@@ -1,16 +1,15 @@
 import type { MarkdownInstance } from 'astro';
-import { format } from 'date-fns';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
-import { generateSlug } from '@/utils/helpers';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
+import { formatDate, generateSlug } from '@/utils/helpers';
 
 import { BlogCardMin } from '../BlogCard/BlogCardMin';
 import { ProjectTag } from './ProjectTag';
 
 type IProjectCardProps = {
-  instance: MarkdownInstance<IFrontmatterProject>;
-  latestPost: MarkdownInstance<IFrontmatterPost>;
+  instance: MarkdownInstance<IFrontMatterProject>;
+  latestPost: MarkdownInstance<IFrontMatterPost>;
 };
 
 const ProjectCard = (props: IProjectCardProps) => (
@@ -18,11 +17,11 @@ const ProjectCard = (props: IProjectCardProps) => (
     <div id="card-inner" className="grid h-full transform-style-3d">
       <div
         id="card-front"
-        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
+        className="col-start-1 row-start-1 size-full overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
       >
         <div className="p-2">
           <img
-            className="aspect-1 h-full w-full rounded-lg object-cover object-center"
+            className="aspect-1 size-full rounded-lg object-cover object-center"
             src={props.instance.frontmatter.imgSrc}
             alt={props.instance.frontmatter.imgAlt}
             loading="lazy"
@@ -44,7 +43,7 @@ const ProjectCard = (props: IProjectCardProps) => (
               <span className="align-bottom">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 inline h-4 w-4 align-middle"
+                  className="mr-1 inline size-4 align-middle"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -56,10 +55,7 @@ const ProjectCard = (props: IProjectCardProps) => (
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   ></path>
                 </svg>
-                {format(
-                  new Date(props.instance.frontmatter.startDate),
-                  'LLL d, yyyy',
-                )}
+                {formatDate(props.instance.frontmatter.startDate)}
               </span>
             </div>
 
@@ -80,7 +76,7 @@ const ProjectCard = (props: IProjectCardProps) => (
 
       <div
         id="card-back"
-        className="col-start-1 row-start-1 h-full w-full overflow-hidden rounded-md bg-cod-700 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
+        className="col-start-1 row-start-1 size-full overflow-hidden rounded-md bg-cod-700 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
       >
         <div className=" m-2 pb-6 text-center">
           <a href={props.instance.url}>
@@ -132,15 +128,17 @@ const ProjectCard = (props: IProjectCardProps) => (
           </div>
 
           {/* Blog Posts */}
-          <div className="flex flex-col items-center justify-between gap-2 text-center">
+          <div className="flex w-full flex-col items-center justify-between gap-2 text-center">
             <div className="flex text-sm">
               <span>Most Recent Blog Post:</span>
             </div>
-            <div className="flex flex-col">
+            <div className="flex w-full flex-col">
               {props.latestPost ? (
                 <BlogCardMin instance={props.latestPost} includeImage={false} />
               ) : (
-                <span className=""> No Post! </span>
+                <div className="w-full rounded-lg bg-cod-900 py-10 transition-all duration-700 hover:scale-105">
+                  <span className="text-xl font-bold"> No Posts Yet! </span>
+                </div>
               )}
             </div>
             <div className="flex text-sm">

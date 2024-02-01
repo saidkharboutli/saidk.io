@@ -1,7 +1,6 @@
-import { format } from 'date-fns';
-
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import {
+  formatDate,
   generateSlug,
   getNameFromSlug,
   getTopicFromUrl,
@@ -9,7 +8,7 @@ import {
 } from '@/utils/helpers';
 
 type IPostHeaderProps = {
-  content: IFrontmatterPost;
+  content: IFrontMatterPost;
   path: string;
   author: string;
 };
@@ -50,17 +49,13 @@ const PostHeader = (props: IPostHeaderProps) => (
         <img
           src="/images/site/profile.png"
           alt="My face (pixelated)"
-          className="h-10 w-10 rounded-full"
+          className="size-10 rounded-full"
         />
         <div className=" ml-4 text-left text-sm text-gray-400">
-          By {props.author} on{' '}
-          {format(new Date(props.content.pubDate), 'LLL d, yyyy')}
+          By {props.author} on {formatDate(props.content.pubDate)}
           {props.content.updatedDate && <br></br>}
           {props.content.updatedDate && (
-            <i>
-              Updated{' '}
-              {format(new Date(props.content.updatedDate), 'LLL d, yyyy')}
-            </i>
+            <i>Updated {formatDate(props.content.updatedDate)}</i>
           )}
         </div>
       </div>

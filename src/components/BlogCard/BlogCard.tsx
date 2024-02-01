@@ -1,15 +1,15 @@
 import type { MarkdownInstance } from 'astro';
-import { format } from 'date-fns';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import {
+  formatDate,
   getNameFromSlug,
   getTopicFromUrl,
   tagDataFromString,
 } from '@/utils/helpers';
 
 type IBlogCardProps = {
-  instance: MarkdownInstance<IFrontmatterPost>;
+  instance: MarkdownInstance<IFrontMatterPost>;
 };
 
 const BlogCard = (props: IBlogCardProps) => (
@@ -52,7 +52,7 @@ const BlogCard = (props: IBlogCardProps) => (
         <span className="align-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="mr-1 inline h-4 w-4 align-bottom"
+            className="mr-1 inline size-4 align-bottom"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -64,7 +64,7 @@ const BlogCard = (props: IBlogCardProps) => (
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             ></path>
           </svg>
-          {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
+          {formatDate(props.instance.frontmatter.pubDate)}
         </span>
       </div>
 
@@ -74,7 +74,7 @@ const BlogCard = (props: IBlogCardProps) => (
           <span className="align-middle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="mr-1 inline h-4 w-4 align-bottom"
+              className="mr-1 inline size-4 align-bottom"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -84,11 +84,7 @@ const BlogCard = (props: IBlogCardProps) => (
             >
               <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
             </svg>
-            Updated{' '}
-            {format(
-              new Date(props.instance.frontmatter.updatedDate),
-              'LLL d, yyyy',
-            )}
+            Updated {formatDate(props.instance.frontmatter.updatedDate)}
           </span>
         </div>
       )}

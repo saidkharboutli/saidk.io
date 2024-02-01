@@ -1,11 +1,10 @@
 import type { MarkdownInstance } from 'astro';
-import { format } from 'date-fns';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import { getNameFromSlug, getTopicFromUrl } from '@/utils/helpers';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import { formatDate, getNameFromSlug, getTopicFromUrl } from '@/utils/helpers';
 
 type IBlogCardProps = {
-  instance: MarkdownInstance<IFrontmatterPost>;
+  instance: MarkdownInstance<IFrontMatterPost>;
   includeImage?: boolean;
 };
 
@@ -51,7 +50,7 @@ const BlogCardMin = (props: IBlogCardProps) => (
         <span className="align-bottom">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="mr-1 inline h-4 w-4 align-bottom"
+            className="mr-1 inline size-4 align-bottom"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -63,7 +62,7 @@ const BlogCardMin = (props: IBlogCardProps) => (
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             ></path>
           </svg>
-          {format(new Date(props.instance.frontmatter.pubDate), 'LLL d, yyyy')}
+          {formatDate(props.instance.frontmatter.pubDate)}
         </span>
       </div>
     </div>

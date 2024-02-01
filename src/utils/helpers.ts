@@ -5,8 +5,9 @@
 
 import type { MarkdownInstance } from 'astro';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 
 type ITagData = {
   name: string;
@@ -16,6 +17,7 @@ type ITagData = {
 function titleCase(str: string) {
   return str
     .toLowerCase()
+    .replaceAll('tv', 'TV')
     .split(' ')
     .map((word) => {
       return word.replace(word[0]!, word[0]!.toUpperCase());
@@ -24,7 +26,7 @@ function titleCase(str: string) {
 }
 
 export const sortProjectsByDate = (
-  posts: MarkdownInstance<IFrontmatterProject>[],
+  posts: MarkdownInstance<IFrontMatterProject>[],
 ) => {
   return posts.sort(
     (a, b) =>
@@ -34,12 +36,22 @@ export const sortProjectsByDate = (
 };
 
 export const sortPostsByDate = (
-  posts: MarkdownInstance<IFrontmatterPost>[],
+  posts: MarkdownInstance<IFrontMatterPost>[],
 ) => {
   return posts.sort(
     (a, b) =>
       new Date(b.frontmatter.pubDate).valueOf() -
       new Date(a.frontmatter.pubDate).valueOf(),
+  );
+};
+
+export const sortReviewsByDate = (
+  posts: MarkdownInstance<IFrontMatterReview>[],
+) => {
+  return posts.sort(
+    (a, b) =>
+      new Date(b.frontmatter.reviewDate).valueOf() -
+      new Date(a.frontmatter.reviewDate).valueOf(),
   );
 };
 
@@ -88,4 +100,37 @@ export function getTopicFromUrl(url: string) {
       return path === 'topics';
     }) + 1
   ];
+}
+
+export function getReviewTypeFromUrl(url: string) {
+  const slugs = url.split('/');
+  return slugs[
+    slugs.findIndex((path) => {
+      return path === 'reviews';
+    }) + 1
+  ];
+}
+
+export function formatDate(date: string) {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const dt = new Date(date);
+  const year = dt.getUTCFullYear();
+  const month = months[dt.getUTCMonth()];
+  const day = dt.getUTCDate();
+
+  return `${day.toString().padStart(2, '0')} ${month} ${year}`;
 }
