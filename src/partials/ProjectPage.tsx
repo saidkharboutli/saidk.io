@@ -5,13 +5,13 @@ import { ProjectContent } from '@/components/ProjectPage/ProjectContent';
 import { ProjectFooter } from '@/components/ProjectPage/ProjectFooter';
 import { ProjectHeader } from '@/components/ProjectPage/ProjectHeader';
 import { Section } from '@/components/Section';
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 
 type IProjectPageProps = {
-  frontmatter: IFrontmatterProject;
+  frontmatter: IFrontMatterProject;
   path: string;
-  posts: MarkdownInstance<IFrontmatterPost>[];
+  posts: MarkdownInstance<IFrontMatterPost>[];
   children: ReactNode;
 };
 

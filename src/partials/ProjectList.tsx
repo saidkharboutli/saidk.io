@@ -3,13 +3,13 @@ import type { MarkdownInstance } from 'astro';
 import { GradientText } from '@/components/GradientText';
 import { ProjectGallery } from '@/components/ProjectCard/ProjectGallery';
 import { Section } from '@/components/Section';
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 
 type IProjectListProps = {
   projectList: {
-    project: MarkdownInstance<IFrontmatterProject>;
-    post: MarkdownInstance<IFrontmatterPost>;
+    project: MarkdownInstance<IFrontMatterProject>;
+    post: MarkdownInstance<IFrontMatterPost>;
   }[];
 };
 

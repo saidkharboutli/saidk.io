@@ -14,7 +14,7 @@ type IReviewTypeViewProps = {
 };
 
 const ReviewTypeView = (props: IReviewTypeViewProps) => (
-  <div className="mx-auto mt-4 flex max-w-screen-lg flex-row flex-wrap justify-center gap-3 px-3 py-6 text-2xl">
+  <div className="mx-auto flex max-w-screen-lg flex-row flex-wrap justify-center gap-3 py-4 text-2xl">
     {props.typeData &&
       props.typeData
         .sort((a, b) => a.type.localeCompare(b.type))

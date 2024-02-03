@@ -1,14 +1,14 @@
 import type { MarkdownInstance } from 'astro';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 
 import { ProjectCard } from './ProjectCard';
 
 type IRecentProjectsProps = {
   projectList: {
-    project: MarkdownInstance<IFrontmatterProject>;
-    post: MarkdownInstance<IFrontmatterPost>;
+    project: MarkdownInstance<IFrontMatterProject>;
+    post: MarkdownInstance<IFrontMatterPost>;
   }[];
 };
 

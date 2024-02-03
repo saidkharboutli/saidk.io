@@ -4,10 +4,10 @@ import { BlogCardSpotlight } from '@/components/BlogCard/BlogCardSpotlight';
 import { BlogGallery } from '@/components/BlogCard/BlogGallery';
 import { GradientText } from '@/components/GradientText';
 import { Section } from '@/components/Section';
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 
 type IRecentPostsProps = {
-  postList: MarkdownInstance<IFrontmatterPost>[];
+  postList: MarkdownInstance<IFrontMatterPost>[];
 };
 
 const RecentPosts = (props: IRecentPostsProps) => (

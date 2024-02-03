@@ -7,7 +7,7 @@ import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { FrontmatterPostPage, IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortPostsByDate,tagDataFromArr  } from '@/utils/helpers';
 
@@ -16,7 +16,7 @@ type GetStaticPaths = {
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatterPost>('../../**/*.md');
+  const allPosts = await Astro.glob<IFrontMatterPost>('../../**/*.md');
   const allUniqueSeries = new Set<any>();
   const sortedPosts = sortPostsByDate(allPosts);
 
@@ -35,7 +35,7 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
 }
 
 interface Props {
-  page: FrontmatterPostPage;
+  page: FrontMatterPostPage;
   seriesData: any;
 }
 

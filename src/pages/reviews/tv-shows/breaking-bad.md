@@ -1,9 +1,9 @@
 ---
 imgSrc: /images/reviews/breaking-bad.jpg
-imgAlt: Image of Aaron Paul and Bryan Cranston.
+imgAlt: Cover art of Aaron Paul and Bryan Cranston.
 
 name: Breaking Bad
-reviewDate: 2024-01-06
+reviewDate: 2024-01-31
 releaseDate: 2008-01-20
 typeOrGenre: ['Drama', 'Suspense', 'Crime']
 rating: 98

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 
 type IProjectContentProps = {
-  content: IFrontmatterProject;
+  content: IFrontMatterProject;
   children: ReactNode;
 };
 

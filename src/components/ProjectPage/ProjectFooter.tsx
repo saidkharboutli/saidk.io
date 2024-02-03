@@ -1,16 +1,16 @@
 import type { MarkdownInstance } from 'astro';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import { generateSlug } from '@/utils/helpers';
 
 import { BlogGallery } from '../BlogCard/BlogGallery';
 import { Section } from '../Section';
 
 type IProjectFooterProps = {
-  content: IFrontmatterProject;
+  content: IFrontMatterProject;
   path: string;
-  posts: MarkdownInstance<IFrontmatterPost>[];
+  posts: MarkdownInstance<IFrontMatterPost>[];
 };
 
 const ProjectFooter = (props: IProjectFooterProps) => (

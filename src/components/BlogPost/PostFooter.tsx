@@ -1,9 +1,9 @@
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 
 import { BlogCardMin } from '../BlogCard/BlogCardMin';
 
 type IPostFooterProps = {
-  content: IFrontmatterPost;
+  content: IFrontMatterPost;
   path: string;
   prevNextInSeries: any;
   author: string;

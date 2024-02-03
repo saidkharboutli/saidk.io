@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 
 type IPostContentProps = {
-  content: IFrontmatterPost;
+  content: IFrontMatterPost;
   children: ReactNode;
 };
 

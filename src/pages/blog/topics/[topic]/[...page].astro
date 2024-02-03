@@ -1,4 +1,6 @@
 ---
+import type { MarkdownInstance } from 'astro';
+
 import { BlogCardSpotlight } from '@/components/BlogCard/BlogCardSpotlight';
 import { BlogGallery } from '@/components/BlogCard/BlogGallery';
 import { GradientText } from '@/components/GradientText';
@@ -11,37 +13,33 @@ import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatter
 import { AppConfig } from '@/utils/AppConfig';
 import { getNameFromSlug, getTopicFromUrl, sortPostsByDate } from '@/utils/helpers';
 
-type GetStaticPaths = {
+interface GetStaticPaths {
   paginate: any;
-}; // Overrides `GetStaticPathsOptions` types from Astro
-
-export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontMatterPost>('../../**/*.md');
-  const allUniqueTopics = new Set<any>();
-  const sortedPosts = sortPostsByDate(allPosts);
-
-  sortedPosts.forEach(post => {
-      allUniqueTopics.add(getTopicFromUrl(post.url!));
-  });
-
-  return [...allUniqueTopics].flatMap((topic) => {
-    const posts = sortedPosts.filter((post) =>  getTopicFromUrl(post.url!) === topic)
-    return paginate( posts,  {params: { topic }, pageSize: 10});
-    }
-  )
-  // Return a paginated collection of paths for all posts
-}
+};
 
 interface Props {
   page: FrontMatterPostPage;
 }
 
-const { page} = Astro.props as Props;
-// @ts-ignore
-// eslint-disable-next-line unused-imports/no-unused-vars
+export async function getStaticPaths({ paginate }: GetStaticPaths) {
+  const allPosts: MarkdownInstance<IFrontMatterPost>[] = await Astro.glob<IFrontMatterPost>('../**/*.md');
+  const allUniqueTopics = new Set<any>();
+
+    allPosts.forEach(post => {
+      allUniqueTopics.add(getTopicFromUrl(post.url!));
+  });
+
+  return [...allUniqueTopics].flatMap((topic) => {
+    const posts = allPosts.filter((post) =>  getTopicFromUrl(post.url!) === topic)
+    return paginate( sortPostsByDate(posts),  {params: { topic }, pageSize: 10});
+    }
+  )
+}
+
+const { page } = Astro.props as Props;
 const { topic } = Astro.params; 
 
-const title = `"${getNameFromSlug(topic)}" Tag | ${AppConfig.site_name}`;
+const title = `"${getNameFromSlug(topic)}" Topic | ${AppConfig.site_name}`;
 const description =
   'Pagination example built with Astro styled with Tailwind CSS.';
 ---

@@ -1,6 +1,6 @@
 ---
 imgSrc: "/images/reviews/ath-ad700x.jpg"
-imgAlt: "Amazon image of headphones"
+imgAlt: "Headphones from Amazon"
 
 name: "Audio-Technica ATH-AD700X"
 reviewDate: 2024-01-31

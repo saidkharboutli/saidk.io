@@ -10,7 +10,7 @@ import Base from '@/templates/Base.astro';
 import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 // eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
-import { getReviewTypeFromUrl, sortReviewsByDate } from '@/utils/helpers';
+import { getNameFromSlug, getReviewTypeFromUrl, sortReviewsByReviewDate } from '@/utils/helpers';
 
 interface ITypeData {
   type: string;
@@ -30,7 +30,7 @@ uniqueReviewTypes.forEach(type => {
   allReviews.forEach(review => {
     if(getReviewTypeFromUrl(review.url!) === type) typeDatum.reviews.push(review)
   });
-  typeDatum.reviews = sortReviewsByDate(typeDatum.reviews);
+  typeDatum.reviews = sortReviewsByReviewDate(typeDatum.reviews);
   typeData.push(typeDatum);
 });
 
@@ -44,6 +44,18 @@ const description =
     <div class="text-center">
       <h1 class="text-3xl font-bold">All <GradientText>Reviews</GradientText></h1>
     </div>
+
+    <div class="mt-2 flex justify-center gap-1 text-center md:gap-2">
+      {[...uniqueReviewTypes].map((reviewType, i, arr) => (
+      <div class="flex justify-center gap-1 text-xs md:gap-2">
+        <a href={`/reviews/${reviewType}/`} class="font-semibold transition-all duration-150 hover:text-purple-400 hover:scale-110">
+          {getNameFromSlug(reviewType)}
+        </a>
+        {(i !== arr.length - 1) && <div class="flex">|</div>}
+      </div>
+      ))}
+    </div>
+
   </Section>
   
   <Section>

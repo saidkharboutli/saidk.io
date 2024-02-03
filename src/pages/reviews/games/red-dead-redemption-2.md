@@ -1,8 +1,8 @@
 ---
 imgSrc: /images/reviews/red-dead-redemption-2.jpg
-imgAlt: Image of Aaron Paul and Bryan Cranston.
+imgAlt: Cover art of for the game.
 
-name: Breaking Bad
+name: Red Dead Redemption 2
 reviewDate: 2024-01-06
 releaseDate: 2018-10-26
 typeOrGenre: ['Western', 'Action Adventure']

@@ -4,18 +4,26 @@ import { AboutMeHeader } from '@/components/AboutMe/AboutMeHeader'
 import { AboutMeContent } from '@/partials/AboutMeContent';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
+import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 import { AppConfig } from '@/utils/AppConfig';
+import { getReviewTypeFromUrl, sortReviewsByRating } from '@/utils/helpers';
 
 const title = `About Me | ${AppConfig.site_name}`;
 const description =
   'Here you can find all the tags used on blog articles.';
 
+const reviews = await Astro.glob<IFrontMatterReview>('../reviews/**/*.md');
+
+const movies = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'movies'));
+const shows = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'tv-shows'));
+const albums = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'albums'));
+const games = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'games'));
 ---
 
 <Base head={{ title, description }}>
   <AboutMeHeader />
   
-  <AboutMeContent />
+  <AboutMeContent movies={movies} shows={shows} albums={albums} games={games}/>
 
   <CTA />
 </Base>

@@ -1,3 +1,5 @@
+import type { MarkdownInstance, Page } from 'astro';
+
 export interface IFrontMatterReview {
   imgSrc: string;
   imgAlt: string;
@@ -17,3 +19,5 @@ export interface IFrontMatterReview {
   /* Specific to Album Reviews */
   favoriteSongs: string[];
 }
+
+export type FrontMatterReviewPage = Page<MarkdownInstance<IFrontMatterReview>>;

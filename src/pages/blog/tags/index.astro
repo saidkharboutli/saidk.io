@@ -5,17 +5,15 @@ import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-// eslint-disable-next-line prettier/prettier
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-
 
 const title = `Blog Tags | ${AppConfig.site_name}`;
 const description =
   'Here you can find all the tags used on blog articles.';
 
 const allUniqueTags = new Set<any>();
-const allPosts = await Astro.glob<IFrontmatterPost>('../**/*.md');
+const allPosts = await Astro.glob<IFrontMatterPost>('../**/*.md');
 
 allPosts.forEach(post => {
   post.frontmatter.tags.split(', ').forEach(tag => {

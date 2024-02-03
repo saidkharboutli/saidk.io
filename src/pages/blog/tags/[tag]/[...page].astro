@@ -7,16 +7,21 @@ import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { FrontmatterPostPage, IFrontmatterPost} from '@/types/IFrontMatterPost';
+import type { FrontMatterPostPage, IFrontMatterPost} from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortPostsByDate,tagDataFromArr  } from '@/utils/helpers';
 
-type GetStaticPaths = {
+interface GetStaticPaths {
   paginate: any;
-}; // Overrides `GetStaticPathsOptions` types from Astro
+};
+
+interface Props {
+  page: FrontMatterPostPage;
+  tagData: any;
+}
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontmatterPost>('../../**/*.md');
+  const allPosts = await Astro.glob<IFrontMatterPost>('../../**/*.md');
   const allUniqueTags = new Set<any>();
   const sortedPosts = sortPostsByDate(allPosts);
 
@@ -33,13 +38,8 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
     return paginate( posts,  {props: { tagData: tag }, params: { tag: tag.slug }, pageSize: 10});
     }
   )
-  // Return a paginated collection of paths for all posts
 }
 
-interface Props {
-  page: FrontmatterPostPage;
-  tagData: any;
-}
 
 const { page, tagData } = Astro.props as Props;
 // @ts-ignore

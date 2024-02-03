@@ -4,11 +4,11 @@ import { PostContent } from '@/components/BlogPost/PostContent';
 import { PostFooter } from '@/components/BlogPost/PostFooter';
 import { PostHeader } from '@/components/BlogPost/PostHeader';
 import { Section } from '@/components/Section';
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 
 type IBlogPostProps = {
-  frontmatter: IFrontmatterPost;
+  frontmatter: IFrontMatterPost;
   path: string;
   prevNextInSeries: any;
   children: ReactNode;

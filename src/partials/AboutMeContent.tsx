@@ -1,9 +1,20 @@
+import type { MarkdownInstance } from 'astro';
+
 import { AboutMeEducation } from '@/components/AboutMe/AboutMeEducation';
 import { AboutMeSkills } from '@/components/AboutMe/AboutMeSkills';
 import { GradientText } from '@/components/GradientText';
+import { ReviewGalleryMin } from '@/components/Review/ReviewGalleryMin';
 import { Section } from '@/components/Section';
+import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 
-const AboutMeContent = () => {
+interface IAboutMeContentProps {
+  movies: MarkdownInstance<IFrontMatterReview>[];
+  shows: MarkdownInstance<IFrontMatterReview>[];
+  albums: MarkdownInstance<IFrontMatterReview>[];
+  games: MarkdownInstance<IFrontMatterReview>[];
+}
+
+const AboutMeContent = (props: IAboutMeContentProps) => {
   const favoriteLangs = [
     { skill: 'C/C++', level: 2 },
     { skill: 'Python', level: 2 },
@@ -73,14 +84,48 @@ const AboutMeContent = () => {
         </div>
       </div>
 
-      {/* Hobbies */}
+      {/* TV Shows */}
+      <div className="mt-6">
+        <div className="flex flex-col text-center">
+          <h1 className="mb-4 text-2xl font-bold">
+            <GradientText>Favorite TV Shows</GradientText>
+          </h1>
+          <ReviewGalleryMin reviews={props.shows.slice(0, 3)} />
+        </div>
+      </div>
+
+      {/* Movies */}
+      <div className="mt-4">
+        <div className="flex flex-col text-center">
+          <h1 className="mb-4 text-2xl font-bold">
+            <GradientText>Favorite Movies</GradientText>
+          </h1>
+          <ReviewGalleryMin reviews={props.movies.slice(0, 3)} />
+        </div>
+      </div>
+
+      {/* Albums */}
+      <div className="mt-4">
+        <div className="flex flex-col text-center">
+          <h1 className="mb-4 text-2xl font-bold">
+            <GradientText>Favorite Albums</GradientText>
+          </h1>
+          <ReviewGalleryMin reviews={props.albums.slice(0, 3)} />
+        </div>
+      </div>
+
+      {/* Games */}
+      <div className="mt-4">
+        <div className="flex flex-col text-center">
+          <h1 className="mb-4 text-2xl font-bold">
+            <GradientText>Favorite Games</GradientText>
+          </h1>
+          <ReviewGalleryMin reviews={props.games.slice(0, 3)} />
+        </div>
+      </div>
 
       {/*
-        Hobbies
-        TV Shows & Movies
-        Books
         Fun Facts
-          PC Specs
         Contact Me
       */}
     </Section>

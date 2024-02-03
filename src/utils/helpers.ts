@@ -45,13 +45,31 @@ export const sortPostsByDate = (
   );
 };
 
-export const sortReviewsByDate = (
+export const sortReviewsByReleaseDate = (
+  posts: MarkdownInstance<IFrontMatterReview>[],
+) => {
+  return posts.sort(
+    (a, b) =>
+      new Date(b.frontmatter.releaseDate).valueOf() -
+      new Date(a.frontmatter.releaseDate).valueOf(),
+  );
+};
+
+export const sortReviewsByReviewDate = (
   posts: MarkdownInstance<IFrontMatterReview>[],
 ) => {
   return posts.sort(
     (a, b) =>
       new Date(b.frontmatter.reviewDate).valueOf() -
       new Date(a.frontmatter.reviewDate).valueOf(),
+  );
+};
+
+export const sortReviewsByRating = (
+  posts: MarkdownInstance<IFrontMatterReview>[],
+) => {
+  return posts.sort(
+    (a, b) => Number(b.frontmatter.rating) - Number(a.frontmatter.rating),
   );
 };
 
