@@ -13,15 +13,15 @@ import { ProjectList } from '@/partials/ProjectList';
 import { RecentPosts } from '@/partials/RecentPosts';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import { AppConfig } from '@/utils/AppConfig';
 import { sortPostsByDate , sortProjectsByDate } from '@/utils/helpers';
 
-const allPosts = await Astro.glob<IFrontmatterPost>('./blog/**/*.md');
+const allPosts = await Astro.glob<IFrontMatterPost>('./blog/**/*.md');
 const sortedPosts = sortPostsByDate(allPosts);
 
-const allProjects = await Astro.glob<IFrontmatterProject>('./projects/**/*.md');
+const allProjects = await Astro.glob<IFrontMatterProject>('./projects/**/*.md');
 const sortedProjects = sortProjectsByDate(allProjects);
 
 const projectAndPost: any[] = [];

@@ -1,11 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 
 import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
-import {
-  formatDate,
-  getNameFromSlug,
-  getReviewTypeFromUrl,
-} from '@/utils/helpers';
+import { getNameFromSlug, getReviewTypeFromUrl } from '@/utils/helpers';
 
 import { SkillRankingCard } from '../AboutMe/AboutMeSkills';
 
@@ -55,18 +51,6 @@ const ReviewCardMin = (props: IReviewCardProps) => (
           {props.review.frontmatter.artistOrAuthor}
         </span>
       )}
-
-      {/* Review Date & Release Date */}
-      <div className="mt-1 flex items-center gap-1 text-xs text-gray-400 md:flex-col md:items-start md:gap-0.5">
-        <span>
-          {getReviewTypeFromUrl(props.review.url!) === 'books' ? (
-            <span className="font-bold">Published </span>
-          ) : (
-            <span className="font-bold">Released </span>
-          )}
-          {formatDate(props.review.frontmatter.releaseDate)}
-        </span>
-      </div>
 
       {/* Ranking (out of 100) */}
       <div className="flex items-end gap-8">

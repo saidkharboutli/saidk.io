@@ -2,7 +2,7 @@
 layout: '@/templates/BasePost.astro'
 title: 'First Post: Emulating CHIP8 As Fast As Possible jan 2020'
 description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
-pubDate: 2020-01-06T00:00:00Z
+pubDate: 2020-01-06
 imgSrc: '/images/posts/post0/banner.png'
 imgAlt: 'Image post'
 tags: f, g, gggggggggggggg, ggg, asda, asdasd, asdasfas, asdasdasfasf, asdasdasd

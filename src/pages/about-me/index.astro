@@ -1,7 +1,8 @@
 ---
 // eslint-disable-next-line prettier/prettier
+import { AboutMeContact } from '@/components/AboutMe/AboutMeContact';
+import { AboutMeContent } from '@/components/AboutMe/AboutMeContent';
 import { AboutMeHeader } from '@/components/AboutMe/AboutMeHeader'
-import { AboutMeContent } from '@/partials/AboutMeContent';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
@@ -24,6 +25,8 @@ const games = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUr
   <AboutMeHeader />
   
   <AboutMeContent movies={movies} shows={shows} albums={albums} games={games}/>
+
+  <AboutMeContact client:load />
 
   <CTA />
 </Base>

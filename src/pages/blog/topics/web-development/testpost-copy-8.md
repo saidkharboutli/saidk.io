@@ -2,8 +2,8 @@
 layout: '@/templates/BasePost.astro'
 title: 'First Post: Emulating CHIP8 As Fast As Possible march 2020'
 description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
-pubDate: 2020-03-06T00:00:00Z
-updatedDate: 2020-03-06T00:00:00Z
+pubDate: 2020-03-06
+updatedDate: 2020-03-06
 imgSrc: '/images/posts/post0/banner.png'
 imgAlt: 'Image post'
 tags: Test Posts, Test Tags, Test, Testing

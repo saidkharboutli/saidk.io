@@ -1,0 +1,29 @@
+---
+import { AboutMeContact } from '@/components/AboutMe/AboutMeContact';
+import { GradientText } from '@/components/GradientText';
+import { Section } from '@/components/Section';
+import Base from '@/templates/Base.astro';
+import { AppConfig } from '@/utils/AppConfig';
+
+
+const title = `CV | ${AppConfig.site_name}`;
+const description =
+  'This page displays my "oficial" CV. PDF download is available.';
+---
+
+<Base head={{ title, description }}>
+  <Section>
+    <div class="text-center">
+      <h1 class="text-3xl font-bold">My <GradientText>Resume</GradientText></h1>
+    </div>
+  </Section>
+  
+  <Section>
+    <div class="flex w-full items-center justify-center">
+      <!-- <embed src="/documents/Resume - Said Kharboutli.pdf" type="application/pdf" class="h-[800px] w-full" /> -->
+      <object data="/documents/Resume - Said Kharboutli.pdf" type="application/pdf" class="h-[calc(100vh-350px)] w-full md:min-h-[calc(100vh-168px)]"></object>
+    </div>
+  </Section>
+  
+  <AboutMeContact client:load />
+</Base>

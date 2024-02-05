@@ -12,7 +12,8 @@
     "preserveConstEnums": true,
     "strict": true,
     "alwaysStrict": true,
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false,
+    "strictNullChecks": false,
 
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -38,8 +39,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+    },
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
 }
