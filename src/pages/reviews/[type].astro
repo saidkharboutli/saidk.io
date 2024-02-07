@@ -4,7 +4,6 @@ import type { MarkdownInstance } from 'astro';
 import { GradientText } from '@/components/GradientText';
 import { ReviewGallery } from '@/components/Review/ReviewGallery';
 import { Section } from '@/components/Section';
-import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
@@ -51,6 +50,4 @@ const description =
   <Section>
     <ReviewGallery sortAndLimit={true} reviews={reviews} client:load />
   </Section>
-
-  <CTA />
 </Base>

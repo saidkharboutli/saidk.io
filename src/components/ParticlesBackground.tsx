@@ -1,4 +1,4 @@
-import type { Container, ISourceOptions } from '@tsparticles/engine';
+import type { ISourceOptions } from '@tsparticles/engine';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -18,10 +18,6 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
       setInit(true);
     });
   }, []);
-
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
 
   const options: ISourceOptions = useMemo(
     () => ({
@@ -103,7 +99,6 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
       <>
         <Particles
           id="tsparticles"
-          particlesLoaded={particlesLoaded}
           options={options}
           className="absolute left-0 top-0 z-[-1] size-full"
         />

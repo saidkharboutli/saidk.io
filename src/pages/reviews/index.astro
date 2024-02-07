@@ -4,7 +4,6 @@ import type { MarkdownInstance } from 'astro';
 import { GradientText } from '@/components/GradientText';
 import { ReviewTypeView } from '@/components/Review/ReviewTypeView';
 import { Section } from '@/components/Section';
-import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
@@ -61,5 +60,4 @@ const description =
   <Section>
     <ReviewTypeView typeData={typeData}/>
   </Section>
-  <CTA />
 </Base>

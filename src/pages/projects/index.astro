@@ -5,17 +5,17 @@ import { Section } from '@/components/Section';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatterPost } from '@/types/IFrontMatterPost';
+import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
-import type { IFrontmatterProject } from '@/types/IFrontMatterProject';
+import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 // eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
 import { sortPostsByDate , sortProjectsByDate } from '@/utils/helpers';
 
-const allProjects = await Astro.glob<IFrontmatterProject>('./*.md');
+const allProjects = await Astro.glob<IFrontMatterProject>('./*.md');
 const sortedProjects = sortProjectsByDate(allProjects);
 
-const allPosts = await Astro.glob<IFrontmatterPost>('../blog/topics/**/*.md');
+const allPosts = await Astro.glob<IFrontMatterPost>('../blog/topics/**/*.md');
 const sortedPosts = sortPostsByDate(allPosts);
 
 const projectAndPost: any[] = [];
@@ -43,5 +43,5 @@ const description =
   <Section>
     <ProjectGallery projectList={projectAndPost} />
   </Section>
-  <CTA />
+  <CTA client:load />
 </Base>

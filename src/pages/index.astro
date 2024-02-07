@@ -1,11 +1,11 @@
 ---
 // TODO:
 // - SEO
-// - Phone support
-// - Portfolio
-// - Aboutme
+// - Phone support - navbar and hero (all else is good)
+// - Newsletter backend i want to die
 // - Blog post comments (giscus)
-// - Colors and Redesign
+// - Search (Pagefind)
+// - Table of Contents
 
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
@@ -44,5 +44,5 @@ const { description } = AppConfig;
 
   <RecentPosts postList={sortedPosts.slice(0, 4)} />
   
-  <CTA />
+  <CTA client:load />
 </Base>
