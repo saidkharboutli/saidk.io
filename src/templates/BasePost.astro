@@ -1,6 +1,7 @@
 ---
 import type { MarkdownHeading } from 'astro';
 
+import PostComments from '@/components/BlogPost/PostComments.astro';
 import TableOfContents from '@/components/BlogPost/TableOfContents.astro';
 import { BlogPost } from '@/partials/BlogPost';
 import { CTA } from '@/partials/CTA';
@@ -37,9 +38,12 @@ if(content.series) {
 
 ---
 <Base head={{ title, description: content.description }} >
-    <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
-      <TableOfContents headings={headings} slot='toc' />
-      <slot></slot>
-    </BlogPost>
+  <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
+    <TableOfContents headings={headings} slot='toc' />
+    <slot></slot>
+  </BlogPost>
+
+  <PostComments />
+
   <CTA client:load />
 </Base>

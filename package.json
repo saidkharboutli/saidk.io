@@ -10,7 +10,8 @@
     "clean": "rimraf dist",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.astro .",
     "build-types": "tsc --noEmit --pretty",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postbuild": "pagefind --site dist --verbose"
   },
   "devDependencies": {
     "@astrojs/react": "^3.0.9",
@@ -44,6 +45,7 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
+    "pagefind": "^1.0.4",
     "path-browserify": "^1.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",

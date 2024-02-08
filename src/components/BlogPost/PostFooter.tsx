@@ -14,8 +14,8 @@ const PostFooter = (props: IPostFooterProps) => (
     {(props.prevNextInSeries.previous || props.prevNextInSeries.next) && (
       <div className="mt-8 flex flex-row justify-center gap-12">
         {props.prevNextInSeries.previous && (
-          <div className="flex w-1/4 flex-col text-center">
-            <div className="flex text-left">
+          <div className="flex w-1/2 flex-col text-center md:w-1/5">
+            <div className="flex text-center md:text-left">
               <BlogCardMin instance={props.prevNextInSeries.previous} />
             </div>
             <h2>
@@ -26,8 +26,8 @@ const PostFooter = (props: IPostFooterProps) => (
         )}
 
         {props.prevNextInSeries.next && (
-          <div className="flex w-1/4 flex-col text-center">
-            <div className="flex text-left">
+          <div className="flex w-1/2 flex-col text-center md:w-1/5">
+            <div className="flex text-center md:text-left">
               <BlogCardMin instance={props.prevNextInSeries.next} />
             </div>
             <h2>

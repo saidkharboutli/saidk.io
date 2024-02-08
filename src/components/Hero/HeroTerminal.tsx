@@ -36,7 +36,7 @@ const HeroTerminal = () => {
           </a>
           .`
           <br />`<span className="font-bold text-[#BB86FC]">~</span> `^300 echo{' '}
-          <span className="font-bold text-[#BB86FC]">$PREVIOUSLY</span>
+          <span className="font-bold #BB86FC]">$PREVIOUSLY</span>
           <br />
           `Machine learning solutions (CV & NLP) for{' '}
           <a
