@@ -1,0 +1,30 @@
+---
+const { heading } = Astro.props;
+---
+
+<li>
+  <a href={`#${heading.slug}`}>
+    {heading.text}
+  </a>
+  {
+    heading.children?.length > 0 && (
+      <ul class="pl-6">
+        {heading.children.map((subheading: any) => (
+          <Astro.self heading={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>
+
+<style>
+a {
+  display: block;
+  color: #BB86FC;
+  padding: 0.25rem 0.5rem;
+}
+
+a:not(.active) {
+  color: white;
+}
+</style>

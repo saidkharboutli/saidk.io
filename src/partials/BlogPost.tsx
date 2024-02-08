@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { PostContent } from '@/components/BlogPost/PostContent';
 import { PostFooter } from '@/components/BlogPost/PostFooter';
 import { PostHeader } from '@/components/BlogPost/PostHeader';
-import { Section } from '@/components/Section';
+import { BlogSection } from '@/components/BlogPost/BlogSection';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 
@@ -12,17 +12,20 @@ type IBlogPostProps = {
   path: string;
   prevNextInSeries: any;
   children: ReactNode;
+  toc?: ReactNode /* Table of Contents Astro Component */;
 };
 
 const BlogPost = (props: IBlogPostProps) => (
-  <Section>
+  <BlogSection>
     <PostHeader
       content={props.frontmatter}
       author={AppConfig.author}
       path={props.path}
     />
 
-    <PostContent content={props.frontmatter}>{props.children}</PostContent>
+    <PostContent toc={props.toc} content={props.frontmatter}>
+      {props.children}
+    </PostContent>
 
     <PostFooter
       content={props.frontmatter}
@@ -30,7 +33,7 @@ const BlogPost = (props: IBlogPostProps) => (
       path={props.path}
       prevNextInSeries={props.prevNextInSeries}
     />
-  </Section>
+  </BlogSection>
 );
 
 export { BlogPost };

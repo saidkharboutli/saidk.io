@@ -3,11 +3,12 @@
   Thanks to https://github.com/littlesticks/astro-101
 */
 
-import type { MarkdownInstance } from 'astro';
+import type { MarkdownHeading, MarkdownInstance } from 'astro';
 
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
+import type { ITocItem } from '@/types/ITocItem';
 
 type ITagData = {
   name: string;
@@ -151,4 +152,50 @@ export function formatDate(date: string) {
   const day = dt.getUTCDate();
 
   return `${day.toString().padStart(2, '0')} ${month} ${year}`;
+}
+
+function diveChildren(item: ITocItem, depth: number): ITocItem[] {
+  if (depth === 1) return item.children;
+  return diveChildren(item.children[item.children.length - 1], depth - 1);
+}
+
+export default function generateToc(
+  headings: MarkdownHeading[],
+  title = 'Back to Top ↑',
+) {
+  const overview = { depth: 2, slug: '', text: title };
+  const filteredHeadings = [
+    overview,
+    ...headings.filter(({ depth }) => depth > 1 && depth < 5),
+  ];
+  const toc: Array<ITocItem> = [];
+
+  filteredHeadings.forEach((heading) => {
+    if (toc.length === 0) {
+      toc.push({
+        ...heading,
+        children: [],
+      });
+    } else {
+      const lastItemInToc = toc[toc.length - 1];
+      if (heading.depth < lastItemInToc.depth) {
+        throw new Error(`Orphan heading found: ${heading.text}.`);
+      }
+      if (heading.depth === lastItemInToc.depth) {
+        toc.push({
+          ...heading,
+          children: [],
+        });
+      } else {
+        const gap = heading.depth - lastItemInToc.depth;
+        const target = diveChildren(lastItemInToc, gap);
+        target.push({
+          ...heading,
+          children: [],
+        });
+      }
+    }
+  });
+
+  return toc;
 }

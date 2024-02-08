@@ -19,6 +19,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@commitlint/cli": "^18.6.0",
     "@commitlint/config-conventional": "^18.6.0",
+    "@hbsnow/rehype-sectionize": "^1.0.7",
     "@jridgewell/sourcemap-codec": "^1.4.15",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.10",

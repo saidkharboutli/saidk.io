@@ -2,10 +2,8 @@
 // TODO:
 // - SEO
 // - Phone support - navbar and hero (all else is good)
-// - Newsletter backend i want to die
 // - Blog post comments (giscus)
 // - Search (Pagefind)
-// - Table of Contents
 
 import { CTA } from '@/partials/CTA';
 import { Hero } from '@/partials/Hero';
@@ -16,7 +14,7 @@ import Base from '@/templates/Base.astro';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortPostsByDate , sortProjectsByDate } from '@/utils/helpers';
+import { sortPostsByDate, sortProjectsByDate } from '@/utils/helpers';
 
 const allPosts = await Astro.glob<IFrontMatterPost>('./blog/**/*.md');
 const sortedPosts = sortPostsByDate(allPosts);
@@ -33,16 +31,15 @@ sortedProjects.forEach((project) => {
   projectAndPost.push(data);
 });
 
-const { title } = AppConfig;
-const { description } = AppConfig;
+const { title, description } = AppConfig;
 ---
 
 <Base head={{ title, description }}>
   <Hero client:load />
-  
+
   <ProjectList projectList={projectAndPost.slice(0, 3)}/>
 
   <RecentPosts postList={sortedPosts.slice(0, 4)} />
-  
+
   <CTA client:load />
 </Base>

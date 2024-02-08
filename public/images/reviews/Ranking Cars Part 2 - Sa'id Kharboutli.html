@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#121212]"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ranking Cars: Part 2 - Sa'id Kharboutli</title><meta name="description" content="This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!"><meta name="author" content="Sa'id"><link rel="alternate" type="application/rss+xml" href="http://localhost:4321/rss.xml"><link rel="icon" type="image/x-icon" href="http://localhost:4321/favicon.ico"><style data-vite-dev-id="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/node_modules/@astrojs/tailwind/base.css">/*
+! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-feature-settings: normal; /* 2 */
+  font-variation-settings: normal; /* 3 */
+  font-size: 1em; /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+[hidden] {
+  display: none;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-perspective: none;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-translate-z: 0;
+  --tw-rotate-x: 0;
+  --tw-rotate-y: 0;
+  --tw-rotate-z: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scale-z: 1;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-perspective: none;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-translate-z: 0;
+  --tw-rotate-x: 0;
+  --tw-rotate-y: 0;
+  --tw-rotate-z: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-scale-z: 1;
+}
+.aspect-h-2 {
+  --tw-aspect-h: 2;
+}
+.aspect-w-3 {
+  position: relative;
+  padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+  --tw-aspect-w: 3;
+}
+.aspect-w-3 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.prose {
+  color: var(--tw-prose-body);
+  max-width: 65ch;
+}
+.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+.prose :where([class~="lead"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-lead);
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-bold);
+  font-weight: 600;
+}
+.prose :where(a strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(blockquote strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(thead th strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(ol):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: decimal;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+.prose :where(ol[type="A"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-alpha;
+}
+.prose :where(ol[type="a"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-alpha;
+}
+.prose :where(ol[type="A" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-alpha;
+}
+.prose :where(ol[type="a" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-alpha;
+}
+.prose :where(ol[type="I"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-roman;
+}
+.prose :where(ol[type="i"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-roman;
+}
+.prose :where(ol[type="I" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: upper-roman;
+}
+.prose :where(ol[type="i" s]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: lower-roman;
+}
+.prose :where(ol[type="1"]):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: decimal;
+}
+.prose :where(ul):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: disc;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+.prose :where(ol > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::marker {
+  font-weight: 400;
+  color: var(--tw-prose-counters);
+}
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::marker {
+  color: var(--tw-prose-bullets);
+}
+.prose :where(dt):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  margin-top: 1.25em;
+}
+.prose :where(hr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-color: var(--tw-prose-hr);
+  border-top-width: 1px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--tw-prose-quotes);
+  border-left-width: 0.25rem;
+  border-left-color: var(--tw-prose-quote-borders);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: open-quote;
+}
+.prose :where(blockquote p:last-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: close-quote;
+}
+.prose :where(h1):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+.prose :where(h1 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 900;
+  color: inherit;
+}
+.prose :where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3333333;
+}
+.prose :where(h2 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 800;
+  color: inherit;
+}
+.prose :where(h3):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+.prose :where(h3 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 700;
+  color: inherit;
+}
+.prose :where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+.prose :where(h4 strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 700;
+  color: inherit;
+}
+.prose :where(img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.prose :where(picture):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.prose :where(kbd):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--tw-prose-kbd);
+  box-shadow: 0 0 0 1px rgb(var(--tw-prose-kbd-shadows) / 10%), 0 3px 0 rgb(var(--tw-prose-kbd-shadows) / 10%);
+  font-size: 0.875em;
+  border-radius: 0.3125rem;
+  padding-top: 0.1875em;
+  padding-right: 0.375em;
+  padding-bottom: 0.1875em;
+  padding-left: 0.375em;
+}
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-code);
+  font-weight: 600;
+  font-size: 0.875em;
+}
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: "`";
+}
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: "`";
+}
+.prose :where(a code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(h1 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(h2 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+  font-size: 0.875em;
+}
+.prose :where(h3 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+  font-size: 0.9em;
+}
+.prose :where(h4 code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(blockquote code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(thead th code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: inherit;
+}
+.prose :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-pre-code);
+  background-color: var(--tw-prose-pre-bg);
+  overflow-x: auto;
+  font-weight: 400;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: 0.375rem;
+  padding-top: 0.8571429em;
+  padding-right: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-left: 1.1428571em;
+}
+.prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+.prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  content: none;
+}
+.prose :where(pre code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: none;
+}
+.prose :where(table):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+.prose :where(thead):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--tw-prose-th-borders);
+}
+.prose :where(thead th):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-headings);
+  font-weight: 600;
+  vertical-align: bottom;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+.prose :where(tbody tr):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--tw-prose-td-borders);
+}
+.prose :where(tbody tr:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-bottom-width: 0;
+}
+.prose :where(tbody td):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  vertical-align: baseline;
+}
+.prose :where(tfoot):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  border-top-width: 1px;
+  border-top-color: var(--tw-prose-th-borders);
+}
+.prose :where(tfoot td):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  vertical-align: top;
+}
+.prose :where(figure > *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.prose :where(figcaption):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: var(--tw-prose-captions);
+  font-size: 0.875em;
+  line-height: 1.4285714;
+  margin-top: 0.8571429em;
+}
+.prose {
+  --tw-prose-body: #374151;
+  --tw-prose-headings: #111827;
+  --tw-prose-lead: #4b5563;
+  --tw-prose-links: #111827;
+  --tw-prose-bold: #111827;
+  --tw-prose-counters: #6b7280;
+  --tw-prose-bullets: #d1d5db;
+  --tw-prose-hr: #e5e7eb;
+  --tw-prose-quotes: #111827;
+  --tw-prose-quote-borders: #e5e7eb;
+  --tw-prose-captions: #6b7280;
+  --tw-prose-kbd: #111827;
+  --tw-prose-kbd-shadows: 17 24 39;
+  --tw-prose-code: #111827;
+  --tw-prose-pre-code: #e5e7eb;
+  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-th-borders: #d1d5db;
+  --tw-prose-td-borders: #e5e7eb;
+  --tw-prose-invert-body: #d1d5db;
+  --tw-prose-invert-headings: #fff;
+  --tw-prose-invert-lead: #9ca3af;
+  --tw-prose-invert-links: #fff;
+  --tw-prose-invert-bold: #fff;
+  --tw-prose-invert-counters: #9ca3af;
+  --tw-prose-invert-bullets: #4b5563;
+  --tw-prose-invert-hr: #374151;
+  --tw-prose-invert-quotes: #f3f4f6;
+  --tw-prose-invert-quote-borders: #374151;
+  --tw-prose-invert-captions: #9ca3af;
+  --tw-prose-invert-kbd: #fff;
+  --tw-prose-invert-kbd-shadows: 255 255 255;
+  --tw-prose-invert-code: #fff;
+  --tw-prose-invert-pre-code: #d1d5db;
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: #4b5563;
+  --tw-prose-invert-td-borders: #374151;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.prose :where(picture > img):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.prose :where(video):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.prose :where(li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.prose :where(ol > li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0.375em;
+}
+.prose :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0.375em;
+}
+.prose :where(.prose > ul > li p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+.prose :where(.prose > ul > li > *:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+}
+.prose :where(.prose > ul > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-bottom: 1.25em;
+}
+.prose :where(.prose > ol > li > *:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+}
+.prose :where(.prose > ol > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-bottom: 1.25em;
+}
+.prose :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+.prose :where(dl):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+.prose :where(dd):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.5em;
+  padding-left: 1.625em;
+}
+.prose :where(hr + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+.prose :where(h2 + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+.prose :where(h3 + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+.prose :where(h4 + *):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+.prose :where(thead th:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0;
+}
+.prose :where(thead th:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-right: 0;
+}
+.prose :where(tbody td, tfoot td):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-top: 0.5714286em;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+.prose :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-left: 0;
+}
+.prose :where(tbody td:last-child, tfoot td:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  padding-right: 0;
+}
+.prose :where(figure):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.prose :where(.prose > :first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0;
+}
+.prose :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-bottom: 0;
+}
+.prose-invert {
+  --tw-prose-body: var(--tw-prose-invert-body);
+  --tw-prose-headings: var(--tw-prose-invert-headings);
+  --tw-prose-lead: var(--tw-prose-invert-lead);
+  --tw-prose-links: var(--tw-prose-invert-links);
+  --tw-prose-bold: var(--tw-prose-invert-bold);
+  --tw-prose-counters: var(--tw-prose-invert-counters);
+  --tw-prose-bullets: var(--tw-prose-invert-bullets);
+  --tw-prose-hr: var(--tw-prose-invert-hr);
+  --tw-prose-quotes: var(--tw-prose-invert-quotes);
+  --tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+  --tw-prose-captions: var(--tw-prose-invert-captions);
+  --tw-prose-kbd: var(--tw-prose-invert-kbd);
+  --tw-prose-kbd-shadows: var(--tw-prose-invert-kbd-shadows);
+  --tw-prose-code: var(--tw-prose-invert-code);
+  --tw-prose-pre-code: var(--tw-prose-invert-pre-code);
+  --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
+  --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
+  --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+}
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
+.fixed {
+  position: fixed;
+}
+.absolute {
+  position: absolute;
+}
+.sticky {
+  position: sticky;
+}
+.left-0 {
+  left: 0px;
+}
+.top-0 {
+  top: 0px;
+}
+.z-\[-1\] {
+  z-index: -1;
+}
+.col-start-1 {
+  grid-column-start: 1;
+}
+.row-start-1 {
+  grid-row-start: 1;
+}
+.float-end {
+  float: inline-end;
+}
+.m-2 {
+  margin: 0.5rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.ml-4 {
+  margin-left: 1rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
+.mt-0 {
+  margin-top: 0px;
+}
+.mt-0\.5 {
+  margin-top: 0.125rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-10 {
+  margin-top: 2.5rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
+}
+.aspect-1 {
+  aspect-ratio: 1;
+}
+.size-10 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.size-4 {
+  width: 1rem;
+  height: 1rem;
+}
+.size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+.size-9 {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+.size-full {
+  width: 100%;
+  height: 100%;
+}
+.h-1\/4 {
+  height: 25%;
+}
+.h-2 {
+  height: 0.5rem;
+}
+.h-3\/4 {
+  height: 75%;
+}
+.h-5 {
+  height: 1.25rem;
+}
+.h-8 {
+  height: 2rem;
+}
+.h-80 {
+  height: 20rem;
+}
+.h-96 {
+  height: 24rem;
+}
+.h-\[800px\] {
+  height: 800px;
+}
+.h-\[calc\(100vh-350px\)\] {
+  height: calc(100vh - 350px);
+}
+.h-full {
+  height: 100%;
+}
+.min-h-\[calc\(100vh-74px\)\] {
+  min-height: calc(100vh - 74px);
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-1\/4 {
+  width: 25%;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.w-2\/5 {
+  width: 40%;
+}
+.w-3\/4 {
+  width: 75%;
+}
+.w-3\/5 {
+  width: 60%;
+}
+.w-4\/5 {
+  width: 80%;
+}
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.w-full {
+  width: 100%;
+}
+.max-w-\[70ch\] {
+  max-width: 70ch;
+}
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+.shrink-0 {
+  flex-shrink: 0;
+}
+.grow {
+  flex-grow: 1;
+}
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.items-baseline {
+  align-items: baseline;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-0 {
+  gap: 0px;
+}
+.gap-0\.5 {
+  gap: 0.125rem;
+}
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-12 {
+  gap: 3rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-5 {
+  gap: 1.25rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+.gap-y-3 {
+  row-gap: 0.75rem;
+}
+.self-start {
+  align-self: flex-start;
+}
+.self-center {
+  align-self: center;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-visible {
+  overflow: visible;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.rounded-2xl {
+  border-radius: 1rem;
+}
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
+}
+.rounded-t-lg {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+.border {
+  border-width: 1px;
+}
+.border-t {
+  border-top-width: 1px;
+}
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+.border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+.bg-\[\#121212\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(18 18 18 / var(--tw-bg-opacity));
+}
+.bg-\[\#555\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(85 85 85 / var(--tw-bg-opacity));
+}
+.bg-\[\#BB86FC\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 134 252 / var(--tw-bg-opacity));
+}
+.bg-amber-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-blue-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+}
+.bg-cod-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 71 71 / var(--tw-bg-opacity));
+}
+.bg-cod-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(54 54 54 / var(--tw-bg-opacity));
+}
+.bg-cod-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(41 41 41 / var(--tw-bg-opacity));
+}
+.bg-cod-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(18 18 18 / var(--tw-bg-opacity));
+}
+.bg-emerald-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(52 211 153 / var(--tw-bg-opacity));
+}
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+.bg-indigo-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(129 140 248 / var(--tw-bg-opacity));
+}
+.bg-lime-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 230 53 / var(--tw-bg-opacity));
+}
+.bg-orange-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 146 60 / var(--tw-bg-opacity));
+}
+.bg-purple-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(192 132 252 / var(--tw-bg-opacity));
+}
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+.bg-sky-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(56 189 248 / var(--tw-bg-opacity));
+}
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+.bg-slate-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+}
+.bg-teal-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(45 212 191 / var(--tw-bg-opacity));
+}
+.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+.from-\[\#bb86fc\] {
+  --tw-gradient-from: #bb86fc var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(187 134 252 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-purple-500 {
+  --tw-gradient-from: #a855f7 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(168 85 247 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-violet-600 {
+  --tw-gradient-from: #7c3aed var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(124 58 237 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-\[\#d4b4fe\] {
+  --tw-gradient-to: #d4b4fe var(--tw-gradient-to-position);
+}
+.to-red-300 {
+  --tw-gradient-to: #fca5a5 var(--tw-gradient-to-position);
+}
+.to-violet-400 {
+  --tw-gradient-to: #a78bfa var(--tw-gradient-to-position);
+}
+.bg-clip-text {
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.object-center {
+  -o-object-position: center;
+     object-position: center;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-2\.5 {
+  padding: 0.625rem;
+}
+.p-3 {
+  padding: 0.75rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+.px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.pl-6 {
+  padding-left: 1.5rem;
+}
+.pt-1 {
+  padding-top: 0.25rem;
+}
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.pt-4 {
+  padding-top: 1rem;
+}
+.pt-5 {
+  padding-top: 1.25rem;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.align-middle {
+  vertical-align: middle;
+}
+.align-bottom {
+  vertical-align: bottom;
+}
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.leading-7 {
+  line-height: 1.75rem;
+}
+.tracking-normal {
+  letter-spacing: 0em;
+}
+.text-\[\#85AC6C\] {
+  --tw-text-opacity: 1;
+  color: rgb(133 172 108 / var(--tw-text-opacity));
+}
+.text-\[\#BB86FC\] {
+  --tw-text-opacity: 1;
+  color: rgb(187 134 252 / var(--tw-text-opacity));
+}
+.text-amber-500 {
+  --tw-text-opacity: 1;
+  color: rgb(245 158 11 / var(--tw-text-opacity));
+}
+.text-amber-900 {
+  --tw-text-opacity: 1;
+  color: rgb(120 53 15 / var(--tw-text-opacity));
+}
+.text-blue-900 {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity));
+}
+.text-cod-100 {
+  --tw-text-opacity: 1;
+  color: rgb(231 231 231 / var(--tw-text-opacity));
+}
+.text-cod-200 {
+  --tw-text-opacity: 1;
+  color: rgb(209 209 209 / var(--tw-text-opacity));
+}
+.text-cod-300 {
+  --tw-text-opacity: 1;
+  color: rgb(176 176 176 / var(--tw-text-opacity));
+}
+.text-cod-400 {
+  --tw-text-opacity: 1;
+  color: rgb(138 138 138 / var(--tw-text-opacity));
+}
+.text-cod-950 {
+  --tw-text-opacity: 1;
+  color: rgb(18 18 18 / var(--tw-text-opacity));
+}
+.text-cyan-500 {
+  --tw-text-opacity: 1;
+  color: rgb(6 182 212 / var(--tw-text-opacity));
+}
+.text-emerald-900 {
+  --tw-text-opacity: 1;
+  color: rgb(6 78 59 / var(--tw-text-opacity));
+}
+.text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+.text-green-900 {
+  --tw-text-opacity: 1;
+  color: rgb(20 83 45 / var(--tw-text-opacity));
+}
+.text-indigo-400 {
+  --tw-text-opacity: 1;
+  color: rgb(129 140 248 / var(--tw-text-opacity));
+}
+.text-indigo-900 {
+  --tw-text-opacity: 1;
+  color: rgb(49 46 129 / var(--tw-text-opacity));
+}
+.text-lime-900 {
+  --tw-text-opacity: 1;
+  color: rgb(54 83 20 / var(--tw-text-opacity));
+}
+.text-orange-900 {
+  --tw-text-opacity: 1;
+  color: rgb(124 45 18 / var(--tw-text-opacity));
+}
+.text-purple-900 {
+  --tw-text-opacity: 1;
+  color: rgb(88 28 135 / var(--tw-text-opacity));
+}
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+.text-red-900 {
+  --tw-text-opacity: 1;
+  color: rgb(127 29 29 / var(--tw-text-opacity));
+}
+.text-sky-900 {
+  --tw-text-opacity: 1;
+  color: rgb(12 74 110 / var(--tw-text-opacity));
+}
+.text-slate-900 {
+  --tw-text-opacity: 1;
+  color: rgb(15 23 42 / var(--tw-text-opacity));
+}
+.text-teal-900 {
+  --tw-text-opacity: 1;
+  color: rgb(19 78 74 / var(--tw-text-opacity));
+}
+.text-transparent {
+  color: transparent;
+}
+.text-violet-400 {
+  --tw-text-opacity: 1;
+  color: rgb(167 139 250 / var(--tw-text-opacity));
+}
+.text-yellow-600 {
+  --tw-text-opacity: 1;
+  color: rgb(202 138 4 / var(--tw-text-opacity));
+}
+.underline {
+  text-decoration-line: underline;
+}
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-100 {
+  opacity: 1;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+.outline {
+  outline-style: solid;
+}
+.outline-1 {
+  outline-width: 1px;
+}
+.outline-cod-400 {
+  outline-color: #8a8a8a;
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-transform {
+  transition-property: perspective, translate, scale, transform, perspective, rotate;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.delay-150 {
+  transition-delay: 150ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+.delay-500 {
+  transition-delay: 500ms;
+}
+.duration-150 {
+  transition-duration: 150ms;
+}
+.duration-200 {
+  transition-duration: 200ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.duration-500 {
+  transition-duration: 500ms;
+}
+.duration-700 {
+  transition-duration: 700ms;
+}
+.perspective-1000 {
+  --tw-perspective: 1000px;
+  perspective: var(--tw-perspective);
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.-translate-y-4 {
+  --tw-translate-y: -1rem;
+  translate: var(--tw-translate-x) var(--tw-translate-y) var(--tw-translate-z);
+}
+.translate-y-0 {
+  --tw-translate-y: 0px;
+  translate: var(--tw-translate-x) var(--tw-translate-y) var(--tw-translate-z);
+}
+.rotate-y-180 {
+  --tw-rotate-y: 180deg;
+  --webkit-transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+  transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.focus-within\:ring-2:focus-within {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.focus-within\:ring-cyan-600:focus-within {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(8 145 178 / var(--tw-ring-opacity));
+}
+.hover\:bg-violet-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(167 139 250 / var(--tw-bg-opacity));
+}
+.hover\:from-sky-700:hover {
+  --tw-gradient-from: #0369a1 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(3 105 161 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.hover\:to-cyan-600:hover {
+  --tw-gradient-to: #0891b2 var(--tw-gradient-to-position);
+}
+.hover\:text-purple-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(192 132 252 / var(--tw-text-opacity));
+}
+.hover\:text-slate-200:hover {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity));
+}
+.hover\:text-violet-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(196 181 253 / var(--tw-text-opacity));
+}
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+.hover\:opacity-50:hover {
+  opacity: 0.5;
+}
+.hover\:outline-purple-400:hover {
+  outline-color: #c084fc;
+}
+.hover\:outline-violet-200:hover {
+  outline-color: #ddd6fe;
+}
+.hover\:ring-2:hover {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.hover\:ring-cyan-600:hover {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(8 145 178 / var(--tw-ring-opacity));
+}
+.hover\:translate-y-1:hover {
+  --tw-translate-y: 0.25rem;
+  translate: var(--tw-translate-x) var(--tw-translate-y) var(--tw-translate-z);
+}
+.hover\:translate-y-px:hover {
+  --tw-translate-y: 1px;
+  translate: var(--tw-translate-x) var(--tw-translate-y) var(--tw-translate-z);
+}
+.hover\:scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  scale: var(--tw-scale-x) var(--tw-scale-y) var(--tw-scale-z);
+}
+.hover\:scale-110:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  scale: var(--tw-scale-x) var(--tw-scale-y) var(--tw-scale-z);
+}
+.focus\:border-\[\#BB86FC\]:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(187 134 252 / var(--tw-border-opacity));
+}
+.focus\:bg-cod-800:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(54 54 54 / var(--tw-bg-opacity));
+}
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.focus\:ring-\[\#BB86FC\]:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(187 134 252 / var(--tw-ring-opacity));
+}
+.focus\:ring-cyan-600\/50:focus {
+  --tw-ring-color: rgb(8 145 178 / 0.5);
+}
+.group:hover .group-hover\:-rotate-y-180 {
+  --tw-rotate-y: -180deg;
+  --webkit-transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+  transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+}
+.group:hover .group-hover\:rotate-y-0 {
+  --tw-rotate-y: 0deg;
+  --webkit-transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+  transform: rotateX(var(--tw-rotate-x)) rotateY(var(--tw-rotate-y)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y));
+}
+.group:hover .group-hover\:scale-125 {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  scale: var(--tw-scale-x) var(--tw-scale-y) var(--tw-scale-z);
+}
+.prose-h2\:text-3xl :is(:where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.prose-h3\:text-2xl :is(:where(h3):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.prose-h4\:text-xl :is(:where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.prose-img\:rounded-lg :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  border-radius: 0.5rem;
+}
+@media (min-width: 640px) {
+
+  .sm\:w-5\/12 {
+    width: 41.666667%;
+  }
+
+  .sm\:w-7\/12 {
+    width: 58.333333%;
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
+}
+@media (min-width: 768px) {
+
+  .md\:mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:ml-2 {
+    margin-left: 0.5rem;
+  }
+
+  .md\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:h-\[250px\] {
+    height: 250px;
+  }
+
+  .md\:max-h-\[242px\] {
+    max-height: 242px;
+  }
+
+  .md\:min-h-\[calc\(100vh-168px\)\] {
+    min-height: calc(100vh - 168px);
+  }
+
+  .md\:w-1\/4 {
+    width: 25%;
+  }
+
+  .md\:w-1\/5 {
+    width: 20%;
+  }
+
+  .md\:w-2\/3 {
+    width: 66.666667%;
+  }
+
+  .md\:w-\[70ch\] {
+    width: 70ch;
+  }
+
+  .md\:max-w-screen-xl {
+    max-width: 1280px;
+  }
+
+  .md\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .md\:basis-1\/4 {
+    flex-basis: 25%;
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:flex-col {
+    flex-direction: column;
+  }
+
+  .md\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .md\:items-start {
+    align-items: flex-start;
+  }
+
+  .md\:justify-center {
+    justify-content: center;
+  }
+
+  .md\:justify-between {
+    justify-content: space-between;
+  }
+
+  .md\:gap-0 {
+    gap: 0px;
+  }
+
+  .md\:gap-0\.5 {
+    gap: 0.125rem;
+  }
+
+  .md\:gap-1 {
+    gap: 0.25rem;
+  }
+
+  .md\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
+  }
+
+  .md\:gap-x-24 {
+    -moz-column-gap: 6rem;
+         column-gap: 6rem;
+  }
+
+  .md\:gap-x-36 {
+    -moz-column-gap: 9rem;
+         column-gap: 9rem;
+  }
+
+  .md\:rounded-l-md {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+  }
+
+  .md\:rounded-t-none {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .md\:pt-3 {
+    padding-top: 0.75rem;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+}
+@media (prefers-color-scheme: dark) {
+
+  .dark\:border-gray-600 {
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  }
+
+  .dark\:bg-cod-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(41 41 41 / var(--tw-bg-opacity));
+  }
+
+  .dark\:text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:placeholder\:text-gray-400::-moz-placeholder {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+
+  .dark\:placeholder\:text-gray-400::placeholder {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+
+  .dark\:focus\:border-\[\#BB86FC\]:focus {
+    --tw-border-opacity: 1;
+    border-color: rgb(187 134 252 / var(--tw-border-opacity));
+  }
+
+  .dark\:focus\:ring-blue-500:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+  }
+}
+</style>
+<style data-vite-dev-id="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro?astro&amp;type=style&amp;index=0&amp;lang.css">a[data-astro-cid-hkvh2yt2]{display:block;color:#BB86FC;padding:0.25rem 0.5rem}a[data-astro-cid-hkvh2yt2]:not(.active){color:white}</style>
+<style data-vite-dev-id="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContents.astro?astro&amp;type=style&amp;index=0&amp;lang.css">nav[data-astro-cid-jhjsena3].toc{position:sticky;top:6rem;padding-left:1rem}ul[data-astro-cid-jhjsena3]{list-style-type:none;padding-left:1.2rem}svg[data-astro-cid-jhjsena3].toc-progress{pointer-events:none;position:absolute;top:0;left:0;width:100%;height:100%}path[data-astro-cid-jhjsena3].toc-marker{transition:stroke-dasharray 0.3s ease}</style><script type="module" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/TableOfContents_002.astro"></script>
+<script type="module" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/client"></script>
+<script type="module" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/entrypoint.js"></script>
+<script>window.__astro_dev_toolbar__ = {"root":"/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/","version":"4.3.3","debugInfo":"Astro                    v4.3.3\nNode                     v20.9.0\nSystem                   Linux (x64)\nPackage Manager          npm\nOutput                   hybrid\nAdapter                  @astrojs/cloudflare\nIntegrations             @astrojs/react\n                         @astrojs/tailwind\n                         @astrojs/sitemap\n                         astro-robots-txt\n                         astro-imagetools\n                         @astrojs/cloudflare"}</script>
+<script type="module" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/base.css"></script>
+<script type="module" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/TableOfContentsHeading.astro"></script>
+<script type="module" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/TableOfContents.astro"></script></head> <body class="text-cod-100" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/templates/Base.astro" data-astro-source-loc="30:30"> <div class="mx-auto max-w-screen-lg px-3 py-6 md:max-w-screen-xl"><div class="flex flex-col gap-y-3 sm:flex-row sm:items-center sm:justify-between"><a href="http://localhost:4321/"><div class="group flex items-center bg-gradient-to-br from-purple-500 to-red-300 bg-clip-text text-2xl font-bold text-transparent transition-all duration-200 hover:scale-105"><div class="flex transition-all delay-300 duration-300 group-hover:scale-125"><img class="mr-2 w-10 rounded-full" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/profile_no_bg.png"></div><span class="bg-gradient-to-br from-[#bb86fc] to-[#d4b4fe] bg-clip-text text-transparent">Sa'id Kharboutli</span></div></a><nav><ul class="flex gap-x-6 font-bold text-gray-200"><li class="transition-all duration-200 hover:text-white hover:scale-110"><a href="http://localhost:4321/blog/" target="_self">Blog</a></li><li class="transition-all duration-200 hover:text-white hover:scale-110"><a href="http://localhost:4321/projects/" target="_self">Projects</a></li><li class="transition-all duration-200 hover:text-white hover:scale-110"><a href="http://localhost:4321/reviews/" target="_self">Reviews</a></li><li class="transition-all duration-200 hover:text-white hover:scale-110"><a href="http://localhost:4321/about-me/" target="_self">Me</a></li><li class="transition-all duration-200 hover:text-white hover:scale-110"><a href="http://localhost:4321/resume/" target="_self">Resume</a></li></ul></nav></div></div>  <div class="mx-auto max-w-screen-lg px-3 py-6 md:max-w-screen-xl"><div class="flex flex-col items-center"><div><h2 class="text-sm font-semibold text-indigo-400 hover:text-slate-200"><a class="hover:translate-y-1" href="http://localhost:4321/blog/topics/cars/">Cars</a></h2></div><h1 class="text-center text-3xl font-bold">Ranking Cars: Part 2</h1><span class="mt-1 text-sm">Series: <a href="http://localhost:4321/blog/series/ranking-cars/" class="font-bold text-cyan-500 hover:text-slate-200">Ranking Cars</a></span><div class="mt-4 flex flex-row items-center"><img src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/profile.png" alt="My face (pixelated)" class="size-10 rounded-full"><div class=" ml-4 text-left text-sm text-gray-400">By <!-- -->Sa'id<!-- --> on <!-- -->06 Feb 2023</div></div><div class="mt-4 flex flex-row flex-wrap gap-1 text-xs"><a href="http://localhost:4321/blog/tags/test-posts/" class="rounded-md bg-slate-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px">Test Posts</a><a href="http://localhost:4321/blog/tags/test-tags/" class="rounded-md bg-slate-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px">Test Tags</a><a href="http://localhost:4321/blog/tags/test/" class="rounded-md bg-slate-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px">Test</a><a href="http://localhost:4321/blog/tags/testing/" class="rounded-md bg-slate-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px">Testing</a><a href="http://localhost:4321/blog/tags/hello-world/" class="rounded-md bg-slate-700 px-1.5 py-0.5 outline outline-1 hover:text-purple-400 hover:outline-purple-400 hover:translate-y-px">Hello World</a></div></div><div><nav class="toc float-end sticky hidden md:block" data-astro-cid-jhjsena3="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContents.astro" data-astro-source-loc="10:51"> <span class="hidden" data-astro-cid-jhjsena3="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContents.astro" data-astro-source-loc="11:24">Thank you to K.L.D. @ https://kld.dev/toc-animation/</span> <ul class="" data-astro-cid-jhjsena3="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContents.astro" data-astro-source-loc="12:16"> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32"> Back to Top ↑ </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#headings" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Headings </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#h2-for-example" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class="active"> H2 For example </a> <ul class="pl-6" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="11:24"> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#h3-for-example" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class="active"> H3 For example </a> <ul class="pl-6" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="11:24"> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#h4-for-example" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class="active"> H4 For example </a>  </li>  </ul> </li>  </ul> </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#emphasis" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class="active"> Emphasis </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#blockquotes" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class="active"> Blockquotes </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#horizontal-separator" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Horizontal separator </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#list-types" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> List types </a> <ul class="pl-6" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="11:24"> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#ordered-list" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Ordered list </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#unordered-list" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Unordered list </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#mixed-list" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Mixed list </a>  </li>  </ul> </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#links" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Links </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#images" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32" class=""> Images </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#table" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32"> Table </a>  </li> <li data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="5:5"> <a href="#syntax-highlight" data-astro-cid-hkvh2yt2="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContentsHeading.astro" data-astro-source-loc="6:32"> Syntax highlight </a>  </li>  </ul> <svg class="toc-progress" xmlns="http://www.w3.org/2000/svg" data-astro-cid-jhjsena3="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContents.astro" data-astro-source-loc="15:64"> <path class="toc-marker duration-300" fill="none" stroke="#BB86FC" stroke-width="2" stroke-dasharray="1 64 256 656" stroke-dashoffset="1" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-jhjsena3="" data-astro-source-file="/home/yeed/Documents/Programming/Personal/Portfolio/saidk.io/src/components/BlogPost/TableOfContents.astro" data-astro-source-loc="16:6" d="M 35 0 L 35 32 L 35 32 L 35 64 L 35 64 L 35 96 L 35 96 L 59 96 L 59 128 L 59 128 L 83 128 L 83 160 L 83 160 L 35 160 L 35 192 L 35 192 L 35 224 L 35 224 L 35 256 L 35 256 L 35 288 L 35 288 L 59 288 L 59 320 L 59 320 L 59 352 L 59 352 L 59 384 L 59 384 L 35 384 L 35 416 L 35 416 L 35 448 L 35 448 L 35 480 L 35 480 L 35 512" style="display: inline;"></path> </svg> </nav>  <div class="mx-auto mt-5 max-w-[70ch]"><div class="aspect-h-2 aspect-w-3"><img class="size-full rounded-lg object-cover object-center" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/banner.png" alt="Image post" loading="lazy"></div><div class="prose prose-invert mt-8 prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-img:rounded-lg"><article>  <p>This
+ is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing 
+elit. Tenetur vero esse non molestias eos excepturi, inventore atque 
+cupiditate. Sed voluptatem quas omnis culpa, et odit.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<section class="heading" data-heading-rank="2"><h2 id="headings">Headings</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+</section><section class="heading" data-heading-rank="2"><h2 id="h2-for-example">H2 For example</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<section class="heading" data-heading-rank="3"><h3 id="h3-for-example">H3 For example</h3>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<section class="heading" data-heading-rank="4"><h4 id="h4-for-example">H4 For example</h4>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<section class="heading" data-heading-rank="5"><h5 id="h5-for-example">H5 For example</h5>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<section class="heading" data-heading-rank="6"><h6 id="h6-for-example">H6 For example</h6>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+</section></section></section></section></section><section class="heading" data-heading-rank="2"><h2 id="emphasis">Emphasis</h2>
+<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p>
+<p>Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.</p>
+<p>Strikethrough uses two tildes. <del>Scratch this.</del></p>
+</section><section class="heading" data-heading-rank="2"><h2 id="blockquotes">Blockquotes</h2>
+<blockquote>
+<p>Blockquotes are very handy in email to emulate reply text.
+This line is part of the same quote.</p>
+</blockquote>
+<p>Quote break.</p>
+<blockquote>
+<p>This is a very long line that will still be quoted properly when it 
+wraps. Oh boy let’s keep writing to make sure this is long enough to 
+actually wrap for everyone. Oh, you can <em>put</em> <strong>Markdown</strong> into a blockquote.</p>
+</blockquote>
+</section><section class="heading" data-heading-rank="2"><h2 id="horizontal-separator">Horizontal separator</h2>
+<p>This is a horizontal separator:</p>
+<hr>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<hr>
+</section><section class="heading" data-heading-rank="2"><h2 id="list-types">List types</h2>
+<section class="heading" data-heading-rank="3"><h3 id="ordered-list">Ordered list</h3>
+<ol>
+<li>List item 1</li>
+<li>List item 2
+<ol>
+<li>Nested list item A</li>
+<li>Nested list item B</li>
+</ol>
+</li>
+<li>List item 3</li>
+</ol>
+</section><section class="heading" data-heading-rank="3"><h3 id="unordered-list">Unordered list</h3>
+<ul>
+<li>List item</li>
+<li>List item
+<ul>
+<li>Nested list item</li>
+<li>Nested list item
+<ul>
+<li>Double nested list item</li>
+<li>Double nested list item</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>List item</li>
+</ul>
+</section><section class="heading" data-heading-rank="3"><h3 id="mixed-list">Mixed list</h3>
+<ol>
+<li>First ordered list item</li>
+<li>Another item
+<ul>
+<li>Unordered sub-list.</li>
+</ul>
+</li>
+<li>Actual numbers don’t matter, just that it’s a number
+<ol>
+<li>Ordered sub-list</li>
+</ol>
+</li>
+<li>And another item.</li>
+</ol>
+</section></section><section class="heading" data-heading-rank="2"><h2 id="links">Links</h2>
+<p><a href="https://www.google.com/">Inline-style link</a></p>
+<p><a href="https://www.google.com/" title="Google's Homepage">Inline-style link with title</a></p>
+<p><a href="https://www.mozilla.org/">Reference-style link</a></p>
+<p><a href="http://slashdot.org/">You can use numbers for reference-style link definitions</a></p>
+<p>Or leave it empty and use the <a href="http://www.reddit.com/">link text itself</a>.</p>
+<p>Some text to show that the reference links can follow later.</p>
+</section><section class="heading" data-heading-rank="2"><h2 id="images">Images</h2>
+<p>Images included in <em>_posts</em> folder are lazy loaded.</p>
+<p>Inline-style:
+<img src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/random.jpeg" alt="alt text" title="Logo Title Text 1"></p>
+</section><section class="heading" data-heading-rank="2"><h2 id="table">Table</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tables</th><th align="center">Are</th><th align="right">Cool</th></tr></thead><tbody><tr><td>col 3 is</td><td align="center">right-aligned</td><td align="right">1600</td></tr><tr><td>col 2 is</td><td align="center">centered</td><td align="right">12</td></tr><tr><td>zebra stripes</td><td align="center">are neat</td><td align="right">1</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Markdown</th><th>Less</th><th>Pretty</th></tr></thead><tbody><tr><td><em>Still</em></td><td><code>renders</code></td><td><strong>nicely</strong></td></tr><tr><td>1</td><td>2</td><td>3</td></tr></tbody></table>
+</section><section class="heading" data-heading-rank="2"><h2 id="syntax-highlight">Syntax highlight</h2>
+<pre class="astro-code monokai" style="background-color:#272822;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#66D9EF;font-style:italic">var</span><span style="color:#F8F8F2"> s </span><span style="color:#F92672">=</span><span style="color:#E6DB74"> 'JavaScript syntax highlighting'</span><span style="color:#F8F8F2">; </span><span style="color:#66D9EF;font-style:italic">var</span><span style="color:#F8F8F2"> s </span><span style="color:#F92672">=</span><span style="color:#E6DB74"> 'JavaScript syntax highlighting'</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#A6E22E">alert</span><span style="color:#F8F8F2">(s);</span></span></code></pre>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero
+ esse non molestias eos excepturi, inventore atque cupiditate. Sed 
+voluptatem quas omnis culpa, et odit.</p>
+<pre class="astro-code monokai" style="background-color:#272822;color:#F8F8F2; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F8F8F2">s </span><span style="color:#F92672">=</span><span style="color:#E6DB74"> "Python syntax highlighting"</span></span>
+<span class="line"><span style="color:#66D9EF">print</span><span style="color:#F8F8F2"> s</span></span></code></pre></section> </article></div></div></div><div class="mt-8 flex flex-row justify-center gap-12"><div class="flex w-1/4 flex-col text-center"><div class="flex text-left"><div class="overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105"><div><a href="http://localhost:4321/blog/topics/cars/testpost-copy-2"><img class="object-cover object-center hover:opacity-50" src="Ranking%20Cars%20Part%202%20-%20Sa'id%20Kharboutli_files/banner.png" alt="Image post" loading="lazy"></a></div><div class="flex flex-col px-3 py-4"><div><h2 class="text-sm font-semibold text-indigo-400 hover:text-slate-200"><a class="hover:translate-y-1" href="http://localhost:4321/blog/topics/cars/">Cars</a></h2></div><div><h2 class="text-xl font-semibold hover:text-purple-400"><a class="hover:translate-y-1" href="http://localhost:4321/blog/topics/cars/testpost-copy-2">Ranking Cars: Part 1</a></h2></div><div class="mt-1 text-xs text-gray-400"><span class="align-bottom"><svg xmlns="http://www.w3.org/2000/svg" class="mr-1 inline size-4 align-bottom" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>06 Dec 2020</span></div></div></div></div><h2>← Previous Post in<!-- --> <!-- -->Series</h2></div></div></div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var b=Object.defineProperty;var f=(c,o,i)=>o in c?b(c,o,{enumerable:!0,configurable:!0,writable:!0,value:i}):c[o]=i;var l=(c,o,i)=>(f(c,typeof o!="symbol"?o+"":o,i),i);var p;{let c={0:t=>m(t),1:t=>i(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(i(t)),5:t=>new Set(i(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[e,r]=t;return e in c?c[e](r):void 0},i=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,r])=>[e,o(r)]));customElements.get("astro-island")||customElements.define("astro-island",(p=class extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var d;if(!this.hydrator||!this.isConnected)return;let e=(d=this.parentElement)==null?void 0:d.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),a={},h=this.querySelectorAll("template[data-astro-template]");for(let n of h){let s=n.closest(this.tagName);s!=null&&s.isSameNode(this)&&(a[n.getAttribute("data-astro-template")||"default"]=n.innerHTML,n.remove())}for(let n of r){let s=n.closest(this.tagName);s!=null&&s.isSameNode(this)&&(a[n.getAttribute("name")||"default"]=n.innerHTML)}let u;try{u=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(n){let s=this.getAttribute("component-url")||"<unknown>",y=this.getAttribute("component-export");throw y&&(s+=` (export ${y})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),n),n}await this.hydrator(this)(this.Component,u,a,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var a;((a=this.lastChild)==null?void 0:a.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}Astro[r](async()=>{let a=this.getAttribute("renderer-url"),[h,{default:u}]=await Promise.all([import(this.getAttribute("component-url")),a?import(a):()=>()=>{}]),d=this.getAttribute("component-export")||"default";if(!d.includes("."))this.Component=h[d];else{this.Component=h;for(let n of d.split("."))this.Component=this.Component[n]}return this.hydrator=u,this.hydrate},e,this)}attributeChangedCallback(){this.hydrate()}},l(p,"observedAttributes",["props"]),p))}})();</script><astro-island uid="XWfIx" prefix="r0" component-url="/src/partials/CTA.tsx" component-export="CTA" renderer-url="/node_modules/.vite/deps/@astrojs_react_client__js.js?v=d77dd4ac" props="{}" client="load" before-hydration-url="/@id/astro:scripts/before-hydration.js" opts="{&quot;name&quot;:&quot;CTA&quot;,&quot;value&quot;:true}" await-children=""><div class="mx-auto max-w-screen-lg px-3 py-6 md:max-w-screen-xl"><div class="flex flex-col items-end justify-between gap-6 text-center sm:flex-row sm:text-left"><div class="sm:w-7/12"><div class="text-3xl font-bold">Get post updates <span class="bg-gradient-to-br from-[#bb86fc] to-[#d4b4fe] bg-clip-text text-transparent">sent to your inbox!</span></div><p class="mt-3 text-gray-300">No spam, just new posts!</p></div><div class="w-full sm:w-5/12"><form class="mb-1 flex rounded-full bg-cod-800 px-4 py-2 focus-within:ring-2 focus-within:ring-cyan-600 hover:ring-2 hover:ring-cyan-600"><input name="email" type="email" class="w-full appearance-none bg-cod-800 focus:outline-none" autocomplete="email" required=""><button class="ml-2 shrink-0 rounded-full bg-gradient-to-br from-violet-600 to-violet-400 px-3 py-1 text-sm font-medium hover:from-sky-700 hover:to-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600/50" type="submit">Subscribe</button></form><div class="h-2"><p class="px-4 text-left text-xs text-cod-300"></p></div></div></div></div></astro-island>  <div class="mx-auto max-w-screen-lg px-3 py-6 md:max-w-screen-xl"><div class="border-t border-gray-600 pt-5"><div class="text-sm text-gray-200">© Copyright <!-- -->2024<!-- --> by <!-- -->Sa'id Kharboutli<!-- -->.</div></div></div> <astro-dev-toolbar></astro-dev-toolbar></body></html>

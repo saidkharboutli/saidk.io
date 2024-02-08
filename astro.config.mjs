@@ -6,6 +6,7 @@ import robotsTxt from 'astro-robots-txt';
 import { astroImageTools } from 'astro-imagetools';
 
 import cloudflare from '@astrojs/cloudflare';
+import sectionize from '@hbsnow/rehype-sectionize';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md
       theme: 'monokai',
     },
+    rehypePlugins: [sectionize],
   },
   integrations: [
     react(),

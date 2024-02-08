@@ -5,8 +5,8 @@ type ISectionProps = {
   children: ReactNode;
 };
 
-const Section = (props: ISectionProps) => (
-  <div className="mx-auto max-w-screen-lg px-3 py-6 4k:max-w-screen-xl">
+const BlogSection = (props: ISectionProps) => (
+  <div className="mx-auto px-3 py-6 lg:max-w-screen-2xl">
     {props.title && (
       <div className="mb-6 text-2xl font-bold">{props.title}</div>
     )}
@@ -15,4 +15,4 @@ const Section = (props: ISectionProps) => (
   </div>
 );
 
-export { Section };
+export { BlogSection };

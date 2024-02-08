@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        '4k': '2600px',
+      },
       colors: {
         cod: {
           50: '#f6f6f6',

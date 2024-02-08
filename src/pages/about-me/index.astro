@@ -22,7 +22,7 @@ const games = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUr
 
 <Base head={{ title, description }}>
   <AboutMeHeader />
-  
+
   <AboutMeContent movies={movies} shows={shows} albums={albums} games={games}/>
 
   <AboutMeContact client:load />

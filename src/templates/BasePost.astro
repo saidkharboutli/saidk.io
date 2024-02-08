@@ -1,4 +1,7 @@
 ---
+import type { MarkdownHeading } from 'astro';
+
+import TableOfContents from '@/components/BlogPost/TableOfContents.astro';
 import { BlogPost } from '@/partials/BlogPost';
 import { CTA } from '@/partials/CTA';
 import Base from '@/templates/Base.astro';
@@ -9,9 +12,11 @@ import { sortPostsByDate } from '@/utils/helpers';
 
 export interface Props {
   content: IFrontMatterPost;
+  headings: MarkdownHeading[];
 }
 
-const { content } = Astro.props as Props;
+const { content, headings } = Astro.props as Props;
+
 const path = Astro.url.pathname;
 const title = `${content.title} - ${AppConfig.site_name}`;
 
@@ -31,13 +36,10 @@ if(content.series) {
 }
 
 ---
-
-<Base head={{ title, description: content.description }}>
-
-  <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries}>
-    <slot></slot>
-  </BlogPost>
-
+<Base head={{ title, description: content.description }} >
+    <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
+      <TableOfContents headings={headings} slot='toc' />
+      <slot></slot>
+    </BlogPost>
   <CTA client:load />
-  
 </Base>
