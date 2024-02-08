@@ -38,7 +38,7 @@ const BlogCardMin = (props: IBlogCardProps) => (
 
       {/* Title */}
       <div>
-        <h2 className="text-xl font-semibold hover:text-purple-400">
+        <h2 className="text-xl font-semibold hover:text-primary">
           <a className="hover:translate-y-1" href={props.instance.url}>
             {props.instance.frontmatter.title}
           </a>

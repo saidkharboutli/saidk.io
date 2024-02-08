@@ -24,7 +24,7 @@ const colorToClassMap: { [key: string]: string } = {
   EXPRESS: 'bg-gray-400 text-gray-900',
   NESTJS: 'bg-red-400 text-red-900',
   SDL2: 'bg-indigo-400 text-indigo-900',
-  ASTRO: 'bg-purple-400 text-purple-900',
+  ASTRO: 'bg-primary text-purple-900',
   MONGODB: 'bg-lime-400 text-lime-900',
 
   /* Platform Colors */

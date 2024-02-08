@@ -63,7 +63,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
             id="sort"
             value={selectValue}
             onChange={handleSelectChange}
-            className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#BB86FC] focus:ring-[#BB86FC] dark:border-gray-600 dark:bg-cod-900 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-[#BB86FC] dark:focus:ring-blue-500"
+            className="block rounded-lg border border-cod-600 bg-cod-900 p-2.5 text-sm text-white focus:border-primary"
           >
             <option value="Review Date">Review Date (Latest First)</option>
             <option value="Release Date">Release Date (Latest First)</option>

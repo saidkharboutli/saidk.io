@@ -13,11 +13,11 @@ type IBlogCardProps = {
 };
 
 const BlogCardSpotlight = (props: IBlogCardProps) => (
-  <div className="mb-8 flex flex-row items-center overflow-hidden delay-150 duration-300 hover:scale-105">
+  <div className="mb-8 flex flex-col items-center overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105 md:flex-row md:bg-transparent">
     <div>
-      <a className="w-3/5" href={props.instance.url}>
+      <a className="md:w-3/5" href={props.instance.url}>
         <img
-          className="h-96 rounded-2xl object-cover object-center hover:opacity-50"
+          className="object-cover object-center hover:opacity-50 md:h-96 md:rounded-2xl"
           src={props.instance.frontmatter.imgSrc}
           alt={props.instance.frontmatter.imgAlt}
           loading="lazy"
@@ -25,7 +25,7 @@ const BlogCardSpotlight = (props: IBlogCardProps) => (
       </a>
     </div>
 
-    <div className="flex w-2/5 flex-col px-3 pb-6 pt-4 text-left">
+    <div className="flex flex-col px-3 pb-6 pt-4 text-left md:w-2/5">
       {/* Topic */}
       <div>
         <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
@@ -40,7 +40,7 @@ const BlogCardSpotlight = (props: IBlogCardProps) => (
 
       {/* Title */}
       <div>
-        <h2 className="text-2xl font-semibold hover:text-purple-400">
+        <h2 className="text-2xl font-semibold hover:text-primary">
           <a className="w-3/5 hover:translate-y-1" href={props.instance.url}>
             {props.instance.frontmatter.title}
           </a>

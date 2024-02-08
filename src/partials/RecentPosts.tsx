@@ -18,7 +18,7 @@ const RecentPosts = (props: IRecentPostsProps) => (
           Recent <GradientText>Posts</GradientText>
         </div>
 
-        <div className="text-sm transition-all duration-150 hover:text-purple-400 hover:scale-110">
+        <div className="text-sm transition-all duration-150 hover:text-primary hover:scale-110">
           <a href="/blog/">View All Posts →</a>
         </div>
       </div>

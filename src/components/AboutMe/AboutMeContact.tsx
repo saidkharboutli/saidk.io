@@ -173,7 +173,7 @@ const AboutMeContact = () => {
           <button
             type="submit"
             id="submit-button"
-            className="self-center rounded-md bg-[#BB86FC] px-6 py-2 text-cod-950 transition-all duration-200 hover:scale-110"
+            className="self-center rounded-md bg-primary px-6 py-2 text-cod-950 transition-all duration-200 hover:scale-110"
             onClick={() => recaptcha.current.reset()}
             disabled={sending}
           >

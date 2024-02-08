@@ -37,6 +37,12 @@ const Hero = () => (
                   alt="LinkedIn Icon"
                 />
               </a>
+              <a href="https://twitter.com/saidkio/">
+                <HeroSocial
+                  src="/images/site/twitter-pixelated.png"
+                  alt="Twitter Icon"
+                />
+              </a>
             </>
           }
         />

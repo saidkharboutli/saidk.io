@@ -12,7 +12,7 @@ const TagList = (props: ITagListProps) => (
         .map((item) => (
           <a
             href={`/blog/tags/${item.slug}/`}
-            className="rounded-md bg-cod-800 px-1.5 py-0.5 outline outline-1 transition-all duration-150 hover:text-purple-400 hover:outline-purple-400 hover:scale-110"
+            className="rounded-md bg-cod-800 px-1.5 py-0.5 outline outline-1 transition-all duration-150 hover:bg-cod-900 hover:text-primary hover:scale-110"
           >
             {item.name}
           </a>

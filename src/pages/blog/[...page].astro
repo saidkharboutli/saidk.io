@@ -40,10 +40,10 @@ const description =
       <h1 class="text-3xl font-bold">All <GradientText>Blog Posts</GradientText></h1>
     </div>
     <div class="mt-2 flex flex-row justify-center gap-3 text-center text-xs">
-      <a href="/blog/topics/" class="transition-all duration-150 hover:text-purple-400 hover:scale-110">
+      <a href="/blog/topics/" class="transition-all duration-150 hover:text-primary hover:scale-110">
         Topics
       </a>|
-      <a href="/blog/tags/" class="transition-all duration-150 hover:text-purple-400 hover:scale-110">
+      <a href="/blog/tags/" class="transition-all duration-150 hover:text-primary hover:scale-110">
         Tags
       </a>
     </div>
@@ -55,9 +55,7 @@ const description =
 
   <Section>
     <BlogCardSpotlight instance={page.data[0]!} />
-  </Section>
-
-  <Section>
+    
     <BlogGallery postList={page.data.slice(1)} />
   </Section>
 

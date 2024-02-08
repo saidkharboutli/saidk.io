@@ -16,14 +16,14 @@ const AboutMeHeader = () => (
           <>
             I am a Software Engineer & Project Management consultant working for{' '}
             <a
-              className="text-[#85AC6C] hover:underline"
+              className="text-pyyne hover:underline"
               href="https://www.pyyne.com"
             >
               PYYNE Digital
             </a>{' '}
             &{' '}
             <a
-              className="text-violet-400 hover:underline"
+              className="text-inveterate hover:underline"
               href="https://www.inveterate.com"
             >
               Inveterate
@@ -53,7 +53,7 @@ const AboutMeHeader = () => (
           </>
         </p>
 
-        <div className="mt-2 flex gap-3">
+        <div className="mt-2 flex justify-center gap-3 md:justify-start">
           <>
             <a href="https://github.com/saidkharboutli">
               <HeroSocial
@@ -67,13 +67,19 @@ const AboutMeHeader = () => (
                 alt="LinkedIn Icon"
               />
             </a>
+            <a href="https://twitter.com/saidkio/">
+              <HeroSocial
+                src="/images/site/twitter-pixelated.png"
+                alt="Twitter Icon"
+              />
+            </a>
           </>
         </div>
       </div>
 
       <div className="shrink-0">
         <img
-          className="h-80 rounded-3xl"
+          className="mt-4 h-80 rounded-3xl md:mt-0"
           src="/images/site/portrait.jpg"
           alt="Portrait of me"
           loading="lazy"

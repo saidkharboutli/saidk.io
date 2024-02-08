@@ -10,6 +10,10 @@ module.exports = {
         '4k': '2600px',
       },
       colors: {
+        primary: '#bb86fc',
+        secondary: '#818cf8',
+        inveterate: '#bf95fc',
+        pyyne: '#79a35c',
         cod: {
           50: '#f6f6f6',
           100: '#e7e7e7',

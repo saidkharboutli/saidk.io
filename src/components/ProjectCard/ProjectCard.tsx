@@ -80,7 +80,7 @@ const ProjectCard = (props: IProjectCardProps) => (
       >
         <div className=" m-2 pb-6 text-center">
           <a href={props.instance.url}>
-            <h2 className="h-1/4 text-2xl font-semibold transition-all duration-200 hover:text-purple-400 hover:scale-110">
+            <h2 className="h-1/4 text-2xl font-semibold transition-all duration-200 hover:text-primary hover:scale-110">
               Details
             </h2>
           </a>
@@ -146,14 +146,14 @@ const ProjectCard = (props: IProjectCardProps) => (
                 <div className="flex w-full justify-between gap-2">
                   <a
                     href={`/blog/projects/${generateSlug(props.instance.frontmatter.series)}/`}
-                    className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
+                    className="transition-all duration-150 hover:text-primary hover:scale-110"
                   >
                     View All Posts
                   </a>
                   <span>|</span>
                   <a
                     href={`/projects/${generateSlug(props.instance.frontmatter.series)}/`}
-                    className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
+                    className="transition-all duration-150 hover:text-primary hover:scale-110"
                   >
                     View Project
                   </a>
@@ -161,7 +161,7 @@ const ProjectCard = (props: IProjectCardProps) => (
               ) : (
                 <a
                   href={`/projects/${generateSlug(props.instance.frontmatter.series)}/`}
-                  className="transition-all duration-150 hover:text-purple-400 hover:scale-110"
+                  className="transition-all duration-150 hover:text-primary hover:scale-110"
                 >
                   View Project Page
                 </a>

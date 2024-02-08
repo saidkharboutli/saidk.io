@@ -19,7 +19,7 @@ const ProjectFooter = (props: IProjectFooterProps) => (
       <div className="flex items-baseline justify-between">
         <div>Recent Project Posts</div>
 
-        <div className="text-sm transition-all duration-150 hover:text-purple-400 hover:scale-110">
+        <div className="text-sm transition-all duration-150 hover:text-primary hover:scale-110">
           <a href={`/blog/projects/${generateSlug(props.content.series)}`}>
             View All Posts for this Project →
           </a>
