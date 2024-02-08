@@ -17,7 +17,7 @@ const ProjectCard = (props: IProjectCardProps) => (
     <div id="card-inner" className="grid h-full transform-style-3d">
       <div
         id="card-front"
-        className="col-start-1 row-start-1 size-full overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
+        className="col-start-1 row-start-1 flex size-full flex-col overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
       >
         <div className="p-2">
           <img
@@ -28,9 +28,9 @@ const ProjectCard = (props: IProjectCardProps) => (
           />
         </div>
 
-        <div className="flex flex-col gap-3 p-2 text-center">
+        <div className="flex h-full flex-col gap-3 p-2 text-center">
           {/* General Details */}
-          <div className="flex flex-col gap-1">
+          <div className="flex h-full flex-col gap-1">
             {/* Project Name */}
             <div>
               <h2 className="text-3xl font-semibold">
@@ -65,7 +65,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             </div>
 
             {/* Status */}
-            <div className="pt-2 text-base">
+            <div className="mt-auto pt-2 text-base">
               <ProjectTag key="status">
                 {props.instance.frontmatter.status}
               </ProjectTag>
