@@ -6,7 +6,7 @@
     "dev": "astro dev --verbose",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npx wrangler pages dev ./dist",
     "clean": "rimraf dist",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.astro .",
     "build-types": "tsc --noEmit --pretty",

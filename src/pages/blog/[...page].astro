@@ -1,5 +1,4 @@
 ---
-import PostSearchBar from '@/features/BlogPosts/components/PostSearchBar.astro';
 import { BlogCardSpotlight } from '@/features/BlogPostViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogPostViews/BlogGallery';
 import { CTA } from '@/features/shared/CTA';
@@ -49,9 +48,9 @@ const description =
     </div>
   </Section>
 
-  <Section>
+  <!-- <Section>
     <PostSearchBar />
-  </Section>
+  </Section> -->
 
   <Section>
     <BlogCardSpotlight instance={page.data[0]!} />
