@@ -14,7 +14,8 @@ const AboutMeHeader = () => (
       <div>
         <p className="mt-4 text-lg leading-7 tracking-normal">
           <>
-            I am a Software Engineer & Project Management consultant working for{' '}
+            Hello! I'm a Software Engineer & Project Management consultant
+            working for{' '}
             <a
               className="text-pyyne hover:underline"
               href="https://www.pyyne.com"
@@ -42,10 +43,10 @@ const AboutMeHeader = () => (
             <br />
             On my own time, I work on few different kinds of projects, most
             being lower-level than my professional work. Recently, I've been
-            especially interested in emulators, compilers, and simple operating
-            systems (RISC-V). My hope is to capture my development work on this
-            site to help others that may be interested in working on similar
-            projects.
+            especially interested in emulators, compilers, and bare-bones
+            operating systems (RISC-V). My hope is to capture my development
+            work on this site to help others that may be interested in working
+            on similar projects.
             <br />
             <br />
             Beyond software, I enjoy cars, video games, and weightlifting. I

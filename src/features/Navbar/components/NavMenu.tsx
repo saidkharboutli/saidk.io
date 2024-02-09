@@ -23,11 +23,11 @@ const NavMenu = (props: INavMenuProps) => {
             />
             <div className="h-[2px] origin-left bg-white transition-all duration-300 peer-checked:-translate-x-10"></div>
             <div className="h-[2px] rounded bg-white transition-all delay-75 duration-300 peer-checked:-translate-x-10"></div>
-            <div className="h-[2px] origin-left bg-white transition-all delay-150 duration-300 peer-checked:-translate-x-10"></div>
+            <div className="h-[2px] origin-left bg-white transition-all delay-150 duration-200 peer-checked:-translate-x-10"></div>
 
-            <div className="absolute top-2.5 flex w-0 items-center justify-between transition-all duration-500 translate-x-10 peer-checked:w-12 peer-checked:translate-x-0">
-              <div className="absolute h-[2px] w-[20px] bg-white transition-all delay-300 duration-500 rotate-0 [.peer:checked~*_&]:rotate-45"></div>
-              <div className="absolute h-[2px] w-[20px] bg-white transition-all delay-300 duration-500 -rotate-0 [.peer:checked~*_&]:-rotate-45"></div>
+            <div className="absolute top-2.5 flex w-0 items-center justify-between transition-all duration-300 translate-x-10 peer-checked:w-12 peer-checked:translate-x-0">
+              <div className="absolute h-[2px] w-[20px] bg-white transition-all delay-200 duration-300 rotate-0 [.peer:checked~*_&]:rotate-45"></div>
+              <div className="absolute h-[2px] w-[20px] bg-white transition-all delay-200 duration-300 -rotate-0 [.peer:checked~*_&]:-rotate-45"></div>
             </div>
           </div>
         </div>
