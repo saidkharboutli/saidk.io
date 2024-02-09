@@ -1,10 +1,10 @@
 ---
 import type { MarkdownHeading } from 'astro';
 
-import PostComments from '@/components/BlogPost/PostComments.astro';
-import TableOfContents from '@/components/BlogPost/TableOfContents.astro';
-import { BlogPost } from '@/partials/BlogPost';
-import { CTA } from '@/partials/CTA';
+import { BlogPost } from '@/features/BlogPosts/BlogPost';
+import PostComments from '@/features/BlogPosts/components/PostComments.astro';
+import TableOfContents from '@/features/BlogPosts/components/TableOfContents.astro';
+import { CTA } from '@/features/shared/CTA';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';

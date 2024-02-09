@@ -1,12 +1,12 @@
 ---
 import type { MarkdownInstance } from 'astro';
 
-import { BlogCardSpotlight } from '@/components/BlogCard/BlogCardSpotlight';
-import { BlogGallery } from '@/components/BlogCard/BlogGallery';
-import { GradientText } from '@/components/GradientText';
-import { NewerOlderPagination } from '@/components/NewerOlderPagination';
-import { Section } from '@/components/Section';
-import { CTA } from '@/partials/CTA';
+import { BlogCardSpotlight } from '@/features/BlogPostViews/BlogCardSpotlight';
+import { BlogGallery } from '@/features/BlogPostViews/BlogGallery';
+import { CTA } from '@/features/shared/CTA';
+import { GradientText } from '@/features/shared/GradientText';
+import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
+import { Section } from '@/features/shared/Section';
 import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
