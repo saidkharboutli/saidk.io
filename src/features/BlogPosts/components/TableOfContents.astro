@@ -64,7 +64,6 @@ const toc = generateToc(headings);
 
     function addIntersectionObserver() {
       const observer = new IntersectionObserver((sections) => {
-        console.log('observer')
         sections.forEach((section) => {
           const heading = section.target.querySelector("h2, h3, h4, h5");
           if (!heading) return;
@@ -73,7 +72,6 @@ const toc = generateToc(headings);
           // Get the link to this section's heading
           const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
           if (!link) return;
-          console.log(link)
 
           // Add/remove the .active class based on whether the
           // section is visible
@@ -87,8 +85,6 @@ const toc = generateToc(headings);
       document.querySelectorAll("article section").forEach((section) => {
         observer.observe(section);
       });
-
-      console.log(observer)
     }
 
     function addResizeObserver() {
@@ -101,7 +97,6 @@ const toc = generateToc(headings);
     }
 
     function drawPath() {
-      console.log('hello')
       const path = document.querySelector("path.toc-marker") as SVGPathElement;
       const links = Array.from(document.querySelectorAll("nav.toc a")) as HTMLElement[];
       if (!links.length) return;
@@ -159,7 +154,6 @@ const toc = generateToc(headings);
     }
 
     function updatePath() {
-      console.log('sections')
       const path = document.querySelector("path.toc-marker") as SVGPathElement;
       const pathLength = path.getTotalLength();
       const activeLinks = document.querySelectorAll("nav.toc a.active");
