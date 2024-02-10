@@ -18,7 +18,7 @@ const Hero = () => (
           avatar={
             <img
               className="h-80 rounded-3xl"
-              src="/images/site/portrait.jpg"
+              src="/images/site/portrait.avif"
               alt="Portrait of me"
               loading="lazy"
             />

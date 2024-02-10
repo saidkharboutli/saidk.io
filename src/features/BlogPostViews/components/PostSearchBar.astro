@@ -1,0 +1,27 @@
+<>
+  <div id="search" class="-mt-8 ml-3 size-full p-4"></div>
+
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      new PagefindUI({ element: "#search", showSubResults: true, pageSize: 10, baseUrl: "/" });
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === '/' || event.key === '.') {
+            console.log('you pressed the slash');
+            event.preventDefault();
+            console.log(document.querySelector('input#search input'));
+        }
+    });
+  </script>
+
+  <style is:global>
+    #search {
+      --pagefind-ui-primary: #eeeeee;
+      --pagefind-ui-text: #eeeeee;
+      --pagefind-ui-background: #292929;
+      --pagefind-ui-border: #363636;
+      --pagefind-ui-tag: #292929;
+    }
+  </style>
+</>

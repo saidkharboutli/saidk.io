@@ -1,6 +1,7 @@
 ---
 import { BlogCardSpotlight } from '@/features/BlogPostViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogPostViews/BlogGallery';
+import PostSearchBar from '@/features/BlogPostViews/components/PostSearchBar.astro';
 import { CTA } from '@/features/shared/CTA';
 import { GradientText } from '@/features/shared/GradientText';
 import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
@@ -48,9 +49,9 @@ const description =
     </div>
   </Section>
 
-  <!-- <Section>
+  <Section>
     <PostSearchBar />
-  </Section> -->
+  </Section>
 
   <Section>
     <BlogCardSpotlight instance={page.data[0]!} />
