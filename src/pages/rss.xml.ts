@@ -39,7 +39,7 @@ export async function GET() {
       caetgory: getTopicFromUrl(post.url),
       customData: `${post.frontmatter.updatedDate && `<atom:updated>${new Date(post.frontmatter.updatedDate)}</atom:updated>`}
                   <category>${getTopicFromUrl(post.url)}</category>
-                  <media:thumbnail url="${import.meta.env.SITE}/public${post.frontmatter.imgSrc}"/>`,
+                  <media:thumbnail url="${import.meta.env.SITE}${post.frontmatter.imgSrc}"/>`,
     }));
 
   return rss({
