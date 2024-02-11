@@ -35,7 +35,7 @@ const ProjectHeader = (props: IProjectHeaderProps) => (
         {/* Language */}
         <div className="flex w-full items-center justify-between md:w-1/5 md:flex-col md:gap-2">
           <span className="self-center">Language: </span>
-          <div className="w-fit">
+          <div className="w-fit text-xs">
             <ProjectTag key="lang">{props.content.language}</ProjectTag>
           </div>
         </div>

@@ -91,9 +91,11 @@ const ProjectCard = (props: IProjectCardProps) => (
           {/* Langauge */}
           <div className="flex w-full justify-between">
             <span className="self-center">Language: </span>
-            <ProjectTag key="lang">
-              {props.instance.frontmatter.language}
-            </ProjectTag>
+            <div className="text-base">
+              <ProjectTag key="lang">
+                {props.instance.frontmatter.language}
+              </ProjectTag>
+            </div>
           </div>
 
           {/* Tech Stack */}
@@ -122,7 +124,11 @@ const ProjectCard = (props: IProjectCardProps) => (
               href={props.instance.frontmatter.github}
               className="flex flex-row items-center gap-1 rounded-md px-1 py-0.5 outline outline-1"
             >
-              <img className="size-5" src="/images/site/dark-github.png" />
+              <img
+                className="size-5"
+                src="/images/site/dark-github.png"
+                alt="GitHub Logo"
+              />
               <span className="font-mono">{'<src/>'}</span>
             </a>
           </div>

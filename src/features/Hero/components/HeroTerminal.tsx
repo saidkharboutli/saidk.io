@@ -54,7 +54,7 @@ const HeroTerminal = () => {
         </p>
       </div>
 
-      <div className="size-full rounded-lg bg-black font-mono ">
+      <div className="size-full min-w-[350px] rounded-lg bg-black font-mono ">
         <header className="rounded-t-lg bg-[#555] py-0.5 text-center md:py-0">
           visitor@saidk.io
         </header>

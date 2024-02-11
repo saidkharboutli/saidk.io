@@ -14,6 +14,7 @@ const Navbar = () => (
               <img
                 className="mr-2 size-10 rounded-full"
                 src="/images/site/profile_no_bg.png"
+                alt="Pixelated face of Sa'id Kharboutli"
               ></img>
             }
             name={<GradientText>Sa'id Kharboutli</GradientText>}
@@ -24,7 +25,7 @@ const Navbar = () => (
           <NavMenuItem href="/blog/">Blog</NavMenuItem>
           <NavMenuItem href="/projects/">Projects</NavMenuItem>
           <NavMenuItem href="/reviews/">Reviews</NavMenuItem>
-          <NavMenuItem href="/about-me/">Me</NavMenuItem>
+          <NavMenuItem href="/about-me/">About Me</NavMenuItem>
           <NavMenuItem href="/resume/">Resume</NavMenuItem>
         </NavMenu>
       </NavbarTwoColumns>

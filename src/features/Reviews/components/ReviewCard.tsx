@@ -14,7 +14,7 @@ interface IReviewCardProps {
 }
 
 const ReviewCard = (props: IReviewCardProps) => (
-  <div className="flex w-full flex-col overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105 md:max-h-[242px] md:flex-row md:gap-1">
+  <div className="flex w-full flex-col overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 md:max-h-[242px] md:flex-row md:gap-1 md:hover:scale-105">
     <div className="flex items-center md:basis-1/4">
       <a href={props.review.frontmatter.link}>
         <img

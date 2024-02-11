@@ -25,10 +25,10 @@ const BlogCardMin = (props: IBlogCardProps) => (
 
     <div className="flex flex-col px-3 py-4">
       {/* Topic */}
-      <div>
-        <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
+      <div className="mb-0.5 flex">
+        <h2 className="text-sm font-semibold text-indigo-400 transition-all duration-200 hover:scale-110">
           <a
-            className="hover:translate-y-1"
+            className=""
             href={`/blog/topics/${getTopicFromUrl(props.instance.url!)}/`}
           >
             {getNameFromSlug(getTopicFromUrl(props.instance.url!)!)}

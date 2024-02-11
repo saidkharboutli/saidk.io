@@ -16,11 +16,15 @@ const NavMenu = (props: INavMenuProps) => {
       <div className="md:hidden">
         <div className="peer/parent relative z-40 flex h-[20px] w-[25px] items-center  justify-center overflow-hidden p-0.5 transition-all duration-200">
           <div className="flex size-full origin-center flex-col justify-between overflow-hidden transition-all duration-300">
+            <label htmlFor="nav-toggle" className="hidden">
+              Hamburger Menu
+            </label>
             <input
               className="peer absolute left-0 top-0 z-50 size-full cursor-pointer opacity-0"
               type="checkbox"
               id="nav-toggle"
             />
+
             <div className="h-[2px] origin-left bg-white transition-all duration-300 peer-checked:-translate-x-10"></div>
             <div className="h-[2px] rounded bg-white transition-all delay-75 duration-300 peer-checked:-translate-x-10"></div>
             <div className="h-[2px] origin-left bg-white transition-all delay-150 duration-200 peer-checked:-translate-x-10"></div>
