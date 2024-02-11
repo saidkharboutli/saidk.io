@@ -37,9 +37,9 @@ export async function GET() {
       content: sanitizeHtml(post.compiledContent()),
       author: 'said@saidk.io (Said K)',
       caetgory: getTopicFromUrl(post.url),
-      customData: `${post.frontmatter.updatedDate && `<atom:updated>${new Date(post.frontmatter.updatedDate)}</atom:updated>`}
+      customData: `${post.frontmatter.updatedDate && `<atom:updated>${post.frontmatter.updatedDate}</atom:updated>`}
                   <category>${getTopicFromUrl(post.url)}</category>
-                  <media:thumbnail url="${import.meta.env.SITE}${post.frontmatter.imgSrc}"/>`,
+                  <media:content url="${import.meta.env.SITE}${post.frontmatter.imgSrc}"/>`,
     }));
 
   return rss({

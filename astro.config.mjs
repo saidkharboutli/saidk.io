@@ -13,6 +13,7 @@ export default defineConfig({
   // base: '.', // Set a path prefix.
   site: 'https://saidk.io',
   // Use to generate your sitemap and canonical URLs in your final build.
+  trailingSlash: 'ignore',
   markdown: {
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
