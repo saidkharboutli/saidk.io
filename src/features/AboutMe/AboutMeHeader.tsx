@@ -64,13 +64,13 @@ const AboutMeHeader = () => (
             </a>
             <a href="https://www.linkedin.com/in/sa-id-kharboutli-428785119/">
               <HeroSocial
-                src="/images/site/linkedin-pixelated.png"
+                src="/images/site/linkedin-pixelated.avif"
                 alt="LinkedIn Icon"
               />
             </a>
             <a href="https://twitter.com/saidkio/">
               <HeroSocial
-                src="/images/site/twitter-pixelated.png"
+                src="/images/site/twitter-pixelated.avif"
                 alt="Twitter Icon"
               />
             </a>
