@@ -1,5 +1,5 @@
 ---
-imgSrc: /images/reviews/dark.jpg
+imgSrc: /images/reviews/dark.avif
 imgAlt: Cover art for Dark, featuring Jonas.
 
 name: Dark

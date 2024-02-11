@@ -37,13 +37,16 @@ if(content.series) {
 }
 
 ---
-<Base head={{ title, description: content.description }} >
-  <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
-    <TableOfContents headings={headings} slot='toc' />
-    <slot></slot>
-  </BlogPost>
+<Base head={{ title, description: content.description }}>
+  <!-- data-pagefind-body signals to pagefind to only index this layout content -->
+  <div data-pagefind-body>
+    <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
+      <TableOfContents headings={headings} slot='toc' />
+      <slot></slot>
+    </BlogPost>
 
-  <PostComments />
+    <PostComments />
+  </div>
 
   <CTA client:load />
 </Base>

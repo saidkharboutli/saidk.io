@@ -81,7 +81,7 @@ const AboutMeHeader = () => (
       <div className="shrink-0">
         <img
           className="mt-4 h-80 rounded-3xl md:mt-0"
-          src="/images/site/portrait.jpg"
+          src="/images/site/portrait.avif"
           alt="Portrait of me"
           loading="lazy"
         />
