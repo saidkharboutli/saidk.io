@@ -52,7 +52,7 @@ export async function GET() {
                       https://saidk.io/images/site/rss-logo.jpg
                     </url>
                     <title>${AppConfig.feed_title}</title>
-                    <link>${import.meta.env.SITE}</link>
+                    <link>${import.meta.env.SITE}/</link>
                   </image>`,
     title: `${AppConfig.feed_title}`,
     description: AppConfig.description,
