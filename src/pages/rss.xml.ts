@@ -45,7 +45,7 @@ export async function GET() {
   return rss({
     // stylesheet: '/rss/rss-styles.xsl',
     customData: `${categories.map((category) => `<category>${category}</category>`)}
-                 <atom:link href="${import.meta.env.SITE}/rss.xml" rel="self" type="application/rss+xml"/>"
+                 <atom:link href="${import.meta.env.SITE}/rss.xml" rel="self" type="application/rss+xml" />
                  <language>en-us</language>
                  <image>
                     <url>
