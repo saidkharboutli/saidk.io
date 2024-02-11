@@ -12,7 +12,7 @@ const Navbar = () => (
           <Logo
             icon={
               <img
-                className="mr-2 w-10 rounded-full"
+                className="mr-2 size-10 rounded-full"
                 src="/images/site/profile_no_bg.png"
               ></img>
             }

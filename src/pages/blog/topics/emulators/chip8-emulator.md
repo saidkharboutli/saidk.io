@@ -1,27 +1,14 @@
 ---
-# Layout File
-layout: '@/templates/BaseProject.astro'
-
-# Banner Image
-imgSrc: '/images/projects/chip8-emulator.png'
-imgAlt: 'CHIP8 program output'
-
-# Project Details
-projectName: 'PS2 Emulator'
-description: A quick PS2 emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
-startDate: 2024-01-08T00:00:00Z
-status: Testing & Debugging
-
-# GitHub Repository
-github: 'https://github.com/saidkharboutli/chip8-emu'
-
-# Tech Stack
-language: C
-techStack: [SDL2, other]
-platform: [Linux, Windows, iOS, Android, macOS]
-
-# Related Blog Series
-series: 'CHIP8 Emulator'
+layout: '@/templates/BasePost.astro'
+title: 'First Post: Emulating CHIP8 As Fast As Possible'
+description: This blog post covers the idea behind and the steps I took to implement my own CHIP8 emulator!
+pubDate: 2020-03-06T00:00:00-05:00
+updatedDate: 2020-03-06T00:00:00-05:00
+imgSrc: '/images/posts/post0/banner.png'
+imgAlt: 'Image post'
+tags: EmuDev, Emulators, Low-Level, CHIP8
+series: CHIP8 Emulator
+isProject: True
 ---
 
 This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi, inventore atque cupiditate. Sed voluptatem quas omnis culpa, et odit.

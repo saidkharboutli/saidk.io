@@ -35,18 +35,26 @@ export async function GET() {
       link: `${import.meta.env.SITE}${post.url}`,
       pubDate: new Date(post.frontmatter.pubDate),
       content: sanitizeHtml(post.compiledContent()),
-      author: 'said@saidk.io',
+      author: 'said@saidk.io (Said K)',
       caetgory: getTopicFromUrl(post.url),
       customData: `${post.frontmatter.updatedDate && `<atom:updated>${new Date(post.frontmatter.updatedDate)}</atom:updated>`}
                   <category>${getTopicFromUrl(post.url)}</category>
-                  <language>en-us</language>
-                  <media:thumbnail url="${import.meta.env.SITE}/public${post.frontmatter.imgSrc}" />`,
+                  <media:thumbnail url="${import.meta.env.SITE}/public${post.frontmatter.imgSrc}"/>`,
     }));
 
   return rss({
     // stylesheet: '/rss/rss-styles.xsl',
-    customData: `${categories.map((category) => `<category>${category}</category>`)}<atom:link href="${import.meta.env.SITE}/rss.xml" rel="self" type="application/rss+xml" />`,
-    title: `${AppConfig.title}'s Blog`,
+    customData: `${categories.map((category) => `<category>${category}</category>`)}
+                 <atom:link href="${import.meta.env.SITE}/rss.xml" rel="self" type="application/rss+xml/>"
+                 <language>en-us</language>
+                 <image>
+                    <url>
+                      https://saidk.io/images/site/rss-logo.jpg
+                    </url>
+                    <title>${AppConfig.feed_title}</title>
+                    <link>${import.meta.env.SITE}</link>
+                  </image>`,
+    title: `${AppConfig.feed_title}`,
     description: AppConfig.description,
     site: import.meta.env.SITE,
     xmlns: {

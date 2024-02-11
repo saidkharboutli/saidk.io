@@ -21,3 +21,6 @@ pnpm-debug.log*
 *.pem
 Thumbs.db
 .history
+
+# cloudflare
+.wrangler

@@ -146,7 +146,7 @@ export function formatDate(date: string) {
     'Dec',
   ];
 
-  const dt = new Date(date);
+  const dt = new Date(date.split('T')[0]);
   const year = dt.getUTCFullYear();
   const month = months[dt.getUTCMonth()];
   const day = dt.getUTCDate();

@@ -21,7 +21,7 @@ const ProjectCard = (props: IProjectCardProps) => (
       >
         <div className="p-2">
           <img
-            className="aspect-1 size-full rounded-lg object-cover object-center"
+            className="aspect-1 size-full rounded-lg bg-cod-800 object-cover object-center"
             src={props.instance.frontmatter.imgSrc}
             alt={props.instance.frontmatter.imgAlt}
             loading="lazy"
@@ -76,7 +76,7 @@ const ProjectCard = (props: IProjectCardProps) => (
 
       <div
         id="card-back"
-        className="col-start-1 row-start-1 size-full overflow-hidden rounded-md bg-cod-700 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
+        className="col-start-1 row-start-1 size-full overflow-hidden rounded-md bg-cod-800 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
       >
         <div className=" m-2 pb-6 text-center">
           <a href={props.instance.url}>
@@ -122,7 +122,7 @@ const ProjectCard = (props: IProjectCardProps) => (
               href={props.instance.frontmatter.github}
               className="flex flex-row items-center gap-1 rounded-md px-1 py-0.5 outline outline-1"
             >
-              <img className="h-5" src="/images/site/dark-github.png" />
+              <img className="size-5" src="/images/site/dark-github.png" />
               <span className="font-mono">{'<src/>'}</span>
             </a>
           </div>

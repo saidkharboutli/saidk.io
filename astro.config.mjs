@@ -11,7 +11,7 @@ import sectionize from '@hbsnow/rehype-sectionize';
 // https://astro.build/config
 export default defineConfig({
   // base: '.', // Set a path prefix.
-  site: 'http://saidk.io',
+  site: 'https://saidk.io',
   // Use to generate your sitemap and canonical URLs in your final build.
   markdown: {
     shikiConfig: {

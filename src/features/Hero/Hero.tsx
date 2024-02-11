@@ -17,10 +17,9 @@ const Hero = () => (
           }
           avatar={
             <img
-              className="h-80 rounded-3xl"
+              className="h-80 w-auto rounded-3xl"
               src="/images/site/portrait.avif"
               alt="Portrait of me"
-              loading="lazy"
             />
           }
           socialButtons={

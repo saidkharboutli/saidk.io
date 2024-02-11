@@ -3,7 +3,7 @@
 layout: '@/templates/BaseProject.astro'
 
 # Banner Image
-imgSrc: '/images/projects/gba-emulator.jpg'
+imgSrc: '/images/projects/gba-emulator.webp'
 imgAlt: 'CHIP8 program output'
 
 # Project Details

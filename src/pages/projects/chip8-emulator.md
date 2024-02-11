@@ -3,7 +3,7 @@
 layout: '@/templates/BaseProject.astro'
 
 # Banner Image
-imgSrc: '/images/projects/chip8-emulator.png'
+imgSrc: '/images/projects/chip8-emulator.avif'
 imgAlt: 'CHIP8 program output'
 
 # Project Details

@@ -26,15 +26,13 @@ const {
     <meta name='author' content={AppConfig.author} />
     <link rel='alternate' type='application/rss+xml' href='/rss.xml' />
     <link rel='icon' type='image/x-icon' href='/favicon.ico' />
-    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript" defer></script>
+    <link href="/pagefind/pagefind-ui.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
   </head>
   <body class='text-cod-100'>
     <Navbar />
 
-    <div>
-      <slot></slot>
-    </div>
+    <slot></slot>
     
     <Footer />
   </body>
