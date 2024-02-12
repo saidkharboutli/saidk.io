@@ -10,7 +10,7 @@
         if (event.key === '/' || event.key === '.') {
             console.log('you pressed the slash');
             event.preventDefault();
-            console.log(document.querySelector('input#search input'));
+            document.querySelector('div#search input').focus();
         }
     });
   </script>

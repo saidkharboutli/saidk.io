@@ -45,7 +45,10 @@ const PostHeader = (props: IPostHeaderProps) => (
       )}
 
       {/* Upload Details */}
-      <div className="mt-4 flex flex-row items-center">
+      <div
+        className="mt-4 flex flex-row items-center"
+        data-pagefind-ignore="all"
+      >
         <img
           src="/images/site/profile.png"
           alt="My face (pixelated)"
