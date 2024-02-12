@@ -24,3 +24,6 @@ Thumbs.db
 
 # cloudflare
 .wrangler
+
+# obsidian
+.obsidian
