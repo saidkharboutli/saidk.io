@@ -4,7 +4,7 @@ export const AppConfig = {
   feed_title: "Sa'id's Korner",
   description:
     'A tech blog covering web development, compiler and operating system design, home lab, and more!',
-  author: "Sa'id",
+  author: "Sa'id K",
   locale_region: 'en-us',
   locale: 'en',
 };
