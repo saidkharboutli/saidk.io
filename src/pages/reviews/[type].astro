@@ -32,7 +32,7 @@ const { type } = Astro.params;
 
 const title = `Reviews: ${getNameFromSlug(type)} | ${AppConfig.site_name}`;
 const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+  `All reviews under the ${getNameFromSlug(type)} category - Sa'id Kharboutli`;
 ---
 
 <Base head={{ title, description }}>

@@ -48,7 +48,7 @@ const { tag } = Astro.params;
 
 const title = `"${tagData.name}" Tag | ${AppConfig.site_name}`;
 const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+  `All blog posts tagged with ${tagData.name} - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>

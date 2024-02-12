@@ -41,13 +41,13 @@ const { topic } = Astro.params;
 
 const title = `"${getNameFromSlug(topic)}" Topic | ${AppConfig.site_name}`;
 const description =
-  'Pagination example built with Astro styled with Tailwind CSS.';
+  `All blog posts related to ${getNameFromSlug(topic)} - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold">Blog Topic: <GradientText>{getNameFromSlug(topic)}</GradientText></h1>
+      <h1 class="text-3xl font-bold">Topic: <GradientText>{getNameFromSlug(topic)}</GradientText></h1>
     </div>
     <div class="mt-1 flex justify-center text-xs">
       <a href="/blog/topics/" class="transition-all duration-150 hover:text-primary hover:scale-110">
