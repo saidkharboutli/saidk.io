@@ -1,4 +1,5 @@
 ---
+import { SEO } from 'astro-seo'
 
 import { Footer } from '@/features/Footer/Footer';
 import { Navbar } from '@/features/Navbar/Navbar';
@@ -21,11 +22,33 @@ const {
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>{title}</title>
-    <meta name='description' content={description} />
-    <meta name='author' content={AppConfig.author} />
-    <link rel='alternate' type='application/rss+xml' href='/rss.xml' />
-    <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+    <SEO title={title}
+         description={description}
+         openGraph={{
+          basic: {
+            title,
+            type: 'website',
+            image: 'https://saidk.io/images/site/profile_no_bg.png' }
+         }}
+         twitter={{
+          creator: '@saidkio'
+         }}
+         extend={{
+          link: [
+            { rel: "icon", type: 'image/x-icon', href: "/favicon.ico" },
+            {rel: "alternate", type: "application/rss+xml", href: "/rss.xml"}
+          ],
+          meta: [
+            {
+              name: "twitter:image",
+              content: "https://saidk.io/images/site/profile_no_bg.png",
+            },
+            { name: "twitter:title", content: "Tinker Tailor Soldier Spy" },
+            { name: "twitter:description", content: "Agent" },
+            { name: "author", content: AppConfig.author}
+          ],
+         }}
+    />
 		<script src="/pagefind/pagefind-ui.js" type="text/javascript" defer></script>
     <link href="/pagefind/pagefind-ui.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
   </head>
