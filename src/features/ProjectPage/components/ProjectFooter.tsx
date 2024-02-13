@@ -1,6 +1,6 @@
 import type { MarkdownInstance } from 'astro';
 
-import { BlogGallery } from '@/features/BlogPostViews/BlogGallery';
+import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import { Section } from '@/features/shared/Section';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';

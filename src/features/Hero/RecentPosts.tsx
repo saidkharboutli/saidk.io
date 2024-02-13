@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from 'astro';
 
-import { BlogCardSpotlight } from '@/features/BlogPostViews/BlogCardSpotlight';
-import { BlogGallery } from '@/features/BlogPostViews/BlogGallery';
+import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
+import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';

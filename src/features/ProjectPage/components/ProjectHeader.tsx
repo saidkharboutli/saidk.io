@@ -23,7 +23,7 @@ const ProjectHeader = (props: IProjectHeaderProps) => (
         </div>
       </div>
 
-      <div className="mt-4 flex w-4/5 flex-col items-center gap-2 rounded-lg border bg-cod-900 p-4 text-center text-base md:w-[70ch] md:flex-row">
+      <div className="mt-4 flex w-4/5 flex-col items-center gap-2 rounded-lg border border-cod-800 bg-cod-900 p-4 text-center text-base md:w-[70ch] md:flex-row">
         {/* Start Date */}
         <div className="mt-2 flex w-full justify-between md:w-1/5 md:flex-col md:gap-2">
           <span className="self-center">Started: </span>

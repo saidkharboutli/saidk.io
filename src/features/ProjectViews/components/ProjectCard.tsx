@@ -1,6 +1,6 @@
 import type { MarkdownInstance } from 'astro';
 
-import { BlogCardMin } from '@/features/BlogPostViews/components/BlogCardMin';
+import { BlogCardMin } from '@/features/BlogViews/components/BlogCardMin';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import { formatDate, generateSlug } from '@/utils/helpers';

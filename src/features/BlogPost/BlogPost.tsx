@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 
-import { BlogSection } from '@/features/BlogPosts/components/BlogSection';
-import { PostContent } from '@/features/BlogPosts/components/PostContent';
-import { PostFooter } from '@/features/BlogPosts/components/PostFooter';
-import { PostHeader } from '@/features/BlogPosts/components/PostHeader';
+import { BlogSection } from '@/features/BlogPost/components/BlogSection';
+import { PostContent } from '@/features/BlogPost/components/PostContent';
+import { PostFooter } from '@/features/BlogPost/components/PostFooter';
+import { PostHeader } from '@/features/BlogPost/components/PostHeader';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 

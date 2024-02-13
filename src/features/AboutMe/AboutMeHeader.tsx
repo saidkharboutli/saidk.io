@@ -38,7 +38,7 @@ const AboutMeHeader = () => (
             >
               USSOCOM
             </a>
-            , using different ML solutions (computer vision, NLP, etc...).{' '}
+            , using a variety of ML solutions (computer vision, NLP, etc...).{' '}
             <br />
             <br />
             On my own time, I work on few different kinds of projects, most

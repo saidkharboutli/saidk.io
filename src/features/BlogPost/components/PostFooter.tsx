@@ -1,4 +1,4 @@
-import { BlogCardMin } from '@/features/BlogPostViews/components/BlogCardMin';
+import { BlogCardMin } from '@/features/BlogViews/components/BlogCardMin';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 
 type IPostFooterProps = {

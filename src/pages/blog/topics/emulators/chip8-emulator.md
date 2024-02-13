@@ -52,6 +52,7 @@ ROM loading is actually more difficult than you might expect, thanks to a concep
 So why does this add difficulty? its only difficult when the host system has a different endianness than the emulated platform. In the case of the vast majority of people, this would be true for a CHIP8 emulator. Further, your implementation should work independent of the host endianness.
 
 Whats the solution? Load the bytes in from memory normally, then flip the instructions inside of the emulator itself, depending on the endianness of the host system. This was the approach I took, at least. There is almost certainly a better way to do this, however this was simple enough and it worked in my case.
+
 ### Memory
 
 ### The CPU

@@ -1,9 +1,9 @@
 import type { MarkdownInstance } from 'astro';
 import type { ReactNode } from 'react';
 
-import { ProjectContent } from '@/features/ProjectPosts/components/ProjectContent';
-import { ProjectFooter } from '@/features/ProjectPosts/components/ProjectFooter';
-import { ProjectHeader } from '@/features/ProjectPosts/components/ProjectHeader';
+import { ProjectContent } from '@/features/ProjectPage/components/ProjectContent';
+import { ProjectFooter } from '@/features/ProjectPage/components/ProjectFooter';
+import { ProjectHeader } from '@/features/ProjectPage/components/ProjectHeader';
 import { Section } from '@/features/shared/Section';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';

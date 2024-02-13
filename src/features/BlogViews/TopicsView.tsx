@@ -1,4 +1,4 @@
-import { BlogGallery } from '@/features/BlogPostViews/BlogGallery';
+import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import { GradientText } from '@/features/shared/GradientText';
 import { getNameFromSlug } from '@/utils/helpers';
 

@@ -93,7 +93,7 @@ const toc = generateToc(headings);
         drawPath();
         updatePath();
       });
-      observer.observe(document.querySelector("nav.toc"));
+      observer.observe(document.querySelector("nav.toc")!);
     }
 
     function drawPath() {
