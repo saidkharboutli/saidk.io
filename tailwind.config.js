@@ -1,4 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, global-require */
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     './src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}',
@@ -14,6 +16,19 @@ module.exports = {
         secondary: '#818cf8',
         inveterate: '#bf95fc',
         pyyne: '#79a35c',
+        lavender: {
+          50: '#f9f5ff',
+          100: '#f2e8ff',
+          200: '#e7d5ff',
+          300: '#d4b4fe',
+          400: '#bb86fc',
+          500: '#a055f7',
+          600: '#8a33ea',
+          700: '#7522ce',
+          800: '#6421a8',
+          900: '#531c87',
+          950: '#360764',
+        },
         cod: {
           50: '#f6f6f6',
           100: '#e7e7e7',
@@ -34,5 +49,11 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('tailwindcss-3d'),
+    plugin(({ addVariant }) => {
+      addVariant(
+        'prose-inline-code',
+        '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))',
+      );
+    }),
   ],
 };
