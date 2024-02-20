@@ -1,3 +1,4 @@
+import { ProjectIcon } from '@/features/ProjectViews/components/ProjectIcon';
 import { ProjectTag } from '@/features/ProjectViews/components/ProjectTag';
 import { GradientText } from '@/features/shared/GradientText';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
@@ -10,63 +11,68 @@ type IProjectHeaderProps = {
 
 const ProjectHeader = (props: IProjectHeaderProps) => (
   <>
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center gap-2 md:gap-3">
       {/* Title */}
       <h1 className="text-center text-3xl font-bold">
         Project: <GradientText>{props.content.projectName}</GradientText>
       </h1>
 
+      {/* Status */}
+      <div className="text-base">
+        <ProjectTag key="status">{props.content.status}</ProjectTag>
+      </div>
+
       {/* Description */}
-      <div className="mt-2 flex w-3/4 flex-col items-center">
+      <div className="flex flex-col items-center md:w-[70ch]">
         <div className="text-center text-gray-400">
           {props.content.description}
         </div>
       </div>
 
-      <div className="mt-4 flex w-4/5 flex-col items-center gap-2 rounded-lg border border-cod-800 bg-cod-900 p-4 text-center text-base md:w-[70ch] md:flex-row">
+      <div className="flex w-full flex-col items-center gap-2 rounded-lg border border-cod-800 bg-cod-900 px-2 py-4 text-center text-base md:w-[70ch] md:flex-row">
         {/* Start Date */}
-        <div className="mt-2 flex w-full justify-between md:w-1/5 md:flex-col md:gap-2">
+        <div className="flex w-full justify-between md:w-2/5 md:flex-col md:gap-2">
           <span className="self-center">Started: </span>
-          <div className="text-gray-400">
+          <div className="text-gray-400 md:h-8">
             {formatDate(props.content.startDate)}
           </div>
         </div>
 
         {/* Language */}
-        <div className="flex w-full items-center justify-between md:w-1/5 md:flex-col md:gap-2">
+        <div className="flex w-full items-center justify-between md:w-2/5 md:flex-col md:gap-2">
           <span className="self-center">Language: </span>
           <div className="w-fit text-xs">
-            <ProjectTag key="lang">{props.content.language}</ProjectTag>
+            <ProjectIcon key="lang">{props.content.language}</ProjectIcon>
           </div>
         </div>
 
         {/* Tech Stack */}
-        <div className="flex w-full items-center justify-between md:w-1/5 md:flex-col md:gap-2">
+        <div className="flex w-full items-center justify-between md:w-2/5 md:flex-col md:gap-2">
           <span className="">Tech Stack: </span>
           <div className="flex flex-row flex-wrap justify-end gap-1 text-xs md:justify-center">
             {props.content.techStack.map((elt) => (
-              <ProjectTag key={elt}>{elt}</ProjectTag>
+              <ProjectIcon key={elt}>{elt}</ProjectIcon>
             ))}
           </div>
         </div>
 
         {/* Platform */}
-        <div className="flex gap-2 md:w-1/5 md:flex-col">
+        <div className="flex w-full justify-between gap-2 md:w-2/5 md:flex-col">
           <span className="self-center">Platform: </span>
           <div className="flex flex-row flex-wrap justify-end gap-1 text-xs md:justify-center">
             {props.content.platform.map((elt) => (
-              <ProjectTag key={elt}>{elt}</ProjectTag>
+              <ProjectIcon key={elt}>{elt}</ProjectIcon>
             ))}
           </div>
         </div>
 
         {/* GitHub */}
-        <div className="flex flex-col items-center pt-1 transition-all duration-150 hover:scale-105 md:w-1/5">
+        <div className="flex flex-col items-center pt-1 transition-all duration-300 hover:scale-110 md:w-1/5">
           <a
             href={props.content.github}
-            className="flex w-fit flex-row items-center gap-1 rounded-md px-1 py-0.5 outline outline-1"
+            className="flex w-fit items-center gap-2 rounded-md p-1 outline outline-1 md:flex-col md:gap-1 md:outline-transparent"
           >
-            <img className="h-8" src="/images/site/dark-github.png" />
+            <img className="h-6" src="/images/site/dark-github.png" />
             <span className="font-mono">{'<src/>'}</span>
           </a>
         </div>

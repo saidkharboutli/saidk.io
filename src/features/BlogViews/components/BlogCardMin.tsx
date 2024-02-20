@@ -25,7 +25,7 @@ const BlogCardMin = (props: IBlogCardProps) => (
 
     <div className="flex flex-col px-3 py-4">
       {/* Topic */}
-      <div className="mb-0.5 flex">
+      <div className="mb-0.5">
         <h2 className="text-sm font-semibold text-indigo-400 transition-all duration-200 hover:scale-110">
           <a
             className=""

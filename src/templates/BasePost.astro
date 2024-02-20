@@ -2,6 +2,7 @@
 import type { MarkdownHeading } from 'astro';
 
 import { BlogPost } from '@/features/BlogPost/BlogPost';
+import BlogViewCounter from '@/features/BlogPost/components/BlogViewCounter';
 import PostComments from '@/features/BlogPost/components/PostComments.astro';
 import TableOfContents from '@/features/BlogPost/components/TableOfContents.astro';
 import { CTA } from '@/features/shared/CTA';
@@ -41,6 +42,7 @@ if(content.series) {
   <!-- data-pagefind-body signals to pagefind to only index this layout content -->
   <div data-pagefind-body>
     <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
+      <BlogViewCounter slot='views' client:only="react" />
       <TableOfContents headings={headings} slot='toc' />
       <slot></slot>
     </BlogPost>

@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import {
   formatDate,
@@ -11,6 +13,7 @@ type IPostHeaderProps = {
   content: IFrontMatterPost;
   path: string;
   author: string;
+  views?: ReactNode;
 };
 
 const PostHeader = (props: IPostHeaderProps) => (
@@ -54,13 +57,14 @@ const PostHeader = (props: IPostHeaderProps) => (
           alt="My face (pixelated)"
           className="size-10 rounded-full"
         />
-        <div className=" ml-4 text-left text-sm text-gray-400">
+        <div className="ml-4 text-left text-sm text-gray-400">
           By {props.author} on {formatDate(props.content.pubDate)}
           {props.content.updatedDate && <br></br>}
           {props.content.updatedDate && (
             <i>Updated {formatDate(props.content.updatedDate)}</i>
           )}
         </div>
+        {props.views}
       </div>
 
       {/* Tags */}

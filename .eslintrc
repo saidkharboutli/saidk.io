@@ -35,6 +35,7 @@
         "import/no-unresolved": "off", // Also false positive with mjs file
       },
     },
+
     // Configuration for TypeScript files
     {
       "files": ["**/*.ts", "**/*.tsx"],
@@ -51,7 +52,7 @@
         "plugin:prettier/recommended",
       ],
       "parserOptions": {
-        "project": "./tsconfig.json",
+        "project": ["./tsconfig.json", "./functions/tsconfig.json"],
       },
       "rules": {
         "prettier/prettier": [
@@ -94,6 +95,7 @@
         ],
       },
     },
+
     // Configuration for Astro
     {
       "files": ["*.astro"],

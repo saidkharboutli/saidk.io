@@ -8,7 +8,7 @@ imgAlt: 'CHIP8 program output'
 
 # Project Details
 projectName: 'CHIP8 Emulator'
-description: A quick CHIP8 emulator to test the emulator waters and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
+description: A quick CHIP8 emulator to intro into emu-dev and refresh my C knowledge. Runs most programs with good compatibility. Utilizes SDL2 for I/O.
 startDate: 2024-01-04T00:00:00Z
 status: Post-MVP (Ongoing)
 
@@ -17,8 +17,8 @@ github: 'https://github.com/saidkharboutli/chip8-emu'
 
 # Tech Stack
 language: C
-techStack: [SDL2, other]
-platform: [Linux, Windows, iOS, Android, macOS]
+techStack: [SDL2]
+platform: [Linux]
 
 # Related Blog Series
 series: 'CHIP8 Emulator'

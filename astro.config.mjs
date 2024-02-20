@@ -30,5 +30,5 @@ export default defineConfig({
     astroImageTools,
   ],
   output: 'hybrid',
-  adapter: cloudflare(),
+  adapter: cloudflare({}),
 });

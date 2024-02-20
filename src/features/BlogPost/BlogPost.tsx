@@ -13,6 +13,7 @@ type IBlogPostProps = {
   prevNextInSeries: any;
   children: ReactNode;
   toc?: ReactNode /* Table of Contents Astro Component */;
+  views?: ReactNode /* BlogViewCounter Astro Component */;
 };
 
 const BlogPost = (props: IBlogPostProps) => (
@@ -20,6 +21,7 @@ const BlogPost = (props: IBlogPostProps) => (
     <PostHeader
       content={props.frontmatter}
       author={AppConfig.author}
+      views={props.views}
       path={props.path}
     />
 
