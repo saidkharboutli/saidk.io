@@ -49,14 +49,17 @@ const PostHeader = (props: IPostHeaderProps) => (
 
       {/* Upload Details */}
       <div
-        className="mt-4 flex flex-row items-center"
+        className="mt-1 flex flex-row items-center"
         data-pagefind-ignore="all"
       >
+        {/* Profile */}
         <img
           src="/images/site/profile.png"
           alt="My face (pixelated)"
           className="size-10 rounded-full"
         />
+
+        {/* Details */}
         <div className="ml-4 text-left text-sm text-gray-400">
           By {props.author} on {formatDate(props.content.pubDate)}
           {props.content.updatedDate && <br></br>}
@@ -64,7 +67,14 @@ const PostHeader = (props: IPostHeaderProps) => (
             <i>Updated {formatDate(props.content.updatedDate)}</i>
           )}
         </div>
-        {props.views}
+
+        {/* Views */}
+        <div
+          className="ml-4 text-left text-sm text-gray-400"
+          data-pagefind-ignore="all"
+        >
+          {props.views}
+        </div>
       </div>
 
       {/* Tags */}

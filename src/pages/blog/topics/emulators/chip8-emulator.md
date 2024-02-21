@@ -28,9 +28,15 @@ Lastly, I hadn't used C or C++ in more than a year due to my full-time job being
 
 ## Implementation Resources
 
+### Specification Sheet
+
 First, there is the holy grail of CHIP8 implementation resources, [Cogwod's technical specification](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM). This is pretty much the community go-to base resource for implementing a CHIP8 emulator. If you want the greatest challenge and/or you already have a background in CPU architecture, I'd recommend trying to implement only using that document.
 
+### High Level Guide
+
 Next, there is the oft recommended [guide from Tobias V. Langhoff's](https://tobiasvl.github.io/blog/write-a-chip-8-emulator/). This guide does a great job of breaking down the concepts into more digestible bites while not totally spoiling the implementation for you. I'd recommend trying to implement with Cogwods and this guide if you have little to no background knowledge on CPUs and/or you would like a moderate challenge.
+
+### Thorough Code Breakdown
 
 Lastly, there is a full, thorough implementation [guide from Austin Morlan](https://austinmorlan.com/posts/chip8_emulator/). Do note that this guide is using C++, not C strictly. However, most concepts carry over. If you want to go through the motions of putting together an emulator before trying something else, or if you get stuck while implementing, this guide has thorough explanations for each piece of the specification.
 

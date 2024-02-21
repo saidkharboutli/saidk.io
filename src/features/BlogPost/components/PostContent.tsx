@@ -14,7 +14,7 @@ const PostContent = (props: IPostContentProps) => (
     {props.toc}
 
     {/* Below is the actual blog content */}
-    <div className="mx-auto mt-5 max-w-[70ch] 2xl:max-w-[90ch]">
+    <div className="mx-auto mt-5 max-w-[70ch] 2xl:max-w-[85ch]">
       <div className="aspect-h-2 aspect-w-3">
         <img
           className="rounded-lg object-cover object-center"
@@ -26,8 +26,8 @@ const PostContent = (props: IPostContentProps) => (
 
       <div
         className="prose prose-indigo prose-invert mt-8 max-w-none xl:prose-lg
-        prose-headings:text-cod-100 prose-h2:text-3xl prose-h3:text-2xl 
-        prose-h4:text-xl prose-p:text-cod-200 prose-strong:text-cod-200
+        prose-headings:text-cod-100 prose-h2:text-3xl prose-h3:text-xl 
+        prose-h4:text-xl prose-h4:font-medium prose-p:text-cod-200 prose-strong:text-cod-200
         prose-th:text-cod-200 prose-td:text-cod-200 prose-img:rounded-lg
         prose-inline-code:whitespace-nowrap prose-inline-code:rounded-md 
         prose-inline-code:bg-cod-900 prose-inline-code:px-1

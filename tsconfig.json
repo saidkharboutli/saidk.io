@@ -42,6 +42,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
-  "exclude": ["functions/**/*"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"]
 }
