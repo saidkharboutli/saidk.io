@@ -2,8 +2,7 @@
 layout: '@/templates/BasePost.astro'
 title: 'Emulating CHIP8 As Fast As Possible'
 description: This blog post covers the reasoning for making a CHIP8 emulator and the steps I took to implement it (as fast as possible)!
-pubDate: 2024-02-11T00:00:00-05:00
-updatedDate: 2024-02-11T00:17:30-05:00
+pubDate: 2024-02-22T17:00:00-05:00
 imgSrc: '/images/posts/chip8-emulator/banner-ibm.png'
 imgAlt: 'Image post'
 tags: EmuDev, Emulators, Low-Level, CHIP8
