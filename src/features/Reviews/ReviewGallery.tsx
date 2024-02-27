@@ -23,7 +23,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
     const selectValue = 'Review Date';
     return selectValue;
   };
-  const [selectValue, setSelectValue] = useState(getInitialSelectState);
+  const [selectValue, setSelectValue] = useState(getInitialSelectState());
   const handleSelectChange = (e: any) => {
     setSelectValue(e.target.value);
   };
@@ -33,7 +33,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
     const reviewCount = 8;
     return reviewCount;
   };
-  const [reviewCount, setReviewCount] = useState(getInitialReviewCountState);
+  const [reviewCount, setReviewCount] = useState(getInitialReviewCountState());
   const handleLoadMoreClick = () => {
     if (reviewCount >= props.reviews.length) {
       return;
@@ -64,6 +64,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
             value={selectValue}
             onChange={handleSelectChange}
             className="block rounded-lg border border-cod-600 bg-cod-900 p-2.5 text-sm text-white focus:border-primary"
+            autoComplete="off"
           >
             <option value="Review Date">Review Date (Latest First)</option>
             <option value="Release Date">Release Date (Latest First)</option>

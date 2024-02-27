@@ -23,6 +23,8 @@ const allReviews = await Astro.glob<IFrontMatterReview>('./**/*.md');
         getReviewTypeFromUrl(review.url!));
 });
 
+console.log(allReviews.map(review => review.frontmatter));
+
 const typeData: ITypeData[] = [];
 uniqueReviewTypes.forEach(type => {
   const typeDatum: ITypeData = {type, reviews: []};
