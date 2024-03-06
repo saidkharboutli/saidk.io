@@ -1,5 +1,4 @@
 ---
-import type { MarkdownInstance } from 'astro';
 
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
@@ -11,7 +10,7 @@ import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { getNameFromSlug, getTopicFromUrl, sortPostsByDate } from '@/utils/helpers';
+import { filterPostDrafts, getNameFromSlug, getTopicFromUrl, sortPostsByDate } from '@/utils/helpers';
 
 interface GetStaticPaths {
   paginate: any;
@@ -22,7 +21,7 @@ interface Props {
 }
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts: MarkdownInstance<IFrontMatterPost>[] = await Astro.glob<IFrontMatterPost>('../**/*.md');
+  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../**/*.md'));
   const allUniqueTopics = new Set<any>();
 
     allPosts.forEach(post => {

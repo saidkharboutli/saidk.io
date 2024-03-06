@@ -13,9 +13,9 @@ import Base from '@/templates/Base.astro';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortPostsByDate, sortProjectsByDate } from '@/utils/helpers';
+import { filterPostDrafts, sortPostsByDate, sortProjectsByDate } from '@/utils/helpers';
 
-const allPosts = await Astro.glob<IFrontMatterPost>('./blog/**/*.md');
+const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('./blog/**/*.md'));
 const sortedPosts = sortPostsByDate(allPosts);
 
 const allProjects = await Astro.glob<IFrontMatterProject>('./projects/**/*.md');

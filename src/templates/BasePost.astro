@@ -10,7 +10,7 @@ import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortPostsByDate } from '@/utils/helpers';
+import { filterPostDrafts, sortPostsByDate } from '@/utils/helpers';
 
 export interface Props {
   content: IFrontMatterPost;
@@ -25,7 +25,7 @@ const title = `${content.title} - ${AppConfig.site_name}`;
 const prevNextInSeries = {previous: null as any, next: null as any};
 if(content.series) {
   const allPostsInSeries: any[] = [];
-  const allPosts = await Astro.glob<IFrontMatterPost>('@/pages/blog/**/*.md');
+  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('@/pages/blog/**/*.md'));
   allPosts.forEach(post => {
     if(post.frontmatter.series === content.series) allPostsInSeries.push(post);
   })

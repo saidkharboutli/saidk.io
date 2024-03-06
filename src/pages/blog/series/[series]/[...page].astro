@@ -9,14 +9,14 @@ import Base from '@/templates/Base.astro';
 // eslint-disable-next-line prettier/prettier
 import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortPostsByDate,tagDataFromArr  } from '@/utils/helpers';
+import { filterPostDrafts, sortPostsByDate,tagDataFromArr  } from '@/utils/helpers';
 
 type GetStaticPaths = {
   paginate: any;
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = await Astro.glob<IFrontMatterPost>('../../**/*.md');
+  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../../**/*.md'));
   const allUniqueSeries = new Set<any>();
   const sortedPosts = sortPostsByDate(allPosts);
 

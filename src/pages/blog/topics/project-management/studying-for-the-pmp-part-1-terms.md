@@ -2,7 +2,7 @@
 layout: '@/templates/BasePost.astro'
 title: 'Studying for the PMP, Part 1 - Terms'
 description: This blog post covers the reasoning for making a CHIP8 emulator and the steps I took to implement it (as fast as possible)!
-pubDate: 2024-03-04T17:00:00-05:00
+pubDate:
 imgSrc: '/images/posts/studying-for-the-pmp/part-1-banner.jpg'
 imgAlt: 'A banner displaying the PMP logo'
 tags: Project Management, PMP
@@ -62,7 +62,7 @@ Start thinking about what you want to include as a Project on your application! 
 
 ### Project
 
-- **Definition:** A temporary endeavor that produces a unique product, service, or result. 
+- **Definition:** A temporary endeavor that produces a unique product, service, or result.
 - Projects are **Temporary** (as opposed to "operations").
 - Projects are **Unique**: the output of the project is unique.
 - Projects are **Progressively Elaborated**: as time/project progresses, requirements become clearer.
@@ -206,6 +206,10 @@ Start thinking about what you want to include as a Project on your application! 
   10. Stakeholder Management - Managing your stakeholders (4 processes)
 
 ### Process Groups vs. Knowledge Areas Chart
+
+- You should be able to draw this chart from memory:
+
+<img src="/images/posts/studying-for-the-pmp-part-1-terms/project-management-process-groups.jpg">
 
 ### Process
 

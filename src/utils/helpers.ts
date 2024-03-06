@@ -74,6 +74,16 @@ export const sortReviewsByRating = (
   );
 };
 
+export const filterPostDrafts = (
+  posts: MarkdownInstance<IFrontMatterPost>[],
+) => {
+  if (import.meta.env.PROD)
+    return posts.filter(
+      (post) => !post.frontmatter?.draft && post.frontmatter.pubDate,
+    );
+  return posts;
+};
+
 export function generateSlug(baseStr: string) {
   return baseStr
     .toString()
@@ -146,12 +156,22 @@ export function formatDate(date: string) {
     'Dec',
   ];
 
-  const dt = new Date(date.split('T')[0]);
+  let dt;
+  let draft = false;
+  try {
+    dt = new Date(date.split('T')[0]);
+  } catch (err) {
+    console.error(`WARNING: Date '${date}' is bad for a post: `, err);
+    console.log('Setting data to current date...');
+    dt = new Date();
+    draft = true;
+  }
+
   const year = dt.getUTCFullYear();
   const month = months[dt.getUTCMonth()];
   const day = dt.getUTCDate();
 
-  return `${day.toString().padStart(2, '0')} ${month} ${year}`;
+  return `${day.toString().padStart(2, '0')} ${month} ${year}${draft ? ' (Draft)' : ''}`;
 }
 
 function diveChildren(item: ITocItem, depth: number): ITocItem[] {

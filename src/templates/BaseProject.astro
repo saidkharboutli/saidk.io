@@ -7,7 +7,7 @@ import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
 import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
 import { AppConfig } from '@/utils/AppConfig';
-import { sortPostsByDate } from '@/utils/helpers';
+import { filterPostDrafts, sortPostsByDate } from '@/utils/helpers';
 
 export interface Props {
   content: IFrontMatterProject;
@@ -16,7 +16,7 @@ export interface Props {
 const { content } = Astro.props as Props;
 const path = Astro.url.pathname;
 const title = `${content.projectName} - ${AppConfig.site_name}`;
-const projectPosts = (await Astro.glob<IFrontMatterPost>('@/pages/blog/**/*.md')).filter(
+const projectPosts = (filterPostDrafts(await Astro.glob<IFrontMatterPost>('@/pages/blog/**/*.md'))).filter(
   post =>  post.frontmatter.series === content.series
   );
 

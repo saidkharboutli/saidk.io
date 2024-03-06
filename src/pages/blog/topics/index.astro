@@ -8,10 +8,10 @@ import Base from '@/templates/Base.astro';
 import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 // eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
-import { getTopicFromUrl, sortPostsByDate } from '@/utils/helpers';
+import { filterPostDrafts, getTopicFromUrl, sortPostsByDate } from '@/utils/helpers';
 
 const allUniqueTopics = new Set<any>();
-const allPosts = await Astro.glob<IFrontMatterPost>('../**/*.md');
+const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../**/*.md'));
 allPosts.forEach(post => {
     allUniqueTopics.add(
         getTopicFromUrl(post.url || '') || '');
