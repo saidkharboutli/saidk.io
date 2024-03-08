@@ -1,20 +1,21 @@
 ---
 layout: '@/templates/BasePost.astro'
-title: 'Studying for the PMP, Part 1 - Terms'
-description: This blog post covers the reasoning for making a CHIP8 emulator and the steps I took to implement it (as fast as possible)!
+title: 'Studying for the PMP: Part 1 — Terms'
+description: This is the first post in my "Studying for the PMP" series! This part will cover an introduction to the PMP exam and an overview of important PM terms.
 pubDate:
-imgSrc: '/images/posts/studying-for-the-pmp/part-1-banner.jpg'
+imgSrc: '/images/posts/studying-for-the-pmp/part-1/banner.jpg'
 imgAlt: 'A banner displaying the PMP logo'
 tags: Project Management, PMP
 series: Studying for the PMP
-isProject: True
+isProject: False
+draft: True
 ---
 
+**Disclaimer:** I will be following [Andrew Ramadayal](https://www.linkedin.com/in/andrewramdayal/)'s TIA Education course & book. I would highly recommend you pick it up ([Amazon](https://www.amazon.com/PMP-Exam-Prep-Simplified-Learning/dp/B08SBFTXQT)). These notes are not a replacement for his course, where he will cover more than just content (mindset and tips). You also need to take his (or someone else's) 35 hour course to take the exam in the first place.
+
+These are **all** my personal, handwritten notes, converted to text (via reMarkable), and cleaned up and reformatted with ChatGPT (GPT does a great job fixing the formatting for me).
+
 This is the first entry in the "Studying for the PMP" series. This section will cover both the basics of the PMP exam and the first *actual* section, an overview of basic terms.
-
-I will be following [Andrew Ramadayal](https://www.linkedin.com/in/andrewramdayal/)'s TIA Education course & book. I would highly recommend you pick it up ([Amazon](https://www.amazon.com/PMP-Exam-Prep-Simplified-Learning/dp/B08SBFTXQT)). These notes are not a replacement for his course, where he will cover more than just content (mindset and tips). You also need to take his (or someone else's) 35 hour course to take the exam in the first place.
-
-These are **all** my personal, handwritten notes, converted to text (via reMarkable), and cleaned  and reformatted up with ChatGPT (GPT does a great job fixing the formatting for me).
 
 ## Introduction
 

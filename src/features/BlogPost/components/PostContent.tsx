@@ -25,7 +25,7 @@ const PostContent = (props: IPostContentProps) => (
       </div>
 
       <div
-        className="prose prose-indigo prose-invert mt-8 max-w-none xl:prose-lg
+        className="prose prose-indigo prose-invert mt-8 max-w-none 2xl:prose-lg
         prose-headings:text-cod-100 prose-h2:text-3xl prose-h3:text-2xl 
         prose-h4:text-lg prose-p:text-cod-200 prose-strong:text-cod-200
         prose-th:text-cod-200 prose-td:text-cod-200 prose-img:rounded-lg
