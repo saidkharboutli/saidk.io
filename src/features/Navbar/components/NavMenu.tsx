@@ -36,7 +36,7 @@ const NavMenu = (props: INavMenuProps) => {
           </div>
         </div>
 
-        <div className="invisible fixed left-0 top-0 z-20 size-full bg-cod-900 opacity-0 transition-all duration-300 peer-has-[:checked]/parent:visible peer-has-[:checked]/parent:opacity-80" />
+        <div className="invisible fixed left-0 top-0 z-20 size-full bg-cod-900 opacity-0 transition-all duration-300 peer-has-[:checked]/parent:visible peer-has-[:checked]/parent:opacity-90" />
         <div className="invisible fixed top-0 z-30 h-screen w-40 rounded-md p-8 text-right transition-all delay-100 duration-300 translate-x-16 peer-has-[:checked]/parent:visible peer-has-[:checked]/parent:-translate-x-24">
           <nav className="mt-12">
             <ul className="flex flex-col gap-y-6 font-bold text-gray-200">
