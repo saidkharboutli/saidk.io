@@ -94,7 +94,7 @@ The memory design of the GBA is probably the second most complicated piece of th
 
 Thank you to [gbdev.io](https://gbdev.io/pandocs/Memory_Map.html) and [NOCASH](http://problemkaputt.de/gbatek-gba-memory-map.htm) for compiling this information for the respective consoles. I brought them together above to give an overview of what a fully backwards compatible GBA emulator would implement. Each address range has a respective "Compatibility" field to clarify which system uses which range. In general, you can bet that the GBA will use the higher address ranges (because it can) and the GB will use the lower address ranges (because it has to).
 
-The memory design can get a little complicated, especially when factoring in [banking](https://gbdev.io/pandocs/MBCs.html#mbcs). This is going to be a piece of the implementation I plan to develop as I go. 
+The memory design can get a little complicated, especially when factoring in [banking](https://gbdev.io/pandocs/MBCs.html#mbcs). This is going to be a piece of the implementation I plan to develop as I go.
 
 ### Components Next Up
 
