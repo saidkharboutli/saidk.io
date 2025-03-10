@@ -41,7 +41,7 @@ const ReviewCard = (props: IReviewCardProps) => (
 
       {/* Media Name */}
       <div>
-        <h2 className="text-xl font-semibold hover:text-violet-300">
+        <h2 className="text-ellipsis text-xl font-semibold hover:text-violet-300">
           <a href={props.review.frontmatter.link}>
             {props.review.frontmatter.name}
           </a>

@@ -1,5 +1,5 @@
 ---
-imgSrc: "/images/reviews/meditations-on-first-philosophy.jpg"
+imgSrc: "/images/reviews/meditations-on-first-philosophy.png"
 imgAlt: "Meditations on First Philosophy book cover."
 
 name: "Meditations on First Philosophy"
