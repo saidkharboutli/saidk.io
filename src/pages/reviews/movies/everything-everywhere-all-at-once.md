@@ -2,7 +2,7 @@
 imgSrc: /images/reviews/everything-everywhere-all-at-once.jpg
 imgAlt: Cover art for Everything Everywhere All at Once.
 
-name: Everything Everywhere ...
+name: Everything Everywhere...
 reviewDate: 2024-02-27
 releaseDate: 2022-03-11
 typeOrGenre: ['Action', 'Adventure', 'Comedy']
