@@ -49,6 +49,7 @@ The GBA actually has two processors, which enables backwards compatibility with 
 This is the most standard part of the implementation. In general, there shouldn't be too many surprises while implementing the instruction sets of each CPU. The resources I will use to implement the instructions will be provided in a future post, once I turn my focus to implementing the CPU.
 
 <img src="" alt="The Game Boy CPU" />
+
 #### Bus
 
 Contrary to what might actually be the best way to go about this implementation, I decided to implement the bus first, and then work on the CPU. I decided to go this route because the bus will be what decides much of the remainder of the architecture, and you don't need to know much about the rest of your implementation to get it to a nearly-complete state.
