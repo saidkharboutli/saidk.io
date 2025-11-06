@@ -5,7 +5,7 @@ description: This is the second post in my GBA Emulator project series in which 
 pubDate: 
 imgSrc: /images/posts/gba-emulator/part-2/banner.jpg
 imgAlt: A banner for this blog post, displaying a GBA motherboard.
-tags: EmuDev, Emulators, Low-Level, GBA
+tags: [EmuDev, Emulators, Low-Level, GBA]
 series: GBA Emulator
 isProject: true
 draft: true

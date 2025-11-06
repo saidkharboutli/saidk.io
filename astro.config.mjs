@@ -3,7 +3,6 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
-import { astroImageTools } from 'astro-imagetools';
 
 import cloudflare from '@astrojs/cloudflare';
 import sectionize from '@hbsnow/rehype-sectionize';
@@ -22,13 +21,7 @@ export default defineConfig({
     },
     rehypePlugins: [sectionize],
   },
-  integrations: [
-    react(),
-    tailwind({}),
-    sitemap(),
-    robotsTxt(),
-    astroImageTools,
-  ],
-  output: 'hybrid',
+  integrations: [react(), tailwind({}), sitemap(), robotsTxt()],
+  output: 'static',
   adapter: cloudflare({}),
 });

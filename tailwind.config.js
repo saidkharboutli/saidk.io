@@ -4,7 +4,7 @@ const plugin = require('tailwindcss/plugin');
 module.exports = {
   content: [
     './src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}',
-    './node_modules/astro-boilerplate-components/**/*.{js,ts,jsx,tsx}',
+    './node_modules/saidk-io-components/**/*.{js,ts,jsx,tsx}', // Was astro-boilerplate-components
   ],
   theme: {
     extend: {

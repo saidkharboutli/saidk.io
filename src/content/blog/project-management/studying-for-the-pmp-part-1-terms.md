@@ -5,7 +5,7 @@ description: This is the first post in my "Studying for the PMP" series! This pa
 pubDate:
 imgSrc: '/images/posts/studying-for-the-pmp/part-1/banner.jpg'
 imgAlt: 'A banner displaying the PMP logo'
-tags: Project Management, PMP
+tags: [Project Management, PMP]
 series: Studying for the PMP
 isProject: False
 draft: True

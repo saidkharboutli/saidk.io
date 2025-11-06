@@ -5,7 +5,7 @@ description: This post introduces my next emulation project—a GBA emulator for
 pubDate: 
 imgSrc: '/images/posts/gba-emulator/part-1/banner.jpg'
 imgAlt: 'A banner for this blog post, displaying a GBA motherboard.'
-tags: EmuDev, Emulators, Low-Level, GBA
+tags: [EmuDev, Emulators, Low-Level, GBA]
 series: GBA Emulator
 isProject: True
 draft: True

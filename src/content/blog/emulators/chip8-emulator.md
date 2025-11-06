@@ -5,7 +5,7 @@ description: This blog post covers the reasoning for making a CHIP8 emulator and
 pubDate: 2024-02-22T17:00:00-05:00
 imgSrc: '/images/posts/chip8-emulator/banner-ibm.png'
 imgAlt: 'Image post'
-tags: EmuDev, Emulators, Low-Level, CHIP8
+tags: [EmuDev, Emulators, Low-Level, CHIP8]
 series: CHIP8 Emulator
 isProject: True
 ---

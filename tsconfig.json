@@ -1,46 +1,25 @@
 {
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.astro",
+    ".astro/types.d.ts"
+  ],
+  "exclude": ["dist"],
+  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    // Enable top-level await, and other modern ESM features.
-    "target": "ESNext",
-    "module": "ESNext",
-    // Enable node-style module resolution, for things like npm package imports.
-    "moduleResolution": "node",
-    // Enable JSON imports.
-    "resolveJsonModule": true,
-
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "strict": true,
-    "alwaysStrict": true,
-    "noUncheckedIndexedAccess": false,
-    "strictNullChecks": false,
-
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowUnreachableCode": false,
-    "noFallthroughCasesInSwitch": true,
-
-    "declaration": true,
-
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "allowJs": false,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
+    "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
-    // Enable stricter transpilation for better output.
-    "isolatedModules": false,
-    // Add type definitions for our Vite runtime.
+
+    // Removed options
+    // "noUncheckedIndexedAccess": false,
+    // "isolatedModules": false,
+    // "preserveConstEnums": true,
+
     "types": ["vite/client"],
 
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"]
+    "paths": { "@/*": ["./src/*"] }
+  }
 }
