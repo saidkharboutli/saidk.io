@@ -13,16 +13,23 @@
         "pubDate": {
           "anyOf": [
             {
-              "type": "string",
-              "format": "date-time"
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "integer",
+                  "format": "unix-time"
+                }
+              ]
             },
             {
-              "type": "string",
-              "format": "date"
-            },
-            {
-              "type": "integer",
-              "format": "unix-time"
+              "type": "null"
             }
           ]
         },
@@ -70,7 +77,6 @@
       "required": [
         "title",
         "description",
-        "pubDate",
         "imgSrc",
         "imgAlt",
         "tags"
