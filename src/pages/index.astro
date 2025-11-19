@@ -2,7 +2,6 @@
 // -- After launch --
 // - Fix email for light and dark modes
 
-
 import { getCollection } from 'astro:content';
 
 import { Hero } from '@/features/Hero/Hero';
@@ -10,18 +9,22 @@ import { RecentPosts } from '@/features/Hero/RecentPosts';
 import { ProjectList } from '@/features/ProjectViews/ProjectList';
 import { CTA } from '@/features/shared/CTA';
 import Base from '@/templates/Base.astro';
-import type { ProjectAndPost } from '@/types/IProjectAndPost';
+import type { IProjectAndPost } from '@/types/IProjectAndPost';
 import { AppConfig } from '@/utils/AppConfig';
 
-const allPosts = (await getCollection('blog', ({data}) => {
-  return import.meta.env.PROD ? !data.draft : true;
-})).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allPosts = (
+  await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  })
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const allProjects = (await getCollection('projects')).sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf());
+const allProjects = (await getCollection('projects')).sort(
+  (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf()
+);
 
-const projectAndPost: ProjectAndPost[] = [];
+const projectAndPost: IProjectAndPost[] = [];
 allProjects.forEach((project) => {
-  const data: ProjectAndPost = { project, post: null };
+  const data: IProjectAndPost = { project, post: null };
   allPosts.forEach((post) => {
     if (data.project.data.series === post.data.series && post.data.isProject) data.post = post;
   });
@@ -34,7 +37,7 @@ const { title, description } = AppConfig;
 <Base head={{ title, description }}>
   <Hero client:load />
 
-  <ProjectList projectList={projectAndPost.slice(0, 3)}/>
+  <ProjectList projectList={projectAndPost.slice(0, 3)} />
 
   <RecentPosts postList={allPosts.slice(0, 4)} />
 

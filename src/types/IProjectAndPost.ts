@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 
-export type ProjectAndPost = {
+export type IProjectAndPost = {
   project: CollectionEntry<'projects'>;
   post: CollectionEntry<'blog'> | null;
 };

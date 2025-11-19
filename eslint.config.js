@@ -29,6 +29,14 @@ export default [
     plugins: {
       prettier: prettierPlugin,
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+      },
+    },
     rules: {
       ...js.configs.recommended.rules,
       'prettier/prettier': 'error',
@@ -59,6 +67,12 @@ export default [
       react: {
         version: 'detect',
       },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+      },
     },
     rules: {
       // TypeScript recommended rules
@@ -88,6 +102,7 @@ export default [
           jsx: 'never',
           ts: 'never',
           tsx: 'never',
+          astro: 'never',
         },
       ],
 
@@ -143,6 +158,12 @@ export default [
       react: {
         version: 'detect',
       },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+      },
     },
     rules: {
       // Astro recommended rules
@@ -172,12 +193,13 @@ export default [
           jsx: 'never',
           ts: 'never',
           tsx: 'never',
+          astro: 'never',
         },
       ],
       'import/no-unresolved': [
         'error',
         {
-          ignore: ['^@/'],
+          ignore: ['^@/', '^astro:'], // TODO: Why is this needed for Astro imports to not error?
         },
       ],
       'import/prefer-default-export': 'off',
