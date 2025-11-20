@@ -1,14 +1,13 @@
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 import { ReviewGallery } from '@/features/Reviews/ReviewGallery';
 import { GradientText } from '@/features/shared/GradientText';
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 import { getNameFromSlug } from '@/utils/helpers';
 
 type IReviewTypeViewProps = {
   typeData: {
     type: string;
-    reviews: MarkdownInstance<IFrontMatterReview>[];
+    reviews: CollectionEntry<'reviews'>[];
   }[];
 };
 
@@ -18,7 +17,7 @@ const ReviewTypeView = (props: IReviewTypeViewProps) => (
       props.typeData
         .sort((a, b) => a.type.localeCompare(b.type))
         .map((typeDatum) => (
-          <div className="flex flex-col pb-8">
+          <div key={typeDatum.type} className="flex flex-col pb-8">
             <div className="flex flex-row">
               <div className="flex w-1/2">
                 <a
@@ -30,8 +29,7 @@ const ReviewTypeView = (props: IReviewTypeViewProps) => (
               </div>
               <div className="flex w-1/2 items-end justify-end gap-1">
                 <span className="text-xs">
-                  ({typeDatum.reviews.slice(0, 3).length} of{' '}
-                  {typeDatum.reviews.length})
+                  ({typeDatum.reviews.slice(0, 3).length} of {typeDatum.reviews.length})
                 </span>
                 <span className="text-sm">Latest ↓</span>
               </div>

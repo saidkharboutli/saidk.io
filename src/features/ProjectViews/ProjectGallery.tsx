@@ -1,25 +1,15 @@
-import type { MarkdownInstance } from 'astro';
-
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
+import type { IProjectAndPost } from '@/types/IProjectAndPost';
 
 import { ProjectCard } from './components/ProjectCard';
 
 type IRecentProjectsProps = {
-  projectList: {
-    project: MarkdownInstance<IFrontMatterProject>;
-    post: MarkdownInstance<IFrontMatterPost>;
-  }[];
+  projectPostPair: IProjectAndPost[];
 };
 
 const ProjectGallery = (props: IRecentProjectsProps) => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-    {props.projectList.map((elt) => (
-      <ProjectCard
-        key={elt.project.url}
-        instance={elt.project}
-        latestPost={elt.post}
-      />
+    {props.projectPostPair.map((elt) => (
+      <ProjectCard key={elt.project.id} project={elt.project} latestPost={elt.post} />
     ))}
   </div>
 );

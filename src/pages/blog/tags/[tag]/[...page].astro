@@ -1,4 +1,7 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import { CTA } from '@/features/shared/CTA';
@@ -6,27 +9,19 @@ import { GradientText } from '@/features/shared/GradientText';
 import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
 import { Section } from '@/features/shared/Section';
 import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { FrontMatterPostPage, IFrontMatterPost} from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, sortPostsByDate,tagDataFromArr  } from '@/utils/helpers';
+import { tagDataFromArr } from '@/utils/helpers';
 
-interface GetStaticPaths {
-  paginate: any;
-};
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? !data.draft : true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const allUniqueTags = new Set<string>();
 
-interface Props {
-  page: FrontMatterPostPage;
-  tagData: any;
-}
-
-export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../../**/*.md'));
-  const allUniqueTags = new Set<any>();
-  const sortedPosts = sortPostsByDate(allPosts);
-
-  sortedPosts.forEach(post => {
-    post.frontmatter.tags.split(', ').forEach(tag => {
+  allPosts.forEach((post) => {
+    post.data.tags.forEach((tag) => {
       allUniqueTags.add(tag);
     });
   });
@@ -34,37 +29,37 @@ export async function getStaticPaths({ paginate }: GetStaticPaths) {
   const tagData = tagDataFromArr(allUniqueTags);
 
   return tagData.flatMap((tag) => {
-    const posts = sortedPosts.filter((post) =>  post.frontmatter.tags.split(', ').includes(tag.name))
-    return paginate( posts,  {props: { tagData: tag }, params: { tag: tag.slug }, pageSize: 10});
-    }
-  )
-}
+    const posts = allPosts.filter((post) => post.data.tags.includes(tag.name));
+    return paginate(posts, { props: { tagData: tag }, params: { tag: tag.slug }, pageSize: 10 });
+  });
+}) satisfies GetStaticPaths;
 
-
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page, tagData } = Astro.props as Props;
-// @ts-ignore
+
 // eslint-disable-next-line unused-imports/no-unused-vars
-const { tag } = Astro.params; 
+const { tag } = Astro.params;
 
 const title = `"${tagData.name}" Tag | ${AppConfig.site_name}`;
-const description =
-  `All blog posts tagged with ${tagData.name} - Sa'id Kharboutli - Page ${page}`;
+const description = `All blog posts tagged with ${tagData.name} - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold">Posts Tagged with: <GradientText>{tagData.name}</GradientText></h1>
+      <h1 class="text-3xl font-bold">
+        Posts Tagged with: <GradientText>{tagData.name}</GradientText>
+      </h1>
     </div>
     <div class="mt-1 flex justify-center text-xs">
       <a href="/blog/tags/" class="transition-all duration-150 hover:text-primary hover:scale-105">
-      View All Tags
+        View All Tags
       </a>
     </div>
   </Section>
 
   <Section>
-    <BlogCardSpotlight instance={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]!} />
   </Section>
 
   <Section>

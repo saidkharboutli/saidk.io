@@ -1,4 +1,7 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import PostSearchBar from '@/features/BlogViews/components/PostSearchBar.astro';
@@ -7,31 +10,23 @@ import { GradientText } from '@/features/shared/GradientText';
 import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
 import { Section } from '@/features/shared/Section';
 import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
-// eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, sortPostsByDate } from '@/utils/helpers';
 
-interface GetStaticPaths {
-  paginate: any;
-};
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-interface Props {
-  page: FrontMatterPostPage;
-}
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? !data.draft : true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('./**/*.md'));
-  const sortedPosts = sortPostsByDate(allPosts);
-
-  return paginate(sortedPosts, { pageSize: 10 });
-}
+  return paginate(allPosts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
 
 const { page } = Astro.props as Props;
 const title = `Blog | ${AppConfig.site_name}`;
-const description =
-  `All blog posts - Sa'id Kharboutli - Page ${page}`;
+const description = `All blog posts - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>
@@ -40,7 +35,10 @@ const description =
       <h1 class="text-3xl font-bold">All <GradientText>Blog Posts</GradientText></h1>
     </div>
     <div class="mt-2 flex flex-row justify-center gap-3 text-center text-xs">
-      <a href="/blog/topics/" class="transition-all duration-150 hover:text-primary hover:scale-110">
+      <a
+        href="/blog/topics/"
+        class="transition-all duration-150 hover:text-primary hover:scale-110"
+      >
         Topics
       </a>|
       <a href="/blog/tags/" class="transition-all duration-150 hover:text-primary hover:scale-110">
@@ -54,8 +52,8 @@ const description =
   </Section>
 
   <Section>
-    <BlogCardSpotlight instance={page.data[0]!} />
-    
+    <BlogCardSpotlight post={page.data[0]!} />
+
     <BlogGallery postList={page.data.slice(1)} />
   </Section>
 

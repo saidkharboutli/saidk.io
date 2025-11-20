@@ -1,10 +1,9 @@
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { formatDate, getNameFromSlug, getTopicFromUrl } from '@/utils/helpers';
 
 type IBlogCardProps = {
-  instance: MarkdownInstance<IFrontMatterPost>;
+  post: CollectionEntry<'blog'>;
   includeImage?: boolean;
 };
 
@@ -12,11 +11,11 @@ const BlogCardMin = (props: IBlogCardProps) => (
   <div className="overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105">
     {!(props.includeImage === false) && (
       <div>
-        <a href={props.instance.url}>
+        <a href={props.post.id}>
           <img
             className="object-cover object-center hover:opacity-50"
-            src={props.instance.frontmatter.imgSrc}
-            alt={props.instance.frontmatter.imgAlt}
+            src={props.post.data.imgSrc}
+            alt={props.post.data.imgAlt}
             loading="lazy"
           />
         </a>
@@ -27,11 +26,8 @@ const BlogCardMin = (props: IBlogCardProps) => (
       {/* Topic */}
       <div className="mb-0.5">
         <h2 className="text-sm font-semibold text-indigo-400 transition-all duration-200 hover:scale-110">
-          <a
-            className=""
-            href={`/blog/topics/${getTopicFromUrl(props.instance.url!)}/`}
-          >
-            {getNameFromSlug(getTopicFromUrl(props.instance.url!)!)}
+          <a className="" href={`/blog/topics/${getTopicFromUrl(props.post.id!)}/`}>
+            {getNameFromSlug(getTopicFromUrl(props.post.id!)!)}
           </a>
         </h2>
       </div>
@@ -39,8 +35,8 @@ const BlogCardMin = (props: IBlogCardProps) => (
       {/* Title */}
       <div>
         <h2 className="text-xl font-semibold hover:text-primary">
-          <a className="hover:translate-y-1" href={props.instance.url}>
-            {props.instance.frontmatter.title}
+          <a className="hover:translate-y-1" href={props.post.id}>
+            {props.post.data.title}
           </a>
         </h2>
       </div>
@@ -62,7 +58,7 @@ const BlogCardMin = (props: IBlogCardProps) => (
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             ></path>
           </svg>
-          {formatDate(props.instance.frontmatter.pubDate)}
+          {formatDate(props.post.data.pubDate)}
         </span>
       </div>
     </div>

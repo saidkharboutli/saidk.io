@@ -9,7 +9,7 @@ const { heading } = Astro.props;
   {
     heading.children?.length > 0 && (
       <ul class="pl-6">
-        {heading.children.map((subheading: any) => (
+        {heading.children.map((subheading: string) => (
           <Astro.self heading={subheading} />
         ))}
       </ul>
@@ -18,13 +18,13 @@ const { heading } = Astro.props;
 </li>
 
 <style>
-a {
-  display: block;
-  color: #BB86FC;
-  padding: 0.25rem 0.5rem;
-}
+  a {
+    display: block;
+    color: #bb86fc;
+    padding: 0.25rem 0.5rem;
+  }
 
-a:not(.active) {
-  color: white;
-}
+  a:not(.active) {
+    color: white;
+  }
 </style>

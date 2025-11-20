@@ -1,23 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
+
 import { TagList } from '@/features/BlogViews/PostTagListView';
 import { CTA } from '@/features/shared/CTA';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
 import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts } from '@/utils/helpers';
 
 const title = `Blog Tags | ${AppConfig.site_name}`;
-const description =
-  "Here you can find all the tags used on blog articles - Sa'id Kharboutli";
+const description = "Here you can find all the tags used on blog articles - Sa'id Kharboutli";
 
-const allUniqueTags = new Set<any>();
-const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../**/*.md'));
+const allUniqueTags = new Set<string>();
+const allPosts = (
+  await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  })
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-allPosts.forEach(post => {
-  post.frontmatter.tags.split(', ').forEach(tag => {
+allPosts.forEach((post) => {
+  post.data.tags.forEach((tag) => {
     allUniqueTags.add(tag);
   });
 });
@@ -29,6 +31,6 @@ allPosts.forEach(post => {
       <h1 class="text-3xl font-bold">All <GradientText>Tags</GradientText></h1>
     </div>
   </Section>
-    <TagList tags={allUniqueTags}/>
+  <TagList tags={allUniqueTags} />
   <CTA client:load />
 </Base>

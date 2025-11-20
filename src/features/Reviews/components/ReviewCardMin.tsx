@@ -1,21 +1,20 @@
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 import { SkillRankingCard } from '@/features/AboutMe/AboutMeSkills';
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 import { getNameFromSlug, getReviewTypeFromUrl } from '@/utils/helpers';
 
 interface IReviewCardProps {
-  review: MarkdownInstance<IFrontMatterReview>;
+  review: CollectionEntry<'reviews'>;
 }
 
 const ReviewCardMin = (props: IReviewCardProps) => (
   <div className="flex w-full flex-col overflow-hidden rounded-md bg-cod-950 delay-150 duration-300 hover:scale-105">
     <div className="flex items-center justify-center">
-      <a href={props.review.frontmatter.link}>
+      <a href={props.review.data.link}>
         <img
           className="aspect-1 size-full rounded-md object-cover object-center hover:opacity-50 md:h-[250px]"
-          src={props.review.frontmatter.imgSrc}
-          alt={props.review.frontmatter.imgAlt}
+          src={props.review.data.imgSrc}
+          alt={props.review.data.imgAlt}
           loading="lazy"
         />
       </a>
@@ -27,9 +26,9 @@ const ReviewCardMin = (props: IReviewCardProps) => (
         <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
           <a
             className="hover:translate-y-1"
-            href={`/reviews/${getReviewTypeFromUrl(props.review.url!)}/`}
+            href={`/reviews/${getReviewTypeFromUrl(props.review.id!)}/`}
           >
-            {getNameFromSlug(getReviewTypeFromUrl(props.review.url!)!)}
+            {getNameFromSlug(getReviewTypeFromUrl(props.review.id!)!)}
           </a>
         </h2>
       </div>
@@ -37,18 +36,14 @@ const ReviewCardMin = (props: IReviewCardProps) => (
       {/* Media Name */}
       <div>
         <h2 className="text-xl font-semibold hover:text-violet-300">
-          <a href={props.review.frontmatter.link}>
-            {props.review.frontmatter.name}
-          </a>
+          <a href={props.review.data.link}>{props.review.data.name}</a>
         </h2>
       </div>
 
       {/* Album & Book Only: Author/Artist */}
-      {(getReviewTypeFromUrl(props.review.url!) === 'albums' ||
-        getReviewTypeFromUrl(props.review.url!) === 'books') && (
-        <span className="text-base font-bold">
-          {props.review.frontmatter.artistOrAuthor}
-        </span>
+      {(getReviewTypeFromUrl(props.review.id!) === 'albums' ||
+        getReviewTypeFromUrl(props.review.id!) === 'books') && (
+        <span className="text-base font-bold">{props.review.data.artistOrAuthor}</span>
       )}
 
       {/* Ranking (out of 100) */}
@@ -56,19 +51,19 @@ const ReviewCardMin = (props: IReviewCardProps) => (
         <div className="mt-2 text-base">
           <span className="font-bold">Rating </span>
           <SkillRankingCard
-            skill={`${props.review.frontmatter.rating}`}
-            level={Math.floor(props.review.frontmatter.rating / 40)}
+            skill={`${props.review.data.rating}`}
+            level={Math.floor(props.review.data.rating / 40)}
           />
         </div>
 
         {/* Spotify/Amazon/Goodreads/IMDb Links */}
-        {props.review.frontmatter.link && (
+        {props.review.data.link && (
           <div className="">
-            <a href={props.review.frontmatter.link}>
+            <a href={props.review.data.link}>
               <img
                 className="size-8 rounded-md text-sm delay-200 duration-200 hover:scale-110"
                 src={`/images/site/${(() => {
-                  switch (getReviewTypeFromUrl(props.review.url!)) {
+                  switch (getReviewTypeFromUrl(props.review.id!)) {
                     case 'albums':
                       return 'spotify';
                     case 'books':

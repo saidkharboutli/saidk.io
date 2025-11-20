@@ -1,41 +1,40 @@
 ---
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 import { ReviewTypeView } from '@/features/Reviews/ReviewTypeView';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
 import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
-// eslint-disable-next-line prettier/prettier
 import { AppConfig } from '@/utils/AppConfig';
 import { getNameFromSlug, getReviewTypeFromUrl, sortReviewsByReviewDate } from '@/utils/helpers';
 
 interface ITypeData {
   type: string;
-  reviews: MarkdownInstance<IFrontMatterReview>[];
+  reviews: CollectionEntry<'reviews'>[];
 }
+const allReviews = (await getCollection('reviews')).sort(
+  (a, b) => b.data.reviewDate.valueOf() - a.data.reviewDate.valueOf()
+);
 
-const uniqueReviewTypes = new Set<any>();
-const allReviews = await Astro.glob<IFrontMatterReview>('./**/*.md');
-  allReviews.forEach(review => {
-  uniqueReviewTypes.add(
-        getReviewTypeFromUrl(review.url!));
+const uniqueReviewTypes = new Set<string>();
+
+allReviews.forEach((review) => {
+  uniqueReviewTypes.add(getReviewTypeFromUrl(review.id!));
 });
 
 const typeData: ITypeData[] = [];
-uniqueReviewTypes.forEach(type => {
-  const typeDatum: ITypeData = {type, reviews: []};
-  allReviews.forEach(review => {
-    if(getReviewTypeFromUrl(review.url!) === type) typeDatum.reviews.push(review)
+uniqueReviewTypes.forEach((type) => {
+  const typeDatum: ITypeData = { type, reviews: [] };
+  allReviews.forEach((review) => {
+    if (getReviewTypeFromUrl(review.id!) === type) typeDatum.reviews.push(review);
   });
   typeDatum.reviews = sortReviewsByReviewDate(typeDatum.reviews);
   typeData.push(typeDatum);
 });
 
 const title = `Reviews | ${AppConfig.site_name}`;
-const description =
-  "All reviews--find all my opinions on media and products - Sa'id Kharboutli";
+const description = "All reviews--find all my opinions on media and products - Sa'id Kharboutli";
 ---
 
 <Base head={{ title, description }}>
@@ -45,19 +44,23 @@ const description =
     </div>
 
     <div class="mt-2 flex justify-center gap-1 text-center md:gap-2">
-      {[...uniqueReviewTypes].map((reviewType, i, arr) => (
-      <div class="flex justify-center gap-1 text-xs md:gap-2">
-        <a href={`/reviews/${reviewType}/`} class="font-semibold transition-all duration-150 hover:text-primary hover:scale-110">
-          {getNameFromSlug(reviewType)}
-        </a>
-        {(i !== arr.length - 1) && <div class="flex">|</div>}
-      </div>
-      ))}
+      {
+        [...uniqueReviewTypes].map((reviewType, i, arr) => (
+          <div class="flex justify-center gap-1 text-xs md:gap-2">
+            <a
+              href={`/reviews/${reviewType}/`}
+              class="font-semibold transition-all duration-150 hover:text-primary hover:scale-110"
+            >
+              {getNameFromSlug(reviewType)}
+            </a>
+            {i !== arr.length - 1 && <div class="flex">|</div>}
+          </div>
+        ))
+      }
     </div>
-
   </Section>
-  
+
   <Section>
-    <ReviewTypeView typeData={typeData}/>
+    <ReviewTypeView typeData={typeData} />
   </Section>
 </Base>

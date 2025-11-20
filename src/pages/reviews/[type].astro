@@ -1,48 +1,49 @@
 ---
-import type { MarkdownInstance } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
 import { ReviewGallery } from '@/features/Reviews/ReviewGallery';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
 import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 import { AppConfig } from '@/utils/AppConfig';
 import { getNameFromSlug, getReviewTypeFromUrl } from '@/utils/helpers';
 
 interface Props {
-  reviews: MarkdownInstance<IFrontMatterReview>[];
+  reviews: CollectionEntry<'reviews'>[];
 }
 
 export async function getStaticPaths() {
-  const allReviews: MarkdownInstance<IFrontMatterReview>[] = await Astro.glob<IFrontMatterReview>('./**/*.md');
-  const uniqueReviewTypes = new Set<any>();
-  allReviews.forEach(review => {
-    uniqueReviewTypes.add(getReviewTypeFromUrl(review.url!));
+  const allReviews = (await getCollection('reviews')).sort(
+    (a, b) => b.data.reviewDate.valueOf() - a.data.reviewDate.valueOf()
+  );
+
+  const uniqueReviewTypes = new Set<string>();
+  allReviews.forEach((review) => {
+    uniqueReviewTypes.add(getReviewTypeFromUrl(review.id!));
   });
   return [...uniqueReviewTypes].flatMap((type) => {
-    const reviews = allReviews.filter((review) =>  getReviewTypeFromUrl(review.url!) === type)
+    const reviews = allReviews.filter((review) => getReviewTypeFromUrl(review.id!) === type);
     return { props: { reviews }, params: { type } };
-    }
-  )
+  });
 }
 
 const { reviews } = Astro.props as Props;
-const { type } = Astro.params; 
+const { type } = Astro.params;
 
 const title = `Reviews: ${getNameFromSlug(type)} | ${AppConfig.site_name}`;
-const description =
-  `All reviews under the ${getNameFromSlug(type)} category - Sa'id Kharboutli`;
+const description = `All reviews under the ${getNameFromSlug(type)} category - Sa'id Kharboutli`;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold">Reviews: <GradientText>{getNameFromSlug(type)}</GradientText></h1>
+      <h1 class="text-3xl font-bold">
+        Reviews: <GradientText>{getNameFromSlug(type)}</GradientText>
+      </h1>
     </div>
     <div class="mt-2 flex justify-center text-xs">
       <a href="/reviews/" class="transition-all duration-150 hover:text-primary hover:scale-110">
-      View All Reviews
+        View All Reviews
       </a>
     </div>
   </Section>

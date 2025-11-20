@@ -1,7 +1,6 @@
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import { useState } from 'react';
 
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 import {
   sortReviewsByRating,
   sortReviewsByReleaseDate,
@@ -12,7 +11,7 @@ import { ReviewCard } from './components/ReviewCard';
 
 interface IReviewGalleryProps {
   sortAndLimit?: boolean;
-  reviews: MarkdownInstance<IFrontMatterReview>[];
+  reviews: CollectionEntry<'reviews'>[];
 }
 
 const ReviewGallery = (props: IReviewGalleryProps) => {
@@ -24,7 +23,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
     return selectValue;
   };
   const [selectValue, setSelectValue] = useState(getInitialSelectState());
-  const handleSelectChange = (e: any) => {
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectValue(e.target.value);
   };
 
@@ -56,9 +55,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
     <div>
       {props.sortAndLimit === true && (
         <div className="mb-8 flex w-full flex-col items-center justify-center gap-2 md:flex-row">
-          <label className="block text-sm font-medium text-gray-900 dark:text-white">
-            Sort By
-          </label>
+          <label className="block text-sm font-medium text-gray-900 dark:text-white">Sort By</label>
           <select
             id="sort"
             value={selectValue}
@@ -75,7 +72,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
 
       <div className="mb-6 flex flex-col gap-4">
         {sorted.map((review) => (
-          <ReviewCard key={review.url} review={review} />
+          <ReviewCard key={review.id} review={review} />
         ))}
       </div>
 

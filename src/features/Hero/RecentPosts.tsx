@@ -1,13 +1,12 @@
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 
 type IRecentPostsProps = {
-  postList: MarkdownInstance<IFrontMatterPost>[];
+  postList: CollectionEntry<'blog'>[];
 };
 
 const RecentPosts = (props: IRecentPostsProps) => (
@@ -24,7 +23,7 @@ const RecentPosts = (props: IRecentPostsProps) => (
       </div>
     }
   >
-    {props.postList[0] && <BlogCardSpotlight instance={props.postList[0]} />}
+    {props.postList[0] && <BlogCardSpotlight post={props.postList[0]} />}
 
     {props.postList[1] && <BlogGallery postList={props.postList.slice(1)} />}
   </Section>

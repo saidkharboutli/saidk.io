@@ -7,10 +7,7 @@ import PostComments from '@/features/BlogPost/components/PostComments.astro';
 import TableOfContents from '@/features/BlogPost/components/TableOfContents.astro';
 import { CTA } from '@/features/shared/CTA';
 import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, sortPostsByDate } from '@/utils/helpers';
 
 export interface Props {
   content: IFrontMatterPost;
@@ -22,29 +19,34 @@ const { content, headings } = Astro.props as Props;
 const path = Astro.url.pathname;
 const title = `${content.title} - ${AppConfig.site_name}`;
 
-const prevNextInSeries = {previous: null as any, next: null as any};
-if(content.series) {
+const prevNextInSeries = { previous: null as any, next: null as any };
+if (content.series) {
   const allPostsInSeries: any[] = [];
   const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('@/pages/blog/**/*.md'));
-  allPosts.forEach(post => {
-    if(post.frontmatter.series === content.series) allPostsInSeries.push(post);
-  })
+  allPosts.forEach((post) => {
+    if (post.frontmatter.series === content.series) allPostsInSeries.push(post);
+  });
 
   const sortedPostsInSeries = sortPostsByDate(allPostsInSeries);
   sortedPostsInSeries.forEach((post) => {
-    if(new Date(post.frontmatter.pubDate) < new Date(content.pubDate)) prevNextInSeries.previous = post;
-    else if (new Date(post.frontmatter.pubDate) > new Date(content.pubDate) && !prevNextInSeries.next) prevNextInSeries.next = post;
-  })
+    if (new Date(post.frontmatter.pubDate) < new Date(content.pubDate))
+      prevNextInSeries.previous = post;
+    else if (
+      new Date(post.frontmatter.pubDate) > new Date(content.pubDate) &&
+      !prevNextInSeries.next
+    )
+      prevNextInSeries.next = post;
+  });
 }
-
 ---
+
 <Base head={{ title, description: content.description }}>
   <!-- data-pagefind-body signals to pagefind to only index this layout content -->
   <div data-pagefind-body>
-    <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries} >
-      <BlogViewCounter slot='views' client:only="react" />
-      <TableOfContents headings={headings} slot='toc' />
-      <slot></slot>
+    <BlogPost frontmatter={content} path={path} prevNextInSeries={prevNextInSeries}>
+      <BlogViewCounter slot="views" client:only="react" />
+      <TableOfContents headings={headings} slot="toc" />
+      <slot />
     </BlogPost>
 
     <PostComments />

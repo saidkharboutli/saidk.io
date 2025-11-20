@@ -25,12 +25,12 @@ const BlogViewCounter = () => {
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
-        if (!data.count || Number.isNaN(Number(data.count)))
-          throw new Error('Invalid data');
+        if (!data.count || Number.isNaN(Number(data.count))) throw new Error('Invalid data');
 
         setViews(Number(data.count));
       } catch (error) {
         setViews(1);
+        console.error('Error fetching view count:', error);
       }
     };
 

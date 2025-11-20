@@ -37,7 +37,7 @@ const { title, description } = AppConfig;
 <Base head={{ title, description }}>
   <Hero client:load />
 
-  <ProjectList projectList={projectAndPost.slice(0, 3)} />
+  <ProjectList projectPostPair={projectAndPost.slice(0, 3)} />
 
   <RecentPosts postList={allPosts.slice(0, 4)} />
 

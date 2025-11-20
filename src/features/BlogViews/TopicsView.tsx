@@ -1,3 +1,5 @@
+import type { CollectionEntry } from 'astro:content';
+
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
 import { GradientText } from '@/features/shared/GradientText';
 import { getNameFromSlug } from '@/utils/helpers';
@@ -5,7 +7,7 @@ import { getNameFromSlug } from '@/utils/helpers';
 type ITopicsViewProps = {
   topicData: {
     topic: string;
-    posts: any[];
+    posts: CollectionEntry<'blog'>[];
   }[];
 };
 
@@ -15,22 +17,19 @@ const TopicsView = (props: ITopicsViewProps) => (
       props.topicData
         .sort((a, b) => a.topic.localeCompare(b.topic))
         .map((topicDatum) => (
-          <div className="flex flex-col pb-8">
+          <div key={topicDatum.topic} className="flex flex-col pb-8">
             <div className="flex flex-row">
               <div className="flex w-1/2">
                 <a
                   href={`/blog/topics/${topicDatum.topic}/`}
                   className="px-1.5 py-0.5 font-bold transition-all duration-150 hover:scale-110"
                 >
-                  <GradientText>
-                    {getNameFromSlug(topicDatum.topic)}
-                  </GradientText>
+                  <GradientText>{getNameFromSlug(topicDatum.topic)}</GradientText>
                 </a>
               </div>
               <div className="flex w-1/2 items-end justify-end gap-1">
                 <span className="text-xs">
-                  ({topicDatum.posts.slice(0, 3).length} of{' '}
-                  {topicDatum.posts.length})
+                  ({topicDatum.posts.slice(0, 3).length} of {topicDatum.posts.length})
                 </span>
                 <span className="text-sm">Latest ↓</span>
               </div>
