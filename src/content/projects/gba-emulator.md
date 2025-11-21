@@ -1,7 +1,4 @@
 ---
-# Layout File
-layout: '@/templates/BaseProject.astro'
-
 # Banner Image
 imgSrc: '/images/projects/gba-emulator.jpg'
 imgAlt: 'A GBA playing Pokemon.'

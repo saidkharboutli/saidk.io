@@ -1,5 +1,4 @@
 ---
-layout: '@/templates/BasePost.astro'
 title: 'Studying for the PMP: Part 1 — Terms'
 description: This is the first post in my "Studying for the PMP" series! This part will cover an introduction to the PMP exam and an overview of important PM terms.
 pubDate:
@@ -15,7 +14,7 @@ draft: True
 
 These are **all** my personal, handwritten notes, converted to text (via reMarkable), and cleaned up and reformatted with ChatGPT (GPT does a great job fixing the formatting for me).
 
-This is the first entry in the "Studying for the PMP" series. This section will cover both the basics of the PMP exam and the first *actual* section, an overview of basic terms.
+This is the first entry in the "Studying for the PMP" series. This section will cover both the basics of the PMP exam and the first _actual_ section, an overview of basic terms.
 
 ## Introduction
 
@@ -57,7 +56,7 @@ If you fail to complete 60 PDU's in a 3-year span, your PMP certification will b
 
 ### PMP Application
 
-Start thinking about what you want to include as a Project on your application! Remember: 36 months of management. Your role doesn't matter, just that you were in some way *managing a project*.
+Start thinking about what you want to include as a Project on your application! Remember: 36 months of management. Your role doesn't matter, just that you were in some way _managing a project_.
 
 ## Project Management Terms (An Overview)
 
@@ -84,7 +83,7 @@ Start thinking about what you want to include as a Project on your application! 
 
 - What value will this project bring to the company upon completion.
 - Why should we undertake this project?
-- *Possible project values:* Money, Brand Reputation, New or Changed Operations, Customer Service, or a New Product or Service.
+- _Possible project values:_ Money, Brand Reputation, New or Changed Operations, Customer Service, or a New Product or Service.
 
 ### Operations Management
 
@@ -101,7 +100,7 @@ Start thinking about what you want to include as a Project on your application! 
 
 ### Portfolio Management
 
-- **Definition:** A portfolio is a collection of **projects**, **programs**, **subsidiary portfolios**, and **operations** *managed as a group* to achieve strategic objectives.
+- **Definition:** A portfolio is a collection of **projects**, **programs**, **subsidiary portfolios**, and **operations** _managed as a group_ to achieve strategic objectives.
 - The hierarchy is as follows: Projects < Programs < Portfolios.
 
 ### Phases
@@ -147,7 +146,7 @@ Start thinking about what you want to include as a Project on your application! 
   - Responsible for the success and failure of the project.
 - Project Coordinator:
   - Less authority than a project manager.
-  - *May* be authorized to make decisions.
+  - _May_ be authorized to make decisions.
 - Project Expediter:
   - The least authority in the project management "world".
   - Very limited decision-making ability.
@@ -170,17 +169,17 @@ Start thinking about what you want to include as a Project on your application! 
   - Team members are only ever part of a project, not functional groups.
   - When a project is over, team members move to new projects, not back to functional departments like they might in other structures.
 - **Hybrid:** As the name suggests, it's a mix of the above.
-- *In general*, the organization structure tells us who has more control over **resources**, the PM or the functional manager.
+- _In general_, the organization structure tells us who has more control over **resources**, the PM or the functional manager.
 
 ### Constraints
 
 - The following are the important constraints defined by PMBOK6:
-  1. Scope: do exactly *this*, no more & no less.
-  2. Schedule: do it within *this* amount of time.
-  3. Cost: don't spend more than *this* amount.
-  4. Risk: watch out for *these* things.
-  5. Quality: make sure *this* is high enough to make the customer is happy.
-  6. Resources: make sure you have *this* (tools & people) in order to complete the project.
+  1. Scope: do exactly _this_, no more & no less.
+  2. Schedule: do it within _this_ amount of time.
+  3. Cost: don't spend more than _this_ amount.
+  4. Risk: watch out for _these_ things.
+  5. Quality: make sure _this_ is high enough to make the customer is happy.
+  6. Resources: make sure you have _this_ (tools & people) in order to complete the project.
 
 ### Process Groups
 

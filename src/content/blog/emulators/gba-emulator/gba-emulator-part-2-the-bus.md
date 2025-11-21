@@ -1,8 +1,7 @@
 ---
-layout: "@/templates/BasePost.astro"
-title: "GBA Emulator: Part 2 — The Bus"
+title: 'GBA Emulator: Part 2 — The Bus'
 description: This is the second post in my GBA Emulator project series in which I will cover the bus implementation with only Game Boy support in mind (for now).
-pubDate: 
+pubDate:
 imgSrc: /images/posts/gba-emulator/part-2/banner.jpg
 imgAlt: A banner for this blog post, displaying a GBA motherboard.
 tags: [EmuDev, Emulators, Low-Level, GBA]
@@ -10,7 +9,6 @@ series: GBA Emulator
 isProject: true
 draft: true
 ---
-
 
 ## Resources
 

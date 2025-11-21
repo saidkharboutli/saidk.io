@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+
+import { ProjectPage } from '@/features/ProjectPage/ProjectPage';
+import Base from '@/features/shared/Base.astro';
+import { CTA } from '@/features/shared/CTA';
+import { AppConfig } from '@/utils/AppConfig';
+
+export async function getStaticPaths() {
+  const allProjects = (await getCollection('projects')).sort(
+    (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf()
+  );
+  return allProjects.map((project) => ({
+    params: { project: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const title = `${project.data.projectName} - ${AppConfig.site_name}`;
+
+const projectPosts = (
+  await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  })
+).filter((post) => post.data.series === project.data.series);
+---
+
+<Base head={{ title, description: project.data.description }}>
+  <ProjectPage projectData={project.data} path={project.id} posts={projectPosts}>
+    <Content />
+  </ProjectPage>
+
+  <CTA client:load />
+</Base>

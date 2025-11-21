@@ -1,29 +1,36 @@
 ---
+import { getCollection } from 'astro:content';
+
 import { AboutMeContact } from '@/features/AboutMe/AboutMeContact';
 import { AboutMeContent } from '@/features/AboutMe/AboutMeContent';
-import { AboutMeHeader } from '@/features/AboutMe/AboutMeHeader'
-import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
+import { AboutMeHeader } from '@/features/AboutMe/AboutMeHeader';
+import Base from '@/features/shared/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { getReviewTypeFromUrl, sortReviewsByRating } from '@/utils/helpers';
 
 const title = `About Me | ${AppConfig.site_name}`;
-const description =
-  "More about me - Sa'id Kharboutli";
+const description = "More about me - Sa'id Kharboutli";
 
-const reviews = await Astro.glob<IFrontMatterReview>('../reviews/**/*.md');
+const reviews = await getCollection('reviews');
 
-const movies = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'movies'));
-const shows = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'tv-shows'));
-const albums = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'albums'));
-const games = sortReviewsByRating(reviews.filter((review) => getReviewTypeFromUrl(review.url!) === 'games'));
+const movies = sortReviewsByRating(
+  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'movies')
+);
+const shows = sortReviewsByRating(
+  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'tv-shows')
+);
+const albums = sortReviewsByRating(
+  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'albums')
+);
+const games = sortReviewsByRating(
+  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'games')
+);
 ---
 
 <Base head={{ title, description }}>
   <AboutMeHeader />
 
-  <AboutMeContent movies={movies} shows={shows} albums={albums} games={games}/>
+  <AboutMeContent movies={movies} shows={shows} albums={albums} games={games} />
 
   <AboutMeContact client:load />
 </Base>

@@ -1,15 +1,15 @@
 import rss from '@astrojs/rss';
-// @ts-ignore
+import type { CollectionEntry } from 'astro:content';
+// @ts-expect-error: sanitize-html has no types
 import sanitizeHtml from 'sanitize-html';
 
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
 import { getNameFromSlug, getTopicFromUrl } from '@/utils/helpers';
 
 interface Posts {
   url: string;
   file: string;
-  frontmatter: IFrontMatterPost;
+  frontmatter: CollectionEntry<'blog'>['data'];
   compiledContent: () => string;
 }
 
@@ -17,18 +17,13 @@ export async function GET() {
   const posts: Posts[] = Object.values(
     import.meta.glob('./blog/**/*.md', {
       eager: true,
-    }),
+    })
   ) as Posts[];
 
-  const categories = [
-    ...new Set(posts.map((post) => getNameFromSlug(getTopicFromUrl(post.url)))),
-  ];
+  const categories = [...new Set(posts.map((post) => getNameFromSlug(getTopicFromUrl(post.url))))];
 
   const items = posts
-    .sort(
-      (a, b) =>
-        Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate),
-    )
+    .sort((a, b) => b.frontmatter.pubDate.valueOf() - a.frontmatter.pubDate.valueOf())
     .map((post) => ({
       title: post.frontmatter.title,
       description: post.frontmatter.description,

@@ -1,8 +1,7 @@
 ---
-layout: '@/templates/BasePost.astro'
 title: 'GBA Emulator: Part 1 — Getting Started'
 description: This post introduces my next emulation project—a GBA emulator for RISC-V—and reviews the core concepts required to implement it!
-pubDate: 
+pubDate:
 imgSrc: '/images/posts/gba-emulator/part-1/banner.jpg'
 imgAlt: 'A banner for this blog post, displaying a GBA motherboard.'
 tags: [EmuDev, Emulators, Low-Level, GBA]
@@ -10,6 +9,7 @@ series: GBA Emulator
 isProject: True
 draft: True
 ---
+
 ## Why a GBA Emulator
 
 Having completed a CHIP8 emulator, I looked for my next emulation project and landed on the GBA. It's a big step up from CHIP8, but I think it's a relatively manageable project, especially since I will be focusing on implementing the "GB" part before the "A" part.

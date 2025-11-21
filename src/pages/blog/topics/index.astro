@@ -3,10 +3,10 @@ import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 
 import { TopicsView } from '@/features/BlogViews/TopicsView';
+import Base from '@/features/shared/Base.astro';
 import { CTA } from '@/features/shared/CTA';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
-import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 import { getTopicFromUrl } from '@/utils/helpers';
 
@@ -16,6 +16,10 @@ const allPosts = (
     return import.meta.env.PROD ? !data.draft : true;
   })
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+allPosts.forEach((post) => {
+  allUniqueTopics.add(getTopicFromUrl(post.id!));
+});
 
 const topicData: { topic: string; posts: CollectionEntry<'blog'>[] }[] = [];
 allUniqueTopics.forEach((topic) => {

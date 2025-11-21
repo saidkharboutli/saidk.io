@@ -1,5 +1,4 @@
 ---
-layout: '@/templates/BasePost.astro'
 title: 'Studying for the PMP: Part 2 — Principles'
 description: This post is part 2 in my "Studying for the PMP" series. This part is an overview of the 12 major PM principles, according to PMI.
 pubDate:

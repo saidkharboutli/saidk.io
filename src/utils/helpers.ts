@@ -67,17 +67,6 @@ export function getNameFromSlug(slug: string) {
   return titleCase(slug.replaceAll('-', ' ').replaceAll('and', '&'));
 }
 
-// export function tagDataFromString(tags: string) {
-//   const tagData: ITagData[] = [];
-//   tags.split(', ').forEach((tag) => {
-//     tagData.push({
-//       name: tag,
-//       slug: `${generateSlug(tag)}`,
-//     });
-//   });
-//   return tagData;
-// }
-
 export function tagDataFromArr(tags: string[] | Set<string>) {
   const tagData: ITagData[] = [];
   tags.forEach((tag) => {

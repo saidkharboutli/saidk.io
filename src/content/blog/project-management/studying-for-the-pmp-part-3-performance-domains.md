@@ -1,5 +1,4 @@
 ---
-layout: '@/templates/BasePost.astro'
 title: 'Studying for the PMP: Part 2 — Project Performance Domains'
 description: This post is part 3 in my "Studying for the PMP" series. This part is an overview of the performance domains, according to PMI.
 pubDate:
@@ -37,7 +36,7 @@ This post is part 3 in my "Studying for the PMP" series. This part is an overvie
   2. Understand and Analyze - seek to understand stakeholder feelings and values
   3. Prioritize - focus on stakeholders with the most power and interest
   4. Engage - collaborate with stakeholders to introduce the project, gather requirements, manage expectations, resolve issues, negotiate,
-  prioritize, problem solve, and make decisions
+     prioritize, problem solve, and make decisions
   5. Monitor - as the project progresses, stakeholders change and so do their requirements.
 
 ### Checking Outcomes
@@ -195,7 +194,7 @@ Deals with activities and functions associated with the people doing the project
     4. Budget
 - Planning for building a team starts with identifying required skills to complete the project
 - Communication plans must include stakeholder analysis and engagement
-- Physical resources are resources *other than people*
+- Physical resources are resources _other than people_
 - Procurement planning must happen throughout the project
 - Plan on how to deal with changes (i.e. a change plan)
 - Plan for risks that may be encountered
@@ -300,22 +299,22 @@ Deals with activities and functions associated with the people doing the project
 
 - What to measure:
   1. Deliverables
-    - Errors or defects
-    - Measures of performance
+  - Errors or defects
+  - Measures of performance
   2. Delivery
-    - Work in progress
-    - Lead time
-    - Cycle time
-    - Process efficiency
+  - Work in progress
+  - Lead time
+  - Cycle time
+  - Process efficiency
   3. Baseline performance
-    - Start and finish dates
-    - Actual cost compared to planned cost
+  - Start and finish dates
+  - Actual cost compared to planned cost
   4. Resources
-    - Planned vs. actual resource utilization
+  - Planned vs. actual resource utilization
   5. Business value
-    - Cost-benefit ratio
+  - Cost-benefit ratio
   6. Stakeholders
-    - Mood chart
+  - Mood chart
   7. Forecasts
 
 - Presenting metrics:
@@ -324,6 +323,7 @@ Deals with activities and functions associated with the people doing the project
   3. Visual control
 
 - Pitfalls with measurements:
+
 1. Hawthorne effect - working to pass a specific measure/test rather than the actual requirements
 2. Vanity metric - judging team performance based on one metric
 3. Demoralization - common outcome of vanity metric, team feels demoralized

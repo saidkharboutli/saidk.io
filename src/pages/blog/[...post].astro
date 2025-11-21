@@ -1,7 +1,14 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
-// 1. Generate a new path for every collection entry
+import { BlogPost } from '@/features/BlogPost/BlogPost';
+import BlogViewCounter from '@/features/BlogPost/components/BlogViewCounter';
+import PostComments from '@/features/BlogPost/components/PostComments.astro';
+import TableOfContents from '@/features/BlogPost/components/TableOfContents.astro';
+import Base from '@/features/shared/Base.astro';
+import { CTA } from '@/features/shared/CTA';
+import { AppConfig } from '@/utils/AppConfig';
+
 export async function getStaticPaths() {
   const allPosts = (
     await getCollection('blog', ({ data }) => {
@@ -14,9 +21,47 @@ export async function getStaticPaths() {
   }));
 }
 
-// 2. For your template, you can get the entry directly from the prop
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await post.render();
+
+const title = `${post.data.title} - ${AppConfig.site_name}`;
+
+const prevNextInSeries = {
+  previous: null as CollectionEntry<'blog'> | null,
+  next: null as CollectionEntry<'blog'> | null,
+};
+if (post.data.series) {
+  const allPostsInSeries: CollectionEntry<'blog'>[] = [] as CollectionEntry<'blog'>[];
+
+  const allPosts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? !data.draft : true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  allPosts.forEach((post) => {
+    if (post.data.series === post.data.series) allPostsInSeries.push(post);
+  });
+
+  allPostsInSeries.forEach((post) => {
+    if (new Date(post.data.pubDate) < new Date(post.data.pubDate)) prevNextInSeries.previous = post;
+    else if (new Date(post.data.pubDate) > new Date(post.data.pubDate) && !prevNextInSeries.next)
+      prevNextInSeries.next = post;
+  });
+}
 ---
 
-<Content />
+<Base head={{ title, description: post.data.description }}>
+  <!-- data-pagefind-body signals to pagefind to only index this layout content -->
+  <div data-pagefind-body>
+    <BlogPost blogData={post.data} path={post.id} prevNextInSeries={prevNextInSeries}>
+      <BlogViewCounter slot="views" client:only="react" />
+      <TableOfContents headings={headings} slot="toc" />
+      <Content />
+    </BlogPost>
+
+    <PostComments />
+  </div>
+
+  <CTA client:load />
+</Base>
