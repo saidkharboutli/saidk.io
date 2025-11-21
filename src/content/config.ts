@@ -31,7 +31,7 @@ const projectsCollection = defineCollection({
     github: z.string(),
     language: z.string(),
     techStack: z.array(z.string()),
-    platform: z.array(z.string()),
+    platforms: z.array(z.string()),
     series: z.string(),
     imgSrc: z.string(),
     imgAlt: z.string(),

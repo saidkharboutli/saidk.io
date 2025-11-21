@@ -11,7 +11,7 @@ export async function getStaticPaths() {
     (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf()
   );
   return allProjects.map((project) => ({
-    params: { project: project.id },
+    params: { project: project.slug },
     props: { project },
   }));
 }
@@ -29,7 +29,7 @@ const projectPosts = (
 ---
 
 <Base head={{ title, description: project.data.description }}>
-  <ProjectPage projectData={project.data} path={project.id} posts={projectPosts}>
+  <ProjectPage projectData={project.data} path={project.slug} posts={projectPosts}>
     <Content />
   </ProjectPage>
 

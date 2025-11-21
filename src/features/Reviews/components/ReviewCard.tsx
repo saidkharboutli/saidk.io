@@ -27,9 +27,9 @@ const ReviewCard = (props: IReviewCardProps) => (
         <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
           <a
             className="hover:translate-y-1"
-            href={`/reviews/${getReviewTypeFromUrl(props.review.id!)}/`}
+            href={`/reviews/${getReviewTypeFromUrl(props.review.slug)}/`}
           >
-            {getNameFromSlug(getReviewTypeFromUrl(props.review.id!)!)}
+            {getNameFromSlug(getReviewTypeFromUrl(props.review.slug))}
           </a>
         </h2>
       </div>
@@ -42,8 +42,8 @@ const ReviewCard = (props: IReviewCardProps) => (
       </div>
 
       {/* Album & Book Only: Author/Artist */}
-      {(getReviewTypeFromUrl(props.review.id!) === 'albums' ||
-        getReviewTypeFromUrl(props.review.id!) === 'books') && (
+      {(getReviewTypeFromUrl(props.review.slug) === 'albums' ||
+        getReviewTypeFromUrl(props.review.slug) === 'books') && (
         <span className="text-base font-bold">{props.review.data.artistOrAuthor}</span>
       )}
 
@@ -55,7 +55,7 @@ const ReviewCard = (props: IReviewCardProps) => (
         </span>
         <span className="md:hidden">&bull;</span>
         <span>
-          {getReviewTypeFromUrl(props.review.id!) === 'books' ? (
+          {getReviewTypeFromUrl(props.review.slug) === 'books' ? (
             <span className="font-bold">Published </span>
           ) : (
             <span className="font-bold">Released </span>
@@ -67,7 +67,7 @@ const ReviewCard = (props: IReviewCardProps) => (
       {/* Media Genre(s) */}
       <div className="mt-0.5 flex flex-col text-xs">
         <span className="text-sm font-bold">
-          {getReviewTypeFromUrl(props.review.id!) === 'products' ? 'Product Type(s)' : 'Genre(s)'}
+          {getReviewTypeFromUrl(props.review.slug) === 'products' ? 'Product Type(s)' : 'Genre(s)'}
         </span>
         <div className="mt-1 flex flex-wrap gap-1">
           {props.review.data.typeOrGenre.map((item) => (
@@ -98,7 +98,7 @@ const ReviewCard = (props: IReviewCardProps) => (
               <img
                 className="size-8 rounded-md text-sm delay-200 duration-200 hover:scale-110"
                 src={`/images/site/${(() => {
-                  switch (getReviewTypeFromUrl(props.review.id!)) {
+                  switch (getReviewTypeFromUrl(props.review.slug)) {
                     case 'albums':
                       return 'spotify';
                     case 'books':
@@ -124,7 +124,7 @@ const ReviewCard = (props: IReviewCardProps) => (
       <div className="text-sm text-gray-300">{props.review.data.review}</div>
 
       {/* Album Only: Favorite Song(s) */}
-      {getReviewTypeFromUrl(props.review.id!) === 'albums' && (
+      {getReviewTypeFromUrl(props.review.slug) === 'albums' && (
         <div className="flex flex-col gap-1 text-xs">
           <div className="font-bold">Favorite Song(s)</div>
           <div className="flex flex-row gap-1">

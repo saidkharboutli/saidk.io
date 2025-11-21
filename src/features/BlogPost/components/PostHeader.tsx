@@ -5,7 +5,7 @@ import { formatDate, generateSlug, getNameFromSlug, getTopicFromUrl } from '@/ut
 
 type IPostHeaderProps = {
   content: CollectionEntry<'blog'>['data'];
-  path: string;
+  slug: string;
   author: string;
   views?: ReactNode;
 };
@@ -16,8 +16,8 @@ const PostHeader = (props: IPostHeaderProps) => (
       {/* Topic */}
       <div>
         <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
-          <a className="hover:translate-y-1" href={`/blog/topics/${getTopicFromUrl(props.path)}/`}>
-            {getNameFromSlug(getTopicFromUrl(props.path)!)}
+          <a className="hover:translate-y-1" href={`/blog/topics/${getTopicFromUrl(props.slug)}/`}>
+            {getNameFromSlug(getTopicFromUrl(props.slug))}
           </a>
         </h2>
       </div>
@@ -30,7 +30,7 @@ const PostHeader = (props: IPostHeaderProps) => (
         <span className="mt-1 text-sm">
           {props.content.isProject ? 'Project: ' : 'Series: '}
           <a
-            href={`/blog/${props.content.isProject ? 'projects' : 'series'}/${generateSlug(props.content.series)}/`}
+            href={`/${props.content.isProject ? 'projects' : 'series'}/${generateSlug(props.content.series)}/`}
             className="font-bold text-cyan-500 hover:text-slate-200"
           >
             {props.content.series}

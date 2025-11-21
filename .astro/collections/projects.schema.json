@@ -41,7 +41,7 @@
             "type": "string"
           }
         },
-        "platform": {
+        "platforms": {
           "type": "array",
           "items": {
             "type": "string"
@@ -68,7 +68,7 @@
         "github",
         "language",
         "techStack",
-        "platform",
+        "platforms",
         "series",
         "imgSrc",
         "imgAlt"

@@ -4,7 +4,6 @@ import { BlogCardMin } from '@/features/BlogViews/components/BlogCardMin';
 
 type IPostFooterProps = {
   content: CollectionEntry<'blog'>['data'];
-  path: string;
   prevNextInSeries: {
     previous: CollectionEntry<'blog'> | null;
     next: CollectionEntry<'blog'> | null;

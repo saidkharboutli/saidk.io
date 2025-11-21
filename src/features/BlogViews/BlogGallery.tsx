@@ -8,8 +8,8 @@ type IRecentPostsProps = {
 
 const BlogGallery = (props: IRecentPostsProps) => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-    {props.postList.map((elt) => (
-      <BlogCard key={elt.id} post={elt} />
+    {props.postList.map((post) => (
+      <BlogCard key={post.slug} post={post} />
     ))}
   </div>
 );

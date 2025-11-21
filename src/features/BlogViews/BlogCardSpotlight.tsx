@@ -9,7 +9,7 @@ type IBlogCardProps = {
 const BlogCardSpotlight = (props: IBlogCardProps) => (
   <div className="mb-8 flex flex-col items-center overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105 md:flex-row md:bg-transparent">
     <div>
-      <a className="md:w-3/5" href={props.post.id}>
+      <a className="md:w-3/5" href={`/blog/${props.post.slug}`}>
         <img
           className="object-cover object-center hover:opacity-50 md:h-96 md:rounded-2xl"
           src={props.post.data.imgSrc}
@@ -23,8 +23,8 @@ const BlogCardSpotlight = (props: IBlogCardProps) => (
       {/* Topic */}
       <div className="mb-0.5 flex">
         <h2 className="text-sm font-semibold text-indigo-400 transition-all duration-200 hover:scale-110">
-          <a className="" href={`/blog/topics/${getTopicFromUrl(props.post.id!)}/`}>
-            {getNameFromSlug(getTopicFromUrl(props.post.id!)!)}
+          <a className="" href={`/blog/topics/${getTopicFromUrl(props.post.slug)}/`}>
+            {getNameFromSlug(getTopicFromUrl(props.post.slug))}
           </a>
         </h2>
       </div>
@@ -32,7 +32,7 @@ const BlogCardSpotlight = (props: IBlogCardProps) => (
       {/* Title */}
       <div>
         <h2 className="text-2xl font-semibold hover:text-primary">
-          <a className="w-3/5 hover:translate-y-1" href={props.post.id}>
+          <a className="w-3/5 hover:translate-y-1" href={`/blog/${props.post.slug}`}>
             {props.post.data.title}
           </a>
         </h2>

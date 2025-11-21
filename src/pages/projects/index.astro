@@ -20,13 +20,13 @@ const allPosts = (
   })
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const projectAndPost: IProjectAndPost[] = [];
+const projectPostPairs: IProjectAndPost[] = [];
 allProjects.forEach((project) => {
   const data = { project, post: null as CollectionEntry<'blog'> | null };
   allPosts.forEach((post) => {
     if (data.project.data.series === post.data.series && post.data.isProject) data.post = post;
   });
-  projectAndPost.push(data);
+  projectPostPairs.push(data);
 });
 
 const title = `Projects | ${AppConfig.site_name}`;
@@ -41,7 +41,7 @@ const description = "All of my projects - Sa'id Kharboutli";
   </Section>
 
   <Section>
-    <ProjectGallery projectPostPair={projectAndPost} />
+    <ProjectGallery projectPostPairs={projectPostPairs} />
   </Section>
   <CTA client:load />
 </Base>

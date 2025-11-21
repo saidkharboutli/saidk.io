@@ -41,10 +41,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-const { page, projectData } = Astro.props as Props;
-
-// eslint-disable-next-line unused-imports/no-unused-vars
-const { project } = Astro.params;
+const { page, projectData } = Astro.props;
 
 const title = `${projectData.name} Project Posts | ${AppConfig.site_name}`;
 const description = `All posts for my ${projectData.name} project - Sa'id Kharboutli - Page ${page}`;
@@ -68,7 +65,7 @@ const description = `All posts for my ${projectData.name} project - Sa'id Kharbo
   </Section>
 
   <Section>
-    <BlogCardSpotlight post={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
   </Section>
 
   <Section>

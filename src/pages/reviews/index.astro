@@ -20,14 +20,14 @@ const allReviews = (await getCollection('reviews')).sort(
 const uniqueReviewTypes = new Set<string>();
 
 allReviews.forEach((review) => {
-  uniqueReviewTypes.add(getReviewTypeFromUrl(review.id!));
+  uniqueReviewTypes.add(getReviewTypeFromUrl(review.slug));
 });
 
 const typeData: ITypeData[] = [];
 uniqueReviewTypes.forEach((type) => {
   const typeDatum: ITypeData = { type, reviews: [] };
   allReviews.forEach((review) => {
-    if (getReviewTypeFromUrl(review.id!) === type) typeDatum.reviews.push(review);
+    if (getReviewTypeFromUrl(review.slug) === type) typeDatum.reviews.push(review);
   });
   typeDatum.reviews = sortReviewsByReviewDate(typeDatum.reviews);
   typeData.push(typeDatum);

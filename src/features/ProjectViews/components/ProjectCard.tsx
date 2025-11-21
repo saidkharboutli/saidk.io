@@ -72,7 +72,7 @@ const ProjectCard = (props: IProjectCardProps) => (
         className="col-start-1 row-start-1 flex size-full flex-col items-center justify-between overflow-hidden rounded-md bg-cod-800 px-2 py-4 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
       >
         <div className="flex w-full flex-col items-center text-center">
-          <a href={props.project.id}>
+          <a href={props.project.slug}>
             <h2 className="text-2xl font-semibold transition-all duration-200 hover:text-primary hover:scale-110">
               Details
             </h2>
@@ -104,8 +104,8 @@ const ProjectCard = (props: IProjectCardProps) => (
           <div className="flex w-full justify-between">
             <span className="self-center">Platform: </span>
             <div className="flex flex-row flex-wrap justify-end gap-1 text-base">
-              {props.project.data.platform.map((elt) => (
-                <ProjectIcon key={elt}>{elt}</ProjectIcon>
+              {props.project.data.platforms.map((platform) => (
+                <ProjectIcon key={platform}>{platform}</ProjectIcon>
               ))}
             </div>
           </div>

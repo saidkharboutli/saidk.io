@@ -47,8 +47,8 @@ const ProjectHeader = (props: IProjectHeaderProps) => (
         <div className="flex w-full items-center justify-between md:w-2/5 md:flex-col md:gap-2">
           <span className="">Tech Stack: </span>
           <div className="flex flex-row flex-wrap justify-end gap-1 text-xs md:justify-center">
-            {props.projectData.techStack.map((elt) => (
-              <ProjectIcon key={elt}>{elt}</ProjectIcon>
+            {props.projectData.techStack.map((tech) => (
+              <ProjectIcon key={tech}>{tech}</ProjectIcon>
             ))}
           </div>
         </div>
@@ -57,8 +57,8 @@ const ProjectHeader = (props: IProjectHeaderProps) => (
         <div className="flex w-full justify-between gap-2 md:w-2/5 md:flex-col">
           <span className="self-center">Platform: </span>
           <div className="flex flex-row flex-wrap justify-end gap-1 text-xs md:justify-center">
-            {props.projectData.platform.map((elt) => (
-              <ProjectIcon key={elt}>{elt}</ProjectIcon>
+            {props.projectData.platforms.map((platform) => (
+              <ProjectIcon key={platform}>{platform}</ProjectIcon>
             ))}
           </div>
         </div>

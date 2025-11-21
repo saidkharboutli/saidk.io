@@ -18,14 +18,14 @@ const allPosts = (
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 allPosts.forEach((post) => {
-  allUniqueTopics.add(getTopicFromUrl(post.id!));
+  allUniqueTopics.add(getTopicFromUrl(post.slug));
 });
 
 const topicData: { topic: string; posts: CollectionEntry<'blog'>[] }[] = [];
 allUniqueTopics.forEach((topic) => {
   const topicDatum = { topic, posts: [] as CollectionEntry<'blog'>[] };
   allPosts.forEach((post) => {
-    if (getTopicFromUrl(post.id!) === topic) topicDatum.posts.push(post);
+    if (getTopicFromUrl(post.slug) === topic) topicDatum.posts.push(post);
   });
   topicData.push(topicDatum);
 });

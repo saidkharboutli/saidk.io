@@ -11,7 +11,7 @@ const ReviewGalleryMin = (props: IReviewGalleryMinProps) => {
     <div className="flex justify-center">
       <div className="mb-6 grid w-fit grid-cols-1 gap-6 md:grid-cols-3">
         {props.reviews.map((review) => (
-          <ReviewCardMin key={review.id} review={review} />
+          <ReviewCardMin key={review.slug} review={review} />
         ))}
       </div>
     </div>

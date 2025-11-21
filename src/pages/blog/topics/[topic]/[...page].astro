@@ -22,18 +22,18 @@ export const getStaticPaths = (async ({ paginate }) => {
   const allUniqueTopics = new Set<string>();
 
   allPosts.forEach((post) => {
-    allUniqueTopics.add(getTopicFromUrl(post.id!));
+    allUniqueTopics.add(getTopicFromUrl(post.slug));
   });
 
   return [...allUniqueTopics].flatMap((topic) => {
-    const posts = allPosts.filter((post) => getTopicFromUrl(post.id!) === topic);
+    const posts = allPosts.filter((post) => getTopicFromUrl(post.slug) === topic);
     return paginate(posts, { params: { topic }, pageSize: 10 });
   });
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page } = Astro.props as Props;
+const { page } = Astro.props;
 const { topic } = Astro.params;
 
 const title = `"${getNameFromSlug(topic)}" Topic | ${AppConfig.site_name}`;
@@ -58,7 +58,7 @@ const description = `All blog posts related to ${getNameFromSlug(topic)} - Sa'id
   </Section>
 
   <Section>
-    <BlogCardSpotlight post={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
   </Section>
 
   <Section>

@@ -72,7 +72,7 @@ const ReviewGallery = (props: IReviewGalleryProps) => {
 
       <div className="mb-6 flex flex-col gap-4">
         {sorted.map((review) => (
-          <ReviewCard key={review.id} review={review} />
+          <ReviewCard key={review.slug} review={review} />
         ))}
       </div>
 

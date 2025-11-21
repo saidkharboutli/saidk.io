@@ -22,13 +22,13 @@ const allProjects = (await getCollection('projects')).sort(
   (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf()
 );
 
-const projectAndPost: IProjectAndPost[] = [];
+const projectPostPairs: IProjectAndPost[] = [];
 allProjects.forEach((project) => {
   const data: IProjectAndPost = { project, post: null };
   allPosts.forEach((post) => {
     if (data.project.data.series === post.data.series && post.data.isProject) data.post = post;
   });
-  projectAndPost.push(data);
+  projectPostPairs.push(data);
 });
 
 const { title, description } = AppConfig;
@@ -37,7 +37,7 @@ const { title, description } = AppConfig;
 <Base head={{ title, description }}>
   <Hero client:load />
 
-  <ProjectList projectPostPair={projectAndPost.slice(0, 3)} />
+  <ProjectList projectPostPairs={projectPostPairs.slice(0, 3)} />
 
   <RecentPosts postList={allPosts.slice(0, 4)} />
 

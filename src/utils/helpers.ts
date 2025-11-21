@@ -18,7 +18,7 @@ function titleCase(str: string) {
     .replaceAll('tv', 'TV')
     .split(' ')
     .map((word) => {
-      return word.replace(word[0]!, word[0]!.toUpperCase());
+      return word.replace(word[0], word[0].toUpperCase());
     })
     .join(' ');
 }

@@ -24,7 +24,7 @@ export const getStaticPaths = (async ({ paginate }) => {
   return paginate(allPosts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
-const { page } = Astro.props as Props;
+const { page } = Astro.props;
 const title = `Blog | ${AppConfig.site_name}`;
 const description = `All blog posts - Sa'id Kharboutli - Page ${page}`;
 ---
@@ -52,7 +52,7 @@ const description = `All blog posts - Sa'id Kharboutli - Page ${page}`;
   </Section>
 
   <Section>
-    <BlogCardSpotlight post={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
 
     <BlogGallery postList={page.data.slice(1)} />
   </Section>

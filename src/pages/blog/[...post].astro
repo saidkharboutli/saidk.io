@@ -16,7 +16,7 @@ export async function getStaticPaths() {
     })
   ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return allPosts.map((post) => ({
-    params: { post: post.id },
+    params: { post: post.slug },
     props: { post },
   }));
 }
@@ -30,6 +30,7 @@ const prevNextInSeries = {
   previous: null as CollectionEntry<'blog'> | null,
   next: null as CollectionEntry<'blog'> | null,
 };
+
 if (post.data.series) {
   const allPostsInSeries: CollectionEntry<'blog'>[] = [] as CollectionEntry<'blog'>[];
 
@@ -54,7 +55,7 @@ if (post.data.series) {
 <Base head={{ title, description: post.data.description }}>
   <!-- data-pagefind-body signals to pagefind to only index this layout content -->
   <div data-pagefind-body>
-    <BlogPost blogData={post.data} path={post.id} prevNextInSeries={prevNextInSeries}>
+    <BlogPost blogData={post.data} slug={post.slug} prevNextInSeries={prevNextInSeries}>
       <BlogViewCounter slot="views" client:only="react" />
       <TableOfContents headings={headings} slot="toc" />
       <Content />

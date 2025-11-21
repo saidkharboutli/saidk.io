@@ -42,10 +42,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page, seriesData } = Astro.props as Props;
-
-// eslint-disable-next-line unused-imports/no-unused-vars
-const { series } = Astro.params;
+const { page, seriesData } = Astro.props;
 
 const title = `${seriesData.name} Series Posts | ${AppConfig.site_name}`;
 const description = `Blog posts by topics - Sa'id Kharboutli - Page ${page}`;
@@ -61,7 +58,7 @@ const description = `Blog posts by topics - Sa'id Kharboutli - Page ${page}`;
   </Section>
 
   <Section>
-    <BlogCardSpotlight post={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
   </Section>
 
   <Section>

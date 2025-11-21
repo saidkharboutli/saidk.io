@@ -14,16 +14,16 @@ const description = "More about me - Sa'id Kharboutli";
 const reviews = await getCollection('reviews');
 
 const movies = sortReviewsByRating(
-  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'movies')
+  reviews.filter((review) => getReviewTypeFromUrl(review.slug) === 'movies')
 );
 const shows = sortReviewsByRating(
-  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'tv-shows')
+  reviews.filter((review) => getReviewTypeFromUrl(review.slug) === 'tv-shows')
 );
 const albums = sortReviewsByRating(
-  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'albums')
+  reviews.filter((review) => getReviewTypeFromUrl(review.slug) === 'albums')
 );
 const games = sortReviewsByRating(
-  reviews.filter((review) => getReviewTypeFromUrl(review.id!) === 'games')
+  reviews.filter((review) => getReviewTypeFromUrl(review.slug) === 'games')
 );
 ---
 

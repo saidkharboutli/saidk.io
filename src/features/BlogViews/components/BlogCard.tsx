@@ -9,7 +9,7 @@ type IBlogCardProps = {
 const BlogCard = (props: IBlogCardProps) => (
   <div className="overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 hover:scale-105">
     <div>
-      <a href={props.post.id}>
+      <a href={`/blog/${props.post.slug}`}>
         <img
           className="object-cover object-center hover:opacity-50"
           src={props.post.data.imgSrc}
@@ -23,8 +23,8 @@ const BlogCard = (props: IBlogCardProps) => (
       {/* Topic */}
       <div className="mb-0.5 flex">
         <h2 className="text-sm font-semibold text-indigo-400 transition-all duration-200 hover:scale-110">
-          <a className="" href={`/blog/topics/${getTopicFromUrl(props.post.id!)}/`}>
-            {getNameFromSlug(getTopicFromUrl(props.post.id!)!)}
+          <a className="" href={`/blog/topics/${getTopicFromUrl(props.post.slug)}/`}>
+            {getNameFromSlug(getTopicFromUrl(props.post.slug))}
           </a>
         </h2>
       </div>
@@ -32,7 +32,7 @@ const BlogCard = (props: IBlogCardProps) => (
       {/* Title */}
       <div>
         <h2 className="text-xl font-semibold hover:text-primary">
-          <a className="" href={props.post.id}>
+          <a className="" href={`/blog/${props.post.slug}`}>
             {props.post.data.title}
           </a>
         </h2>

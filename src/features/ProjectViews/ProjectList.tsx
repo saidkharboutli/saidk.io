@@ -4,7 +4,7 @@ import { Section } from '@/features/shared/Section';
 import type { IProjectAndPost } from '@/types/IProjectAndPost';
 
 type IProjectListProps = {
-  projectPostPair: IProjectAndPost[];
+  projectPostPairs: IProjectAndPost[];
 };
 
 const ProjectList = (props: IProjectListProps) => (
@@ -21,7 +21,7 @@ const ProjectList = (props: IProjectListProps) => (
       </div>
     }
   >
-    <ProjectGallery projectPostPair={props.projectPostPair.slice(0, 3)} />
+    <ProjectGallery projectPostPairs={props.projectPostPairs.slice(0, 3)} />
   </Section>
 );
 

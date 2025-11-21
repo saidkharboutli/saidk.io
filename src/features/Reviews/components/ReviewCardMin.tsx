@@ -26,9 +26,9 @@ const ReviewCardMin = (props: IReviewCardProps) => (
         <h2 className="text-sm font-semibold text-indigo-400 hover:text-slate-200">
           <a
             className="hover:translate-y-1"
-            href={`/reviews/${getReviewTypeFromUrl(props.review.id!)}/`}
+            href={`/reviews/${getReviewTypeFromUrl(props.review.slug)}/`}
           >
-            {getNameFromSlug(getReviewTypeFromUrl(props.review.id!)!)}
+            {getNameFromSlug(getReviewTypeFromUrl(props.review.slug))}
           </a>
         </h2>
       </div>
@@ -41,8 +41,8 @@ const ReviewCardMin = (props: IReviewCardProps) => (
       </div>
 
       {/* Album & Book Only: Author/Artist */}
-      {(getReviewTypeFromUrl(props.review.id!) === 'albums' ||
-        getReviewTypeFromUrl(props.review.id!) === 'books') && (
+      {(getReviewTypeFromUrl(props.review.slug) === 'albums' ||
+        getReviewTypeFromUrl(props.review.slug) === 'books') && (
         <span className="text-base font-bold">{props.review.data.artistOrAuthor}</span>
       )}
 
@@ -63,7 +63,7 @@ const ReviewCardMin = (props: IReviewCardProps) => (
               <img
                 className="size-8 rounded-md text-sm delay-200 duration-200 hover:scale-110"
                 src={`/images/site/${(() => {
-                  switch (getReviewTypeFromUrl(props.review.id!)) {
+                  switch (getReviewTypeFromUrl(props.review.slug)) {
                     case 'albums':
                       return 'spotify';
                     case 'books':

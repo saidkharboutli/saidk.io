@@ -9,7 +9,7 @@ import { AppConfig } from '@/utils/AppConfig';
 
 type IBlogPostProps = {
   blogData: CollectionEntry<'blog'>['data'];
-  path: string;
+  slug: string;
   prevNextInSeries: {
     previous: CollectionEntry<'blog'> | null;
     next: CollectionEntry<'blog'> | null;
@@ -25,7 +25,7 @@ const BlogPost = (props: IBlogPostProps) => (
       content={props.blogData}
       author={AppConfig.author}
       views={props.views}
-      path={props.path}
+      slug={props.slug}
     />
 
     <PostContent toc={props.toc} content={props.blogData}>
@@ -35,7 +35,6 @@ const BlogPost = (props: IBlogPostProps) => (
     <PostFooter
       content={props.blogData}
       author={AppConfig.author}
-      path={props.path}
       prevNextInSeries={props.prevNextInSeries}
     />
   </BlogSection>
