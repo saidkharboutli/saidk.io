@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro build && npm run postbuild && npx wrangler pages dev ./dist --kv PAGE_VIEWS",
+    "preview:remote": "astro build && npm run postbuild && npx wrangler pages dev ./dist --remote",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "build-types": "tsc --noEmit --pretty",
