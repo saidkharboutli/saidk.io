@@ -30,6 +30,6 @@ export default defineConfig({
     },
   }),
   redirects: {
-    '/blog/topics/emulators/chip-8-blog-post': '/blog/emulators/chip-8-blog-post',
+    '/blog/topics/emulators/chip8-emulator/': '/blog/emulators/chip8-emulator/',
   },
 });
