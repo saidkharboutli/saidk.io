@@ -1,0 +1,68 @@
+---
+import { SEO } from 'astro-seo';
+
+import { Footer } from '@/features/Footer/Footer';
+import { Navbar } from '@/features/Navbar/Navbar';
+import { AppConfig } from '@/utils/AppConfig';
+
+export interface Props {
+  head: {
+    title: string;
+    description: string;
+  };
+}
+
+const {
+  head: { title, description },
+} = Astro.props;
+---
+
+<html lang="en" class="bg-cod-950">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title,
+          type: 'website',
+          image: 'https://saidk.io/images/site/profile_no_bg.png',
+        },
+      }}
+      twitter={{
+        creator: '@saidkio',
+      }}
+      extend={{
+        link: [
+          { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+          { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml' },
+        ],
+        meta: [
+          {
+            name: 'twitter:image',
+            content: 'https://saidk.io/images/site/profile_no_bg.png',
+          },
+          { name: 'twitter:title', content: title },
+          { name: 'twitter:description', content: description },
+          { name: 'author', content: AppConfig.author },
+        ],
+      }}
+    />
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript" defer></script>
+    <link
+      href="/pagefind/pagefind-ui.css"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+  </head>
+  <body class="text-cod-100">
+    <Navbar />
+
+    <slot />
+
+    <Footer />
+  </body>
+</html>

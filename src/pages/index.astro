@@ -1,33 +1,34 @@
 ---
 // -- After launch --
 // - Fix email for light and dark modes
-// - Blog view count
 
+import { getCollection } from 'astro:content';
 
 import { Hero } from '@/features/Hero/Hero';
 import { RecentPosts } from '@/features/Hero/RecentPosts';
 import { ProjectList } from '@/features/ProjectViews/ProjectList';
+import Base from '@/features/shared/Base.astro';
 import { CTA } from '@/features/shared/CTA';
-import Base from '@/templates/Base.astro';
-// eslint-disable-next-line
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
+import type { IProjectAndPost } from '@/types/IProjectAndPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, sortPostsByDate, sortProjectsByDate } from '@/utils/helpers';
 
-const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('./blog/**/*.md'));
-const sortedPosts = sortPostsByDate(allPosts);
+const allPosts = (
+  await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  })
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const allProjects = await Astro.glob<IFrontMatterProject>('./projects/**/*.md');
-const sortedProjects = sortProjectsByDate(allProjects);
+const allProjects = (await getCollection('projects')).sort(
+  (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf()
+);
 
-const projectAndPost: any[] = [];
-sortedProjects.forEach((project) => {
-  const data = {project, post: null as any}; 
-  sortedPosts.forEach((post) => {
-    if(data.project.frontmatter.series === post.frontmatter.series && post.frontmatter.isProject) data.post = post;
+const projectPostPairs: IProjectAndPost[] = [];
+allProjects.forEach((project) => {
+  const data: IProjectAndPost = { project, post: null };
+  allPosts.forEach((post) => {
+    if (data.project.data.series === post.data.series && post.data.isProject) data.post = post;
   });
-  projectAndPost.push(data);
+  projectPostPairs.push(data);
 });
 
 const { title, description } = AppConfig;
@@ -36,9 +37,9 @@ const { title, description } = AppConfig;
 <Base head={{ title, description }}>
   <Hero client:load />
 
-  <ProjectList projectList={projectAndPost.slice(0, 3)}/>
+  <ProjectList projectPostPairs={projectPostPairs.slice(0, 3)} />
 
-  <RecentPosts postList={sortedPosts.slice(0, 4)} />
+  <RecentPosts postList={allPosts.slice(0, 4)} />
 
   <CTA client:load />
 </Base>

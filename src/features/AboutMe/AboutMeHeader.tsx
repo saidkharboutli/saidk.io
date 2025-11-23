@@ -14,65 +14,42 @@ const AboutMeHeader = () => (
       <div>
         <p className="mt-4 text-lg leading-7 tracking-normal">
           <>
-            Hello! I'm a Software Engineer & Project Management consultant
-            working for{' '}
-            <a
-              className="text-pyyne hover:underline"
-              href="https://www.pyyne.com"
-            >
+            Hello! I&apos;m a Software Engineer & Project Management consultant working for{' '}
+            <a className="text-pyyne hover:underline" href="https://www.pyyne.com">
               PYYNE Digital
             </a>{' '}
             &{' '}
-            <a
-              className="text-inveterate hover:underline"
-              href="https://www.inveterate.com"
-            >
+            <a className="text-inveterate hover:underline" href="https://www.inveterate.com">
               Inveterate
             </a>
-            . Recently, my professional experience has been primarily in AWS
-            serverless APIs and NestJS monolith APIs. Previously, I've worked on
-            a number of projects, mostly for{' '}
-            <a
-              className="text-amber-500 hover:underline"
-              href="https://www.socom.mil/"
-            >
+            . Recently, my professional experience has been primarily in AWS serverless APIs and
+            NestJS monolith APIs. Previously, I&apos;ve worked on a number of projects, mostly for{' '}
+            <a className="text-amber-500 hover:underline" href="https://www.socom.mil/">
               USSOCOM
             </a>
-            , using a variety of ML solutions (computer vision, NLP, etc...).{' '}
+            , using a variety of ML solutions (computer vision, NLP, etc...). <br />
+            <br />
+            On my own time, I work on few different kinds of projects, most being lower-level than
+            my professional work. Recently, I&apos;ve been especially interested in emulators,
+            compilers, and operating systems (RISC-V). My hope is to capture my development work on
+            this site to help others that may be interested in working on similar projects.
             <br />
             <br />
-            On my own time, I work on few different kinds of projects, most
-            being lower-level than my professional work. Recently, I've been
-            especially interested in emulators, compilers, and bare-bones
-            operating systems (RISC-V). My hope is to capture my development
-            work on this site to help others that may be interested in working
-            on similar projects.
-            <br />
-            <br />
-            Beyond software, I enjoy cars, video games, and weightlifting. I
-            tried to capture more details on my interests below.
+            Beyond software, I enjoy cars, video games, weightlifting, and running. I tried to
+            capture more details on my interests below.
           </>
         </p>
 
         <div className="mt-2 flex justify-center gap-3 md:justify-start">
           <>
             <a href="https://github.com/saidkharboutli">
-              <HeroSocial
-                src="/images/site/dark-github-pixelated.png"
-                alt="GitHub Icon"
-              />
+              <HeroSocial src="/images/site/dark-github-pixelated.png" alt="GitHub Icon" />
             </a>
             <a href="https://www.linkedin.com/in/sa-id-kharboutli-428785119/">
-              <HeroSocial
-                src="/images/site/linkedin-pixelated.avif"
-                alt="LinkedIn Icon"
-              />
+              <HeroSocial src="/images/site/linkedin-pixelated.avif" alt="LinkedIn Icon" />
             </a>
             <a href="https://twitter.com/saidkio/">
-              <HeroSocial
-                src="/images/site/twitter-pixelated.avif"
-                alt="Twitter Icon"
-              />
+              <HeroSocial src="/images/site/twitter-pixelated.avif" alt="Twitter Icon" />
             </a>
           </>
         </div>

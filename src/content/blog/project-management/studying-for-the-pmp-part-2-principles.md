@@ -1,11 +1,10 @@
 ---
-layout: '@/templates/BasePost.astro'
 title: 'Studying for the PMP: Part 2 — Principles'
 description: This post is part 2 in my "Studying for the PMP" series. This part is an overview of the 12 major PM principles, according to PMI.
 pubDate:
 imgSrc: '/images/posts/studying-for-the-pmp/part-2/banner.jpg'
 imgAlt: 'A banner displaying the PMP logo'
-tags: Project Management, PMP
+tags: [Project Management, PMP]
 series: Studying for the PMP
 isProject: False
 draft: True

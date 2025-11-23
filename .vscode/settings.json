@@ -4,19 +4,10 @@
   "search.exclude": {
     "package-lock.json": true
   },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": [
-    "source.addMissingImports",
-    "source.fixAll.eslint"
-  ],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "astro"
-  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll.eslint"],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "astro"],
   "jest.autoRun": {
     "watch": true, // Start the jest with the watch flag
     "onSave": "test-src-file", // Trigger test run for the given test or source file upon save

@@ -2,22 +2,21 @@
   <div id="search" class="-mt-8 ml-3 size-full p-4"></div>
 
   <script is:inline>
-  window.addEventListener('DOMContentLoaded', () => {
-    // eslint-disable-next-line no-new
-    new PagefindUI({
-      element: '#search',
-      showSubResults: true,
-      pageSize: 10,
-      baseUrl: '/',
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        pageSize: 10,
+        baseUrl: '/',
+      });
     });
-  });
 
-  window.addEventListener('keydown', (event) => {
-    if (event.key === '/' || event.key === '.') {
-      event.preventDefault();
-      document.querySelector('div#search input').focus();
-    }
-  });
+    window.addEventListener('keydown', (event) => {
+      if (event.key === '/' || event.key === '.') {
+        event.preventDefault();
+        document.querySelector('div#search input').focus();
+      }
+    });
   </script>
 
   <style is:global>

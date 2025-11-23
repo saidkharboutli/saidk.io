@@ -1,0 +1,94 @@
+{
+  "$ref": "#/definitions/reviews",
+  "definitions": {
+    "reviews": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "reviewDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "releaseDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "rating": {
+          "type": "number"
+        },
+        "review": {
+          "type": "string"
+        },
+        "ifYouLiked": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "typeOrGenre": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "artistOrAuthor": {
+          "type": "string"
+        },
+        "favoriteSongs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imgSrc": {
+          "type": "string"
+        },
+        "imgAlt": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "reviewDate",
+        "releaseDate",
+        "rating",
+        "review",
+        "link",
+        "typeOrGenre",
+        "imgSrc",
+        "imgAlt"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

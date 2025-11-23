@@ -1,7 +1,8 @@
-import type { MarkdownInstance, Page } from 'astro';
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 type INewerOlderPaginationProps = {
-  page: Page<MarkdownInstance<any>>;
+  page: Page<CollectionEntry<'blog'>>;
 };
 
 const NewerOlderPagination = (props: INewerOlderPaginationProps) => (

@@ -11,9 +11,7 @@ type IHeroAvatarProps = {
 const HeroAvatar = (props: IHeroAvatarProps) => (
   <div className="flex size-full flex-col items-center md:flex-row md:justify-between md:gap-x-16 lg:gap-x-36">
     <div className="flex size-full flex-col items-center text-center md:items-start md:text-left">
-      <h1 className="mb-4 hidden text-3xl font-bold md:mb-2 md:block">
-        {props.title}
-      </h1>
+      <h1 className="mb-4 hidden text-3xl font-bold md:mb-2 md:block">{props.title}</h1>
       <div className="h-[23rem] w-full overflow-visible md:h-[21rem]">
         <HeroTerminal />
       </div>

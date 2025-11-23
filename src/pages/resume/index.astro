@@ -1,14 +1,12 @@
 ---
 import { AboutMeContact } from '@/features/AboutMe/AboutMeContact';
+import Base from '@/features/shared/Base.astro';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
-import Base from '@/templates/Base.astro';
 import { AppConfig } from '@/utils/AppConfig';
 
-
 const title = `CV | ${AppConfig.site_name}`;
-const description =
-  "My resume - Sa'id Kharboutli";
+const description = "My resume - Sa'id Kharboutli";
 ---
 
 <Base head={{ title, description }}>
@@ -17,12 +15,15 @@ const description =
       <h1 class="text-3xl font-bold">My <GradientText>Resume</GradientText></h1>
     </div>
   </Section>
-  
+
   <Section>
     <div class="flex w-full items-center justify-center">
-      <object data="/documents/Resume - Said Kharboutli.pdf" type="application/pdf" class="h-[calc(100vh-350px)] w-full md:min-h-[calc(100vh-168px)]"></object>
+      <object
+        data="/documents/Resume - Said Kharboutli.pdf"
+        type="application/pdf"
+        class="h-[calc(100vh-350px)] w-full md:min-h-[calc(100vh-168px)]"></object>
     </div>
   </Section>
-  
+
   <AboutMeContact client:load />
 </Base>

@@ -3,9 +3,9 @@ import type { APIRoute } from 'astro';
 export const prerender = false;
 
 export const PUT: APIRoute = async ({ request, locals }) => {
-  const { path } = (await request.json()) as any;
+  const { path } = (await request.json()) as { path: string };
 
-  let currentCount = Number(await locals?.runtime?.env?.PAGE_VIEWS?.get(path));
+  let currentCount = Number(await locals.runtime.env.PAGE_VIEWS.get(path));
   if (!currentCount || Number.isNaN(currentCount)) {
     currentCount = 0;
   }
@@ -29,7 +29,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
   }
 
   const encodedPath = encodeURIComponent(path);
-  const count = (await locals?.runtime?.env?.PAGE_VIEWS?.get(encodedPath)) ?? 0;
+  const count = (await locals.runtime.env.PAGE_VIEWS.get(encodedPath)) ?? 0;
 
   return new Response(JSON.stringify({ count }), {
     status: 200,

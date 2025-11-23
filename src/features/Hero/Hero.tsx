@@ -1,18 +1,18 @@
 import { HeroAvatar } from '@/features/Hero/components/HeroAvatar';
 import { HeroSocial } from '@/features/Hero/components/HeroSocial';
-import ParticlesBackrgound from '@/features/Hero/components/ParticlesBackground';
+import ParticlesBackground from '@/features/Hero/components/ParticlesBackground';
 import { GradientText } from '@/features/shared/GradientText';
 import { Page } from '@/features/shared/Page';
 
 const Hero = () => (
   <Page>
-    <ParticlesBackrgound />
+    <ParticlesBackground />
     <div>
       <div className="flex min-h-[calc(100vh-74px)] w-full flex-col justify-center overflow-hidden">
         <HeroAvatar
           title={
             <>
-              Hi, I'm <GradientText>Sa'id</GradientText>
+              Hi, I&apos;m <GradientText>Sa&apos;id</GradientText>
             </>
           }
           avatar={
@@ -25,22 +25,13 @@ const Hero = () => (
           socialButtons={
             <>
               <a href="https://github.com/saidkharboutli">
-                <HeroSocial
-                  src="/images/site/dark-github-pixelated.png"
-                  alt="GitHub Icon"
-                />
+                <HeroSocial src="/images/site/dark-github-pixelated.png" alt="GitHub Icon" />
               </a>
               <a href="https://www.linkedin.com/in/sa-id-kharboutli-428785119/">
-                <HeroSocial
-                  src="/images/site/linkedin-pixelated.avif"
-                  alt="LinkedIn Icon"
-                />
+                <HeroSocial src="/images/site/linkedin-pixelated.avif" alt="LinkedIn Icon" />
               </a>
               <a href="https://twitter.com/saidkio/">
-                <HeroSocial
-                  src="/images/site/twitter-pixelated.avif"
-                  alt="Twitter Icon"
-                />
+                <HeroSocial src="/images/site/twitter-pixelated.avif" alt="Twitter Icon" />
               </a>
             </>
           }

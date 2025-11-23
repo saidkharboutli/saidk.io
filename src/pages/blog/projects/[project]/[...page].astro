@@ -1,68 +1,71 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
+import Base from '@/features/shared/Base.astro';
 import { CTA } from '@/features/shared/CTA';
 import { GradientText } from '@/features/shared/GradientText';
 import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
 import { Section } from '@/features/shared/Section';
-import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, generateSlug, sortPostsByDate, tagDataFromArr } from '@/utils/helpers';
+import { generateSlug, tagDataFromArr } from '@/utils/helpers';
 
-interface GetStaticPaths {
-  paginate: any;
-};
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? !data.draft : true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-interface Props {
-  page: FrontMatterPostPage;
-  projectData: any;
-}
+  const allUniqueProjects = new Set<string>();
 
-export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../../**/*.md'));
-  const allUniqueProjects = new Set<any>();
-  const sortedPosts = sortPostsByDate(allPosts);
-
-  sortedPosts.forEach(post => {
-    if(post.frontmatter.isProject && post.frontmatter.series) allUniqueProjects.add(post.frontmatter.series);
+  allPosts.forEach((post) => {
+    if (post.data.isProject && post.data.series) allUniqueProjects.add(post.data.series);
   });
 
   const projectData = tagDataFromArr(allUniqueProjects);
 
   return projectData.flatMap((project) => {
-    const posts = sortedPosts.filter((post) =>  post.frontmatter.isProject && post.frontmatter.series === project.name)
-    return paginate( posts,  {props: { projectData: project }, params: { project: project.slug }, pageSize: 10});
-    }
-  )
+    const posts = allPosts.filter(
+      (post) => post.data.isProject && post.data.series === project.name
+    );
+    return paginate(posts, {
+      props: { projectData: project },
+      params: { project: project.slug },
+      pageSize: 10,
+    });
+  });
   // Return a paginated collection of paths for all posts
-}
+}) satisfies GetStaticPaths;
 
-const { page, projectData } = Astro.props as Props;
-// @ts-ignore
-// eslint-disable-next-line unused-imports/no-unused-vars
-const { project } = Astro.params; 
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { page, projectData } = Astro.props;
 
 const title = `${projectData.name} Project Posts | ${AppConfig.site_name}`;
-const description =
-  `All posts for my ${projectData.name} project - Sa'id Kharboutli - Page ${page}`;
+const description = `All posts for my ${projectData.name} project - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold"><GradientText>{projectData.name}</GradientText> Project Posts</h1>
+      <h1 class="text-3xl font-bold">
+        <GradientText>{projectData.name}</GradientText> Project Posts
+      </h1>
       <div class="mt-1 flex justify-center text-xs">
-        <a href={`/projects/${generateSlug(projectData.name)}/`} class="transition-all duration-150 hover:text-primary hover:scale-110">
-        View Project Page
+        <a
+          href={`/projects/${generateSlug(projectData.name)}/`}
+          class="transition-all duration-150 hover:text-primary hover:scale-110"
+        >
+          View Project Page
         </a>
       </div>
     </div>
   </Section>
 
   <Section>
-    <BlogCardSpotlight instance={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
   </Section>
 
   <Section>

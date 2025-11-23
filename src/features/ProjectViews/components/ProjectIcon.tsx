@@ -38,8 +38,8 @@ type IProjectTagProps = {
 const ProjectIcon = (props: IProjectTagProps) => (
   <div className="flex size-8 items-center rounded-md">
     <img
-      alt={`${props.children.toString()} icon`}
-      src={`${nameToImageMap[props.children?.toString().toUpperCase()] || nameToImageMap.DEFAULT}`}
+      alt={`${props.children!.toString()} icon`}
+      src={`${nameToImageMap[props.children!.toString().toUpperCase()] || nameToImageMap.DEFAULT}`}
     ></img>
   </div>
 );

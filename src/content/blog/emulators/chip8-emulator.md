@@ -1,14 +1,14 @@
 ---
-layout: '@/templates/BasePost.astro'
 title: 'Emulating CHIP8 As Fast As Possible'
 description: This blog post covers the reasoning for making a CHIP8 emulator and the steps I took to implement it (as fast as possible)!
 pubDate: 2024-02-22T17:00:00-05:00
 imgSrc: '/images/posts/chip8-emulator/banner-ibm.png'
 imgAlt: 'Image post'
-tags: EmuDev, Emulators, Low-Level, CHIP8
+tags: [EmuDev, Emulators, Low-Level, CHIP8]
 series: CHIP8 Emulator
 isProject: True
 ---
+
 ## Why a CHIP8 Emulator?
 
 Besides a few tangentially related embedded systems projects in college, I hadn't yet worked on an emulator despite wanting to for a while now. I took the step at the start of this year by picking up the simplest architecture to emulate: [CHIP8](https://en.wikipedia.org/wiki/CHIP-8). Its simplicity makes it a great starting place for interested "EmuDevs" (or "emulator developers"), and is widely regarded as the go-to first project within the emulation community.
@@ -66,15 +66,15 @@ Additionally, this isn't intended to be a guide, per se. It's more so a personal
 
 This was the first piece of the emulator I decided to implement. I grabbed the first file from [Timendus' CHIP8 Test Suite](https://github.com/Timendus/chip8-test-suite) and saved it to my repository as a baseline for checking the implementation as I go. Unfortunately, pretty much every test requires the graphics portion of the project to be completed in order to view the test results. However, while the drawing functionality wasn't ready yet, I used VS Code's built-in debugger to watch each register as instructions executed.
 
-Any external I/O was placed in a `peripherals.c` file, including the "ROM drive". 
+Any external I/O was placed in a `peripherals.c` file, including the "ROM drive".
 
 #### Endianness
 
 ROM loading is actually more difficult than you might expect, thanks to a concept known as "endianness". Essentially, endianness refers to the order in which bytes are placed in and loaded from memory. While usually we (Romantic and Germanic language speakers) like to think in terms of left → right for reading and writing order ("big endian order"), typically bytes of memory are stored in the opposite order. Here is an example of what that actually looks like for the hex value `0x123456`:
 
-|  | Byte 0 | Byte 1 | Byte 2 |
-| ---- | ---- | ---- | ---- |
-| **Big Endian** | `0x12` | `0x34` | `0x56` |
+|                   | Byte 0 | Byte 1 | Byte 2 |
+| ----------------- | ------ | ------ | ------ |
+| **Big Endian**    | `0x12` | `0x34` | `0x56` |
 | **Little Endian** | `0x56` | `0x34` | `0x12` |
 
 So why does this add difficulty? It's only difficult when the host system has a different endianness than the emulated platform. For the vast majority of people, this would be true for a CHIP8 emulator. Further, your implementation should work independent of the host endianness.
@@ -124,36 +124,37 @@ Next, the instruction definition:
 ```c
 switch(instr_t) {
 	// ...
-	
+
 	case 0xD:
 	/* drw / draw sprite from I at (Vx, Vy)*/
 	V[0xF] = 0;
 	for(int i = 0; i < (instr_bus&0x000F); i++) {
 		int index_x, index_y, offset;
-		
+
 		index_x = V[x]>>3; // which byte to access
 		index_y = (V[y] + i) % 32; // height of byte
 		offset = 8-(V[x]%8); // offset of wrapped byte
-		
+
 		// collision detection:
 		if((screen[index_x][index_y] & (mem[I+i]>>(V[x]%8))) ||
 		   (screen[(index_x+1)%8][index_y] & (mem[I+i]<<offset))) {
 			V[0xF] = 1;
 		}
-		
+
 		// write to buffer
 		screen[index_x][index_y] ^= (mem[I+i]>>(V[x]%8));
 		screen[(index_x+1)%8][index_y] ^= (mem[I+i]<<offset);
 	}
 	break;
-	
+
 	// ...
 }
 ```
 
-As you can see, it's not exactly the most straightforward piece of code, *especially* if you decide to represent each pixel with a bit and not a byte. The byte representation makes for a much easier implementation, but is less compact (no need to set bits to 1 and 0, just set the whole byte).
+As you can see, it's not exactly the most straightforward piece of code, _especially_ if you decide to represent each pixel with a bit and not a byte. The byte representation makes for a much easier implementation, but is less compact (no need to set bits to 1 and 0, just set the whole byte).
 
 A few things to note about the implementation:
+
 1. Note that `x >> y` is equivalent to `x * 2^y`. So `V[x]>>3` is really `V[x] * 2^3` or simply `V[x] * 8`. The opposite holds true, as well (`x << y` is `x / 2^y`).
 2. You always have to keep wrapped bits in mind. If you draw 4 horizontal pixels to the buffer at bit position 63 (indexed at 0), there are 3 bits hanging off that need to be drawn. The CHIP8 specification says that those bit should be wrapped around to `x = x + 1` at the same `y` level.
 3. Collision should be checked before writing to the buffer. I used bit-wise `&` to check for collisions, but there are other ways to do this, as well. Collisions result in the colliding pixel to turn off, thanks to the `XOR` operation that the CHIP8 specification requires for writing to the buffer.
@@ -188,12 +189,13 @@ void draw_screen(uint8_t screen[8][32], SDL_Renderer* renderer) {
 ```
 
 Some notes:
+
 1. Make sure to call `SDL_Init` and `SDL_Quit`, alongside any `_Destroy` functions (i.e. for `Renderer` and `Window`). These happen in separate "initialize" and "terminate" functions in my implementation.
 2. `SCALE` is a nice addition to the implementation. It multiplies the size of all size-related values (window size, "pixel" height, "pixel" width) so you can create larger view-ports for a clearer image.
 3. C experts will scoff at this point, but this was one of the things I forgot, having not used C in a while. **REMEMBER:** If the function you are calling takes in a parameter that it will mutate (lets say, a pointer to a struct) you must pass a POINTER to that pointer!
-	1. This is actually dependent on how the function mutates the parameter. If it is dereferencing the pointer and changing a field or a value within, then you only need to pass the pointer.
-	2. If the function is creating a new `struct` and setting the passed in pointer to a new pointer to the new `struct` you must pass a pointer to a pointer.
-	3. If this makes no sense, read [this Stack Overflow explanation](https://stackoverflow.com/a/30717999) a few times and I think it will become clear.
+   1. This is actually dependent on how the function mutates the parameter. If it is dereferencing the pointer and changing a field or a value within, then you only need to pass the pointer.
+   2. If the function is creating a new `struct` and setting the passed in pointer to a new pointer to the new `struct` you must pass a pointer to a pointer.
+   3. If this makes no sense, read [this Stack Overflow explanation](https://stackoverflow.com/a/30717999) a few times and I think it will become clear.
 
 ### The Sound
 
@@ -251,7 +253,7 @@ Special thanks to [Timendus for their test suite](https://github.com/Timendus/ch
 
 ### Compatibility (and Demo)
 
-Compatibility is a little hit or miss, unfortunately. This may be thanks to the variety of CHIP8 extensions out there and some improper labeling. Regardless, for most games that I tested, they worked as expected. 
+Compatibility is a little hit or miss, unfortunately. This may be thanks to the variety of CHIP8 extensions out there and some improper labeling. Regardless, for most games that I tested, they worked as expected.
 
 **Thanks for sticking around and reading through this!** Hopefully this was helpful, insightful or really anything of value to you. Feel free to leave a comment down below if you have a question or suggestion!
 

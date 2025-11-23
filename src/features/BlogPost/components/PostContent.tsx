@@ -1,9 +1,8 @@
+import type { CollectionEntry } from 'astro:content';
 import type { ReactNode } from 'react';
 
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
-
 type IPostContentProps = {
-  content: IFrontMatterPost;
+  content: CollectionEntry<'blog'>['data'];
   children: ReactNode;
   toc?: ReactNode;
 };

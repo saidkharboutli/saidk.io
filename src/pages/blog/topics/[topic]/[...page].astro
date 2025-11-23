@@ -1,62 +1,64 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
 
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
+import Base from '@/features/shared/Base.astro';
 import { CTA } from '@/features/shared/CTA';
 import { GradientText } from '@/features/shared/GradientText';
 import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
 import { Section } from '@/features/shared/Section';
-import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, getNameFromSlug, getTopicFromUrl, sortPostsByDate } from '@/utils/helpers';
+import { getNameFromSlug, getTopicFromUrl } from '@/utils/helpers';
 
-interface GetStaticPaths {
-  paginate: any;
-};
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? !data.draft : true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-interface Props {
-  page: FrontMatterPostPage;
-}
+  const allUniqueTopics = new Set<string>();
 
-export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../**/*.md'));
-  const allUniqueTopics = new Set<any>();
-
-    allPosts.forEach(post => {
-      allUniqueTopics.add(getTopicFromUrl(post.url!));
+  allPosts.forEach((post) => {
+    allUniqueTopics.add(getTopicFromUrl(post.slug));
   });
 
   return [...allUniqueTopics].flatMap((topic) => {
-    const posts = allPosts.filter((post) =>  getTopicFromUrl(post.url!) === topic)
-    return paginate( sortPostsByDate(posts),  {params: { topic }, pageSize: 10});
-    }
-  )
-}
+    const posts = allPosts.filter((post) => getTopicFromUrl(post.slug) === topic);
+    return paginate(posts, { params: { topic }, pageSize: 10 });
+  });
+}) satisfies GetStaticPaths;
 
-const { page } = Astro.props as Props;
-const { topic } = Astro.params; 
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+const { topic } = Astro.params;
 
 const title = `"${getNameFromSlug(topic)}" Topic | ${AppConfig.site_name}`;
-const description =
-  `All blog posts related to ${getNameFromSlug(topic)} - Sa'id Kharboutli - Page ${page}`;
+const description = `All blog posts related to ${getNameFromSlug(topic)} - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold">Topic: <GradientText>{getNameFromSlug(topic)}</GradientText></h1>
+      <h1 class="text-3xl font-bold">
+        Topic: <GradientText>{getNameFromSlug(topic)}</GradientText>
+      </h1>
     </div>
     <div class="mt-1 flex justify-center text-xs">
-      <a href="/blog/topics/" class="transition-all duration-150 hover:text-primary hover:scale-110">
-      View All Topics
+      <a
+        href="/blog/topics/"
+        class="transition-all duration-150 hover:text-primary hover:scale-110"
+      >
+        View All Topics
       </a>
     </div>
   </Section>
 
   <Section>
-    <BlogCardSpotlight instance={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
   </Section>
 
   <Section>

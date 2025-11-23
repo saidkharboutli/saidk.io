@@ -1,10 +1,13 @@
+import type { CollectionEntry } from 'astro:content';
+
 import { BlogCardMin } from '@/features/BlogViews/components/BlogCardMin';
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
 
 type IPostFooterProps = {
-  content: IFrontMatterPost;
-  path: string;
-  prevNextInSeries: any;
+  content: CollectionEntry<'blog'>['data'];
+  prevNextInSeries: {
+    previous: CollectionEntry<'blog'> | null;
+    next: CollectionEntry<'blog'> | null;
+  };
   author: string;
 };
 
@@ -15,23 +18,18 @@ const PostFooter = (props: IPostFooterProps) => (
         {props.prevNextInSeries.previous && (
           <div className="flex w-1/2 flex-col text-center md:w-1/5">
             <div className="flex text-center md:text-left">
-              <BlogCardMin instance={props.prevNextInSeries.previous} />
+              <BlogCardMin post={props.prevNextInSeries.previous} />
             </div>
-            <h2>
-              ← Previous Post in{' '}
-              {props.content.isProject ? 'Project' : 'Series'}
-            </h2>
+            <h2>← Previous Post in {props.content.isProject ? 'Project' : 'Series'}</h2>
           </div>
         )}
 
         {props.prevNextInSeries.next && (
           <div className="flex w-1/2 flex-col text-center md:w-1/5">
             <div className="flex text-center md:text-left">
-              <BlogCardMin instance={props.prevNextInSeries.next} />
+              <BlogCardMin post={props.prevNextInSeries.next} />
             </div>
-            <h2>
-              Next Post in {props.content.isProject ? 'Project' : 'Series'} →
-            </h2>
+            <h2>Next Post in {props.content.isProject ? 'Project' : 'Series'} →</h2>
           </div>
         )}
       </div>

@@ -21,10 +21,7 @@ const HeroTerminal = () => {
           <span className="font-bold text-primary">$CURRENTLY</span>
           <br />
           `Software engineer/PM working for{' '}
-          <a
-            className="font-bold text-pyyne hover:underline"
-            href="https://www.pyyne.com"
-          >
+          <a className="font-bold text-pyyne hover:underline" href="https://www.pyyne.com">
             PYYNE Digital
           </a>{' '}
           &{' '}
@@ -39,10 +36,7 @@ const HeroTerminal = () => {
           <span className="font-bold text-primary">$PREVIOUSLY</span>
           <br />
           `Machine learning solutions (CV & NLP) for{' '}
-          <a
-            className="font-bold text-amber-500 hover:underline"
-            href="https://www.socom.mil/"
-          >
+          <a className="font-bold text-amber-500 hover:underline" href="https://www.socom.mil/">
             USSOCOM
           </a>
           .`

@@ -7,7 +7,7 @@ interface IParticlesBackgroundProps {
   children?: React.ReactNode;
 }
 
-const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
+const ParticlesBackground = (props: IParticlesBackgroundProps) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -91,7 +91,7 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
       },
       detectRetina: true,
     }),
-    [],
+    []
   );
 
   if (init) {
@@ -110,4 +110,4 @@ const ParticlesBackrgound = (props: IParticlesBackgroundProps) => {
   return <></>;
 };
 
-export default ParticlesBackrgound;
+export default ParticlesBackground;

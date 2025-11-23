@@ -1,63 +1,64 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+
 import { BlogCardSpotlight } from '@/features/BlogViews/BlogCardSpotlight';
 import { BlogGallery } from '@/features/BlogViews/BlogGallery';
+import Base from '@/features/shared/Base.astro';
 import { CTA } from '@/features/shared/CTA';
 import { GradientText } from '@/features/shared/GradientText';
 import { NewerOlderPagination } from '@/features/shared/NewerOlderPagination';
 import { Section } from '@/features/shared/Section';
-import Base from '@/templates/Base.astro';
-// eslint-disable-next-line prettier/prettier
-import type { FrontMatterPostPage, IFrontMatterPost } from '@/types/IFrontMatterPost';
 import { AppConfig } from '@/utils/AppConfig';
-import { filterPostDrafts, sortPostsByDate,tagDataFromArr  } from '@/utils/helpers';
+import { tagDataFromArr } from '@/utils/helpers';
 
-type GetStaticPaths = {
-  paginate: any;
-}; // Overrides `GetStaticPathsOptions` types from Astro
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = (
+    await getCollection('blog', ({ data }) => {
+      return import.meta.env.PROD ? !data.draft : true;
+    })
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allPosts = filterPostDrafts(await Astro.glob<IFrontMatterPost>('../../**/*.md'));
-  const allUniqueSeries = new Set<any>();
-  const sortedPosts = sortPostsByDate(allPosts);
+  const allUniqueSeries = new Set<string>();
 
-  sortedPosts.forEach(post => {
-    if(!post.frontmatter.isProject && post.frontmatter.series) allUniqueSeries.add(post.frontmatter.series);
+  allPosts.forEach((post) => {
+    if (!post.data.isProject && post.data.series) allUniqueSeries.add(post.data.series);
   });
 
   const seriesData = tagDataFromArr(allUniqueSeries);
 
   return seriesData.flatMap((series) => {
-    const posts = sortedPosts.filter((post) =>  !post.frontmatter.isProject && post.frontmatter.series === series.name)
-    return paginate( posts,  {props: { seriesData: series }, params: { series: series.slug }, pageSize: 10});
-    }
-  )
+    const posts = allPosts.filter(
+      (post) => !post.data.isProject && post.data.series === series.name
+    );
+    return paginate(posts, {
+      props: { seriesData: series },
+      params: { series: series.slug },
+      pageSize: 10,
+    });
+  });
   // Return a paginated collection of paths for all posts
-}
+}) satisfies GetStaticPaths;
 
-interface Props {
-  page: FrontMatterPostPage;
-  seriesData: any;
-}
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page, seriesData } = Astro.props as Props;
-// @ts-ignore
-// eslint-disable-next-line unused-imports/no-unused-vars
-const { series } = Astro.params; 
+const { page, seriesData } = Astro.props;
 
 const title = `${seriesData.name} Series Posts | ${AppConfig.site_name}`;
-const description =
-  `Blog posts by topics - Sa'id Kharboutli - Page ${page}`;
+const description = `Blog posts by topics - Sa'id Kharboutli - Page ${page}`;
 ---
 
 <Base head={{ title, description }}>
   <Section>
     <div class="text-center">
-      <h1 class="text-3xl font-bold"><GradientText>{seriesData.name}</GradientText> Series Posts</h1>
+      <h1 class="text-3xl font-bold">
+        <GradientText>{seriesData.name}</GradientText> Series Posts
+      </h1>
     </div>
   </Section>
 
   <Section>
-    <BlogCardSpotlight instance={page.data[0]!} />
+    <BlogCardSpotlight post={page.data[0]} />
   </Section>
 
   <Section>

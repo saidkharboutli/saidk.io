@@ -62,8 +62,10 @@ const Newsletter = (props: INewsletterProps) => {
 
     /* Reset form and status after 5 seconds */
     setTimeout(() => {
-      form.current.reset();
-      setStatus('IDLE');
+      if (form.current) {
+        form.current.reset();
+        setStatus('IDLE');
+      }
     }, 5000);
   };
 
@@ -99,9 +101,7 @@ const Newsletter = (props: INewsletterProps) => {
           </button>
         </form>
         <div className="h-2">
-          <p className="px-4 text-left text-xs text-cod-300">
-            {renderStatusText(status)}
-          </p>
+          <p className="px-4 text-left text-xs text-cod-300">{renderStatusText(status)}</p>
         </div>
       </div>
     </div>

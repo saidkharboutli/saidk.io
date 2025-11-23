@@ -1,7 +1,4 @@
 ---
-# Layout File
-layout: '@/templates/BaseProject.astro'
-
 # Banner Image
 imgSrc: '/images/projects/chip8-emulator.avif'
 imgAlt: 'CHIP8 program output'
@@ -18,7 +15,7 @@ github: 'https://github.com/saidkharboutli/chip8-emu'
 # Tech Stack
 language: C
 techStack: [SDL2]
-platform: [Linux]
+platforms: [Linux]
 
 # Related Blog Series
 series: 'CHIP8 Emulator'

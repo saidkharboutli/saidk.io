@@ -1,16 +1,10 @@
-import type { MarkdownInstance } from 'astro';
-
 import { ProjectGallery } from '@/features/ProjectViews/ProjectGallery';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
-import type { IFrontMatterPost } from '@/types/IFrontMatterPost';
-import type { IFrontMatterProject } from '@/types/IFrontMatterProject';
+import type { IProjectAndPost } from '@/types/IProjectAndPost';
 
 type IProjectListProps = {
-  projectList: {
-    project: MarkdownInstance<IFrontMatterProject>;
-    post: MarkdownInstance<IFrontMatterPost>;
-  }[];
+  projectPostPairs: IProjectAndPost[];
 };
 
 const ProjectList = (props: IProjectListProps) => (
@@ -27,7 +21,7 @@ const ProjectList = (props: IProjectListProps) => (
       </div>
     }
   >
-    <ProjectGallery projectList={props.projectList.slice(0, 3)} />
+    <ProjectGallery projectPostPairs={props.projectPostPairs.slice(0, 3)} />
   </Section>
 );
 

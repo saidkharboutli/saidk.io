@@ -1,9 +1,6 @@
 ---
-# Layout File
-layout: '@/templates/BaseProject.astro'
-
 # Banner Image
-imgSrc: '/images/projects/gba-emulator.jpg'
+imgSrc: '/images/projects/gba-emulator.avif'
 imgAlt: 'A GBA playing Pokemon.'
 
 # Project Details
@@ -18,7 +15,7 @@ github: 'https://github.com/saidkharboutli/gba-emu'
 # Tech Stack
 language: C++
 techStack: [SDL2]
-platform: [Linux]
+platforms: [Linux]
 
 # Related Blog Series
 series: 'GBA Emulator'

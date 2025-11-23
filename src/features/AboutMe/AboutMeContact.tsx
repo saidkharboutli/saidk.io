@@ -6,7 +6,7 @@ import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
 
 const AboutMeContact = () => {
-  const form = React.useRef<HTMLFormElement>();
+  const form = React.useRef<HTMLFormElement>(null);
   const recaptcha = React.createRef<Reaptcha>();
 
   const [showPopup, setShowPopup] = React.useState(false);
@@ -31,7 +31,7 @@ const AboutMeContact = () => {
     setTimeout(() => {
       setSending(false);
     }, 8000);
-  }, [sending]);
+  }, [sending, showPopup]);
 
   /* 
     Verified humans, send email.
@@ -39,6 +39,11 @@ const AboutMeContact = () => {
   const onRecaptchaVerify = () => {
     /* In case user took very long to finish recaptcha */
     if (!sending) setSending(true);
+    if (!form.current) {
+      setSending(false);
+      console.error('Form reference is null.');
+      return;
+    }
 
     const serviceId = 'contact-saidk';
     const templateId = 'template_4akaltp';
@@ -51,7 +56,7 @@ const AboutMeContact = () => {
         setTimeout(() => {
           setSending(false);
           setShowPopup(false);
-          form.current.reset();
+          form.current!.reset();
         }, 4000);
 
         /* start ease out animation */
@@ -71,7 +76,7 @@ const AboutMeContact = () => {
         setTimeout(() => {
           setAnimateContents(false);
         }, 3800);
-      },
+      }
     );
   };
 
@@ -79,6 +84,11 @@ const AboutMeContact = () => {
     Could not verify human, recaptcha failed, robot
   */
   const onRecaptchaError = () => {
+    if (!form.current) {
+      console.error('Form reference is null.');
+      return;
+    }
+
     setFailedSend(true);
     setTimeout(() => {
       setSending(false);
@@ -91,6 +101,11 @@ const AboutMeContact = () => {
     Run recaptcha verification on form submit.
   */
   const handleSubmit = async (e: React.FormEvent) => {
+    if (!recaptcha.current) {
+      console.error('Recaptcha reference is null.');
+      return;
+    }
+
     e.preventDefault();
     setSending(true);
     await recaptcha.current.execute();
@@ -104,18 +119,14 @@ const AboutMeContact = () => {
             <GradientText>Contact Me</GradientText>
           </h1>
           <p className="text-cod-200">
-            Interested in working with PYYNE? Have a question about one of my
-            projects? Reach me below!
+            Interested in working with PYYNE? Have a question about one of my projects? Reach me
+            below!
           </p>
         </div>
       </div>
 
       <div className="flex w-full justify-center">
-        <form
-          onSubmit={handleSubmit}
-          ref={form}
-          className="flex flex-col gap-5 md:w-2/3"
-        >
+        <form onSubmit={handleSubmit} ref={form} className="flex flex-col gap-5 md:w-2/3">
           <div className="flex flex-col gap-2 md:flex-row md:justify-between md:gap-8">
             <div className="w-full">
               <label className="mb-2 font-semibold">Name</label>
@@ -147,10 +158,7 @@ const AboutMeContact = () => {
             />
             <div className="pt-2 text-sm text-cod-400">
               This site is protected by reCAPTCHA and the Google{' '}
-              <a
-                className="underline"
-                href="https://policies.google.com/privacy"
-              >
+              <a className="underline" href="https://policies.google.com/privacy">
                 Privacy Policy
               </a>{' '}
               and{' '}
@@ -174,7 +182,7 @@ const AboutMeContact = () => {
             type="submit"
             id="submit-button"
             className="self-center rounded-md bg-primary px-6 py-2 text-cod-950 transition-all duration-200 hover:scale-110"
-            onClick={() => recaptcha.current.reset()}
+            onClick={() => recaptcha.current!.reset()}
             disabled={sending}
           >
             {/* Confusing mess, probably should clarify. */}
@@ -191,7 +199,7 @@ const AboutMeContact = () => {
               setAnimateContents(false);
               setSending(false);
               setFailedSend(false);
-              form.current.reset();
+              form.current!.reset();
               setTimeout(() => {
                 setShowPopup(false);
               }, 500);
@@ -218,7 +226,7 @@ const AboutMeContact = () => {
 
                   <p>
                     Successfully submitted. <br />
-                    I'll get back to you as soon as possible!
+                    I&apos;ll get back to you as soon as possible!
                   </p>
                 </div>
               )}

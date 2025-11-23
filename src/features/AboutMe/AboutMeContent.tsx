@@ -1,4 +1,4 @@
-import type { MarkdownInstance } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 
 import { AboutMeEducation } from '@/features/AboutMe/AboutMeEducation';
 import { AboutMeFacts } from '@/features/AboutMe/AboutMeFacts';
@@ -6,13 +6,12 @@ import { AboutMeSkills } from '@/features/AboutMe/AboutMeSkills';
 import { ReviewGalleryMin } from '@/features/Reviews/ReviewGalleryMin';
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
-import type { IFrontMatterReview } from '@/types/IFrontMatterReview';
 
 interface IAboutMeContentProps {
-  movies: MarkdownInstance<IFrontMatterReview>[];
-  shows: MarkdownInstance<IFrontMatterReview>[];
-  albums: MarkdownInstance<IFrontMatterReview>[];
-  games: MarkdownInstance<IFrontMatterReview>[];
+  movies: CollectionEntry<'reviews'>[];
+  shows: CollectionEntry<'reviews'>[];
+  albums: CollectionEntry<'reviews'>[];
+  games: CollectionEntry<'reviews'>[];
 }
 
 const AboutMeContent = (props: IAboutMeContentProps) => {
@@ -115,10 +114,7 @@ const AboutMeContent = (props: IAboutMeContentProps) => {
         <div className="flex flex-col md:flex-row md:text-left">
           <AboutMeSkills skills={favoriteLangs} title={'Favorite Languages'} />
           <AboutMeSkills skills={webFrameworks} title={'Web Frameworks'} />
-          <AboutMeSkills
-            skills={otherFrameworks}
-            title={'Other Frameworks & Libraries'}
-          />
+          <AboutMeSkills skills={otherFrameworks} title={'Other Frameworks & Libraries'} />
           <AboutMeSkills skills={miscSkills} title={'Miscellaneous Skills'} />
         </div>
       </div>

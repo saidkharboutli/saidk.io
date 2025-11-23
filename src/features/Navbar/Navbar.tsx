@@ -17,7 +17,7 @@ const Navbar = () => (
                 alt="Pixelated face of Sa'id Kharboutli"
               ></img>
             }
-            name={<GradientText>Sa'id Kharboutli</GradientText>}
+            name={<GradientText>Sa&apos;id Kharboutli</GradientText>}
           />
         </a>
 
