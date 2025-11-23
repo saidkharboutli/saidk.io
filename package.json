@@ -14,7 +14,7 @@
     "build-types": "tsc --noEmit --pretty",
     "prepare": "husky install",
     "postbuild": "pagefind --site dist --verbose",
-    "deploy": "npm run build && npm run postbuild && npx wrangler pages deploy dist"
+    "deploy": "npm run build && npm run postbuild && npx wrangler pages deploy"
   },
   "devDependencies": {
     "@astrojs/react": "^3.0.10",
