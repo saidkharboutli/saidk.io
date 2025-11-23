@@ -1,5 +1,13 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "saidk-io",
+  "compatibility_date": "2024-11-23",
   "compatibility_flags": ["nodejs_compat"],
-  "compatibility_date": "2024-09-23",
+  "kv_namespaces": [
+    {
+      "binding": "PAGE_VIEWS",
+      "id": "be4728d7df534ecdb44ee3e541b952cc",
+      "preview_id": "8a9216b84ab54aacbdff65fe80f24c97",
+    },
+  ],
 }

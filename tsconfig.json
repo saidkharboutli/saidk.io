@@ -12,7 +12,7 @@
     // "isolatedModules": false,
     // "preserveConstEnums": true,
 
-    "types": ["vite/client"],
+    "types": ["vite/client", "./.wrangler/worker-configuration.d.ts", "node"],
 
     "baseUrl": ".",
     "paths": { "@/*": ["./src/*"] }

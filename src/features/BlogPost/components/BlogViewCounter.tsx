@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+interface PageViewsResponse {
+  count: string;
+}
+
 const BlogViewCounter = () => {
   const [views, setViews] = useState(0);
 
@@ -24,7 +28,7 @@ const BlogViewCounter = () => {
         const response = await fetch(`/api/pageViews?path=${path}`);
         if (!response.ok) throw new Error('Network response was not ok');
 
-        const data = await response.json();
+        const data = (await response.json()) as PageViewsResponse;
         if (!data.count || Number.isNaN(Number(data.count))) throw new Error('Invalid data');
 
         setViews(Number(data.count));

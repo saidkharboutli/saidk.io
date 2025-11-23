@@ -1,12 +1,6 @@
-/// <reference types="astro/client" />
-
-type KVNamespace = import('@cloudflare/workers-types').KVNamespace;
-type ENV = {
-  PAGE_VIEWS: KVNamespace;
-};
-
-type Runtime = import('@astrojs/cloudflare').AdvancedRuntime<ENV>;
+type Runtime = import('@astrojs/cloudflare').Runtime<Env>;
 
 declare namespace App {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface Locals extends Runtime {}
 }

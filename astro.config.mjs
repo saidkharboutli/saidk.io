@@ -23,5 +23,10 @@ export default defineConfig({
   },
   integrations: [react(), tailwind({}), sitemap(), robotsTxt()],
   output: 'static',
-  adapter: cloudflare({}),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+      configPath: './wrangler.jsonc',
+    },
+  }),
 });
