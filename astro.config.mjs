@@ -29,7 +29,4 @@ export default defineConfig({
       configPath: './wrangler.jsonc',
     },
   }),
-  redirects: {
-    '/blog/topics/emulators/chip8-emulator/': '/blog/emulators/chip8-emulator/',
-  },
 });
