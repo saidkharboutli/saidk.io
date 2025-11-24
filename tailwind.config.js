@@ -1,10 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies, global-require */
-const plugin = require('tailwindcss/plugin');
-
-module.exports = {
+export default {
   content: [
     './src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}',
-    './node_modules/saidk-io-components/**/*.{js,ts,jsx,tsx}', // Was astro-boilerplate-components
+    './node_modules/saidk-io-components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -46,14 +43,12 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-    require('tailwindcss-3d'),
-    plugin(({ addVariant }) => {
+    // Custom variant plugin
+    function ({ addVariant }) {
       addVariant(
         'prose-inline-code',
-        '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))',
+        '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))'
       );
-    }),
+    },
   ],
 };

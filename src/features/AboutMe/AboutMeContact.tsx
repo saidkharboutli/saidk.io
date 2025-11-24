@@ -1,13 +1,13 @@
 import emailjs from '@emailjs/browser';
 import React, { useEffect } from 'react';
-import Reaptcha from 'reaptcha';
+//import Reaptcha from 'reaptcha';
 
 import { GradientText } from '@/features/shared/GradientText';
 import { Section } from '@/features/shared/Section';
 
 const AboutMeContact = () => {
   const form = React.useRef<HTMLFormElement>(null);
-  const recaptcha = React.createRef<Reaptcha>();
+  // const recaptcha = React.createRef<Reaptcha>();
 
   const [showPopup, setShowPopup] = React.useState(false);
   const [animateContents, setAnimateContents] = React.useState(false);
@@ -101,14 +101,14 @@ const AboutMeContact = () => {
     Run recaptcha verification on form submit.
   */
   const handleSubmit = async (e: React.FormEvent) => {
-    if (!recaptcha.current) {
-      console.error('Recaptcha reference is null.');
-      return;
-    }
+    // if (!recaptcha.current) {
+    //   console.error('Recaptcha reference is null.');
+    //   return;
+    // }
 
     e.preventDefault();
     setSending(true);
-    await recaptcha.current.execute();
+    // await recaptcha.current.execute();
   };
 
   return (
@@ -169,7 +169,7 @@ const AboutMeContact = () => {
             </div>
           </div>
           <div className="invisible">
-            <Reaptcha
+            {/*<Reaptcha
               ref={recaptcha}
               sitekey="6LcH2GYpAAAAAPoTzQma2i8R5wn2e5CNySqP-n5c"
               onVerify={onRecaptchaVerify}
@@ -177,12 +177,13 @@ const AboutMeContact = () => {
               size="invisible"
               theme="dark"
             />
+            */}
           </div>
           <button
             type="submit"
             id="submit-button"
             className="self-center rounded-md bg-primary px-6 py-2 text-cod-950 transition-all duration-200 hover:scale-110"
-            onClick={() => recaptcha.current!.reset()}
+            onClick={() => {return} }// recaptcha.current!.reset()}
             disabled={sending}
           >
             {/* Confusing mess, probably should clarify. */}
