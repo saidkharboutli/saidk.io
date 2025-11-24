@@ -8,11 +8,11 @@ interface IReviewCardProps {
 }
 
 const ReviewCardMin = (props: IReviewCardProps) => (
-  <div className="flex w-full flex-col overflow-hidden rounded-md bg-cod-950 delay-150 duration-300 hover:scale-105">
+  <div className="bg-cod-950 flex w-full flex-col overflow-hidden rounded-md delay-150 duration-300 hover:scale-105">
     <div className="flex items-center justify-center">
       <a href={props.review.data.link}>
         <img
-          className="aspect-1 size-full rounded-md object-cover object-center hover:opacity-50 md:h-[250px]"
+          className="aspect-square size-full rounded-md object-cover object-center hover:opacity-50 md:h-[250px]"
           src={props.review.data.imgSrc}
           alt={props.review.data.imgAlt}
           loading="lazy"

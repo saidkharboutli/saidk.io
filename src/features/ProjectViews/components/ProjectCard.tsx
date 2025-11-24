@@ -12,15 +12,15 @@ type IProjectCardProps = {
 };
 
 const ProjectCard = (props: IProjectCardProps) => (
-  <div className="group flex h-full flex-col self-start overflow-visible transition-all delay-500 duration-500 perspective-1000 hover:scale-105">
-    <div id="card-inner" className="grid h-full transform-style-3d">
+  <div className="group perspective-1000 flex h-full flex-col self-start overflow-visible transition-all delay-500 duration-500 hover:scale-105">
+    <div id="card-inner" className="transform-style-3d grid h-full">
       <div
         id="card-front"
-        className="col-start-1 row-start-1 flex size-full flex-col overflow-hidden rounded-md bg-cod-900 transition-transform duration-700 transform-style-3d backface-hidden group-hover:-rotate-y-180"
+        className="bg-cod-900 transform-style-3d col-start-1 row-start-1 flex size-full flex-col overflow-hidden rounded-md transition-transform duration-700 backface-hidden group-hover:-rotate-y-180"
       >
         <div className="p-2">
           <img
-            className="aspect-1 size-full rounded-lg bg-cod-800 object-cover object-center"
+            className="bg-cod-800 aspect-square size-full rounded-lg object-cover object-center"
             src={props.project.data.imgSrc}
             alt={props.project.data.imgAlt}
             loading="lazy"
@@ -36,7 +36,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             </div>
 
             {/* Start Date */}
-            <div className="text-sm text-cod-400">
+            <div className="text-cod-400 text-sm">
               <span className="align-bottom">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,10 +57,10 @@ const ProjectCard = (props: IProjectCardProps) => (
             </div>
 
             {/* Description */}
-            <div className="text-base text-cod-100">{props.project.data.description}</div>
+            <div className="text-cod-100 text-base">{props.project.data.description}</div>
 
             {/* Status */}
-            <div className="mt-auto pt-2 text-base text-cod-100">
+            <div className="text-cod-100 mt-auto pt-2 text-base">
               <ProjectTag key="status">{props.project.data.status}</ProjectTag>
             </div>
           </div>
@@ -69,11 +69,11 @@ const ProjectCard = (props: IProjectCardProps) => (
 
       <div
         id="card-back"
-        className="col-start-1 row-start-1 flex size-full flex-col items-center justify-between overflow-hidden rounded-md bg-cod-800 px-2 py-4 transition-transform duration-700 transform-style-3d rotate-y-180 backface-hidden group-hover:rotate-y-0"
+        className="bg-cod-800 transform-style-3d col-start-1 row-start-1 flex size-full rotate-y-180 flex-col items-center justify-between overflow-hidden rounded-md px-2 py-4 transition-transform duration-700 backface-hidden group-hover:rotate-y-0"
       >
         <div className="flex w-full flex-col items-center text-center">
           <a href={props.project.slug}>
-            <h2 className="text-2xl font-semibold transition-all duration-200 hover:text-primary hover:scale-110">
+            <h2 className="hover:text-primary text-2xl font-semibold transition-all duration-200 hover:scale-110">
               Details
             </h2>
           </a>
@@ -131,7 +131,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             {props.latestPost ? (
               <BlogCardMin post={props.latestPost} includeImage={false} />
             ) : (
-              <div className="w-full rounded-lg bg-cod-900 py-10 transition-all duration-700 hover:scale-105">
+              <div className="bg-cod-900 w-full rounded-lg py-10 transition-all duration-700 hover:scale-105">
                 <span className="text-xl font-bold"> No Posts Yet! </span>
               </div>
             )}
@@ -141,14 +141,14 @@ const ProjectCard = (props: IProjectCardProps) => (
               <div className="flex w-full justify-between gap-2">
                 <a
                   href={`/blog/projects/${generateSlug(props.project.data.series)}/`}
-                  className="transition-all duration-150 hover:text-primary hover:scale-110"
+                  className="hover:text-primary transition-all duration-150 hover:scale-110"
                 >
                   View All Posts
                 </a>
                 <span>|</span>
                 <a
                   href={`/projects/${generateSlug(props.project.data.series)}/`}
-                  className="transition-all duration-150 hover:text-primary hover:scale-110"
+                  className="hover:text-primary transition-all duration-150 hover:scale-110"
                 >
                   View Project
                 </a>
@@ -156,7 +156,7 @@ const ProjectCard = (props: IProjectCardProps) => (
             ) : (
               <a
                 href={`/projects/${generateSlug(props.project.data.series)}/`}
-                className="transition-all duration-150 hover:text-primary hover:scale-110"
+                className="hover:text-primary transition-all duration-150 hover:scale-110"
               >
                 View Project Page
               </a>

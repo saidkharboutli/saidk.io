@@ -12,7 +12,7 @@ type ITopicsViewProps = {
 };
 
 const TopicsView = (props: ITopicsViewProps) => (
-  <div className="mx-auto mt-4 flex max-w-screen-lg flex-row flex-wrap justify-center gap-3 px-3 py-6 text-2xl">
+  <div className="mx-auto mt-4 flex max-w-(--breakpoint-lg) flex-row flex-wrap justify-center gap-3 px-3 py-6 text-2xl">
     {props.topicData &&
       props.topicData
         .sort((a, b) => a.topic.localeCompare(b.topic))

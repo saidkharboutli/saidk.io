@@ -9,11 +9,11 @@ interface IReviewCardProps {
 }
 
 const ReviewCard = (props: IReviewCardProps) => (
-  <div className="flex w-full flex-col overflow-hidden rounded-md bg-cod-900 delay-150 duration-300 md:max-h-[242px] md:flex-row md:gap-1 md:hover:scale-105">
+  <div className="bg-cod-900 flex w-full flex-col overflow-hidden rounded-md delay-150 duration-300 md:max-h-60 md:flex-row md:gap-1 md:hover:scale-105">
     <div className="flex items-center md:basis-1/4">
       <a href={props.review.data.link}>
         <img
-          className="aspect-1 size-full rounded-t-md object-cover object-center hover:opacity-50 md:rounded-l-md md:rounded-t-none"
+          className="aspect-square size-full rounded-t-md object-cover object-center hover:opacity-50 md:rounded-t-none md:rounded-l-md"
           src={props.review.data.imgSrc}
           alt={props.review.data.imgAlt}
           loading="lazy"
@@ -72,7 +72,7 @@ const ReviewCard = (props: IReviewCardProps) => (
         <div className="mt-1 flex flex-wrap gap-1">
           {props.review.data.typeOrGenre.map((item) => (
             <span
-              className="w-fit rounded-md bg-cod-700 px-1.5 py-0.5 outline outline-1 outline-cod-400 transition-all duration-150 hover:bg-violet-400 hover:outline-violet-200 hover:scale-105"
+              className="bg-cod-700 outline-cod-400 w-fit rounded-md px-1.5 py-0.5 outline outline-1 transition-all duration-150 hover:scale-105 hover:bg-violet-400 hover:outline-violet-200"
               key={item}
             >
               {item}
@@ -130,7 +130,7 @@ const ReviewCard = (props: IReviewCardProps) => (
           <div className="flex flex-row gap-1">
             {props.review.data.favoriteSongs?.map((song) => (
               <span
-                className="w-fit rounded-md bg-cod-700 px-1.5 py-0.5 outline outline-1 outline-cod-400 transition-all duration-150 hover:bg-violet-400 hover:outline-violet-200 hover:scale-105"
+                className="bg-cod-700 outline-cod-400 w-fit rounded-md px-1.5 py-0.5 outline outline-1 transition-all duration-150 hover:scale-105 hover:bg-violet-400 hover:outline-violet-200"
                 key={song}
               >
                 {song}

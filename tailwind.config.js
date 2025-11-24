@@ -43,7 +43,6 @@ export default {
     },
   },
   plugins: [
-    // Custom variant plugin
     function ({ addVariant }) {
       addVariant(
         'prose-inline-code',

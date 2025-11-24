@@ -8,16 +8,16 @@ type IProjectContentProps = {
 
 const ProjectContent = (props: IProjectContentProps) => (
   <div className="mx-auto mt-5 max-w-[70ch]">
-    <div className="aspect-h-2 aspect-w-3">
+    <div className="w-full">
       <img
-        className="size-full rounded-lg object-cover object-center"
+        className="aspect-3/2 size-full rounded-lg object-cover object-center"
         src={props.projectData.imgSrc}
         alt={props.projectData.imgAlt}
         loading="lazy"
       />
     </div>
 
-    <div className="prose prose-invert mt-8 prose-img:rounded-lg">{props.children}</div>
+    <div className="prose prose-invert prose-img:rounded-lg mt-8">{props.children}</div>
   </div>
 );
 

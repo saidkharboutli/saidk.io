@@ -81,19 +81,19 @@ const Newsletter = (props: INewsletterProps) => {
         <form
           ref={form}
           onSubmit={onSubmit}
-          className="mb-1 flex rounded-full bg-cod-800 px-4 py-2 focus-within:ring-2 focus-within:ring-cyan-600 hover:ring-2 hover:ring-cyan-600"
+          className="bg-cod-800 mb-1 flex rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-cyan-600 hover:ring-2 hover:ring-cyan-600"
         >
           <input
             name="email"
             type="email"
-            className="w-full appearance-none bg-cod-800 focus:outline-none"
+            className="bg-cod-800 w-full appearance-none focus:outline-none"
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
             required
           />
 
           <button
-            className="ml-2 shrink-0 rounded-full bg-gradient-to-br from-violet-600 to-violet-400 px-3 py-1 text-sm font-medium hover:from-sky-700 hover:to-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600/50"
+            className="ml-2 shrink-0 rounded-full bg-linear-to-br from-violet-600 to-violet-400 px-3 py-1 text-sm font-medium hover:from-sky-700 hover:to-cyan-600 focus:ring-2 focus:ring-cyan-600/50 focus:outline-none"
             type="submit"
             disabled={status !== 'IDLE'}
           >
@@ -101,7 +101,7 @@ const Newsletter = (props: INewsletterProps) => {
           </button>
         </form>
         <div className="h-2">
-          <p className="px-4 text-left text-xs text-cod-300">{renderStatusText(status)}</p>
+          <p className="text-cod-300 px-4 text-left text-xs">{renderStatusText(status)}</p>
         </div>
       </div>
     </div>

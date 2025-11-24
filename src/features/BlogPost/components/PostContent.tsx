@@ -14,9 +14,9 @@ const PostContent = (props: IPostContentProps) => (
 
     {/* Below is the actual blog content */}
     <div className="mx-auto mt-5 max-w-[70ch] 2xl:max-w-[85ch]">
-      <div className="aspect-h-2 aspect-w-3">
+      <div id="blog-image" className="w-full">
         <img
-          className="rounded-lg object-cover object-center"
+          className="aspect-2/3 rounded-lg object-cover object-center"
           src={props.content.imgSrc}
           alt={props.content.imgAlt}
           loading="lazy"
@@ -24,14 +24,14 @@ const PostContent = (props: IPostContentProps) => (
       </div>
 
       <div
-        className="prose prose-indigo prose-invert mt-8 max-w-none 2xl:prose-lg
-        prose-headings:text-cod-100 prose-h2:text-3xl prose-h3:text-2xl 
-        prose-h4:text-lg prose-p:text-cod-200 prose-strong:text-cod-200
-        prose-th:text-cod-200 prose-td:text-cod-200 prose-img:rounded-lg
-        prose-inline-code:whitespace-nowrap prose-inline-code:rounded-md 
-        prose-inline-code:bg-cod-900 prose-inline-code:px-1
+        className="prose prose-indigo prose-invert 2xl:prose-lg prose-headings:text-cod-100 prose-h2:text-3xl
+        prose-h3:text-2xl prose-h4:text-lg prose-p:text-cod-200 
+        prose-strong:text-cod-200 prose-th:text-cod-200 prose-td:text-cod-200
+        prose-img:rounded-lg prose-inline-code:whitespace-nowrap prose-inline-code:rounded-md
+        prose-inline-code:bg-cod-900 prose-inline-code:px-1 
         prose-inline-code:py-0.5 prose-inline-code:text-cod-200
-        prose-inline-code:before:hidden prose-inline-code:after:hidden"
+        prose-inline-code:before:hidden prose-inline-code:after:hidden
+        mt-8 max-w-none"
       >
         <article>{props.children}</article>
       </div>
